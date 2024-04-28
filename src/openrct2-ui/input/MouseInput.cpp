@@ -300,6 +300,9 @@ static void GameHandleInputMouse(const ScreenCoordsXY& screenCoords, MouseState 
                         w = WindowBringToFront(*w);
                     }
 
+                    if (w == nullptr)
+                      break;
+
                     if (widgetIndex != -1)
                     {
                         switch (widget->type)
@@ -320,7 +323,9 @@ static void GameHandleInputMouse(const ScreenCoordsXY& screenCoords, MouseState 
                     break;
                 case MouseState::LeftRelease:
                 case MouseState::RightRelease:
-                    // In this switch only button presses are relevant
+                    WindowClass windowClass = w->classification;
+                    rct_windownumber windowNumber = w->number;
+                    WindowCloseByNumber(windowClass, windowNumber);
                     break;
             }
             break;
