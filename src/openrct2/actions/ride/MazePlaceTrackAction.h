@@ -17,7 +17,7 @@ namespace OpenRCT2::GameActions
     {
     private:
         CoordsXYZ _loc;
-        RideId _rideIndex{ RideId::GetNull() };
+        RideId _rideIndex{ RideId::getNull() };
         uint16_t _mazeEntry{};
 
     public:

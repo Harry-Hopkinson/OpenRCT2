@@ -184,7 +184,7 @@ static void ConsoleCommandRides(InteractiveConsole& console, const arguments_t& 
                 else
                 {
                     auto res = SetOperatingSetting(
-                        RideId::FromUnderlying(ride_index), GameActions::RideSetSetting::rideType, type);
+                        RideId::fromUnderlying(ride_index), GameActions::RideSetSetting::rideType, type);
                     if (res == kMoney64Undefined)
                     {
                         if (!gameState.cheats.allowArbitraryRideTypeChanges)
@@ -214,7 +214,7 @@ static void ConsoleCommandRides(InteractiveConsole& console, const arguments_t& 
                 }
                 else
                 {
-                    auto ride = GetRide(RideId::FromUnderlying(ride_index));
+                    auto ride = GetRide(RideId::fromUnderlying(ride_index));
                     if (mode >= static_cast<uint8_t>(RideMode::count))
                     {
                         console.WriteFormatLine("Invalid ride mode.");
@@ -246,7 +246,7 @@ static void ConsoleCommandRides(InteractiveConsole& console, const arguments_t& 
                 }
                 else
                 {
-                    auto ride = GetRide(RideId::FromUnderlying(ride_index));
+                    auto ride = GetRide(RideId::fromUnderlying(ride_index));
                     if (mass <= 0)
                     {
                         console.WriteFormatLine("Friction value must be strictly positive");
@@ -285,7 +285,7 @@ static void ConsoleCommandRides(InteractiveConsole& console, const arguments_t& 
                 }
                 else
                 {
-                    auto rideIndex = RideId::FromUnderlying(ride_index);
+                    auto rideIndex = RideId::fromUnderlying(ride_index);
                     auto ride = GetRide(rideIndex);
                     if (excitement <= 0)
                     {
@@ -319,7 +319,7 @@ static void ConsoleCommandRides(InteractiveConsole& console, const arguments_t& 
                 }
                 else
                 {
-                    auto rideIndex = RideId::FromUnderlying(ride_index);
+                    auto rideIndex = RideId::fromUnderlying(ride_index);
                     auto ride = GetRide(rideIndex);
                     if (intensity <= 0)
                     {
@@ -353,7 +353,7 @@ static void ConsoleCommandRides(InteractiveConsole& console, const arguments_t& 
                 }
                 else
                 {
-                    auto rideIndex = RideId::FromUnderlying(ride_index);
+                    auto rideIndex = RideId::fromUnderlying(ride_index);
                     auto ride = GetRide(rideIndex);
                     if (nausea <= 0)
                     {
@@ -426,7 +426,7 @@ static void ConsoleCommandRides(InteractiveConsole& console, const arguments_t& 
                     }
                     else
                     {
-                        auto rideSetPrice = GameActions::RideSetPriceAction(RideId::FromUnderlying(rideId), price, true);
+                        auto rideSetPrice = GameActions::RideSetPriceAction(RideId::fromUnderlying(rideId), price, true);
                         GameActions::Execute(&rideSetPrice, gameState);
                     }
                 }
@@ -481,7 +481,7 @@ static void ConsoleCommandStaff(InteractiveConsole& console, const arguments_t& 
 
                 if (int_valid[0] && int_valid[1])
                 {
-                    Peep* peep = gameState.entities.getEntity<Peep>(EntityId::FromUnderlying(int_val[0]));
+                    Peep* peep = gameState.entities.getEntity<Peep>(EntityId::fromUnderlying(int_val[0]));
                     if (peep != nullptr)
                     {
                         peep->energy = int_val[1];
@@ -500,7 +500,7 @@ static void ConsoleCommandStaff(InteractiveConsole& console, const arguments_t& 
                     console.WriteLineError("Invalid staff ID");
                     return;
                 }
-                auto staff = gameState.entities.getEntity<Staff>(EntityId::FromUnderlying(int_val[0]));
+                auto staff = gameState.entities.getEntity<Staff>(EntityId::fromUnderlying(int_val[0]));
                 if (staff == nullptr)
                 {
                     console.WriteLineError("Invalid staff ID");
@@ -519,7 +519,7 @@ static void ConsoleCommandStaff(InteractiveConsole& console, const arguments_t& 
                 }
 
                 auto costume = static_cast<ObjectEntryIndex>(int_val[1]);
-                auto staffSetCostumeAction = GameActions::StaffSetCostumeAction(EntityId::FromUnderlying(int_val[0]), costume);
+                auto staffSetCostumeAction = GameActions::StaffSetCostumeAction(EntityId::fromUnderlying(int_val[0]), costume);
                 GameActions::Execute(&staffSetCostumeAction, gameState);
             }
         }

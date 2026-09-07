@@ -329,7 +329,7 @@ namespace OpenRCT2::Ui::Windows
                     if (TrackDesignAreEntranceAndExitPlaced())
                     {
                         auto intent = Intent(WindowClass::ride);
-                        intent.PutExtra(INTENT_EXTRA_RIDE_ID, rideId.ToUnderlying());
+                        intent.PutExtra(INTENT_EXTRA_RIDE_ID, rideId.toUnderlying());
                         ContextOpenIntent(&intent);
                         auto* wnd = windowMgr->FindByClass(WindowClass::trackDesignPlace);
                         windowMgr->Close(*wnd);

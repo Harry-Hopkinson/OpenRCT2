@@ -387,7 +387,7 @@ namespace OpenRCT2
                     {
                         if (trackElement->getTrackType() == TrackElemType::maze)
                         {
-                            gRideEntranceExitPlaceStationIndex = StationIndex::FromUnderlying(0);
+                            gRideEntranceExitPlaceStationIndex = StationIndex::fromUnderlying(0);
                         }
                         else
                         {

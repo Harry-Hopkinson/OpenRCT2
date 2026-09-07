@@ -25,7 +25,7 @@ namespace OpenRCT2::GameActions
     class RideSetVehicleAction final : public GameActionBase<GameCommand::setRideVehicles>
     {
     private:
-        RideId _rideIndex{ RideId::GetNull() };
+        RideId _rideIndex{ RideId::getNull() };
         RideSetVehicleType _type{};
         uint16_t _value{};
         uint8_t _colour{};

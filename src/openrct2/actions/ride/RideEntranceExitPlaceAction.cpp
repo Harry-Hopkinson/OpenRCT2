@@ -67,13 +67,13 @@ namespace OpenRCT2::GameActions
         auto ride = GetRide(_rideIndex);
         if (ride == nullptr)
         {
-            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, errorTitle, STR_ERR_RIDE_NOT_FOUND);
         }
 
-        if (_stationNum.ToUnderlying() >= Limits::kMaxStationsPerRide)
+        if (_stationNum.toUnderlying() >= Limits::kMaxStationsPerRide)
         {
-            LOG_ERROR("Invalid station number for ride. stationNum: %u", _stationNum.ToUnderlying());
+            LOG_ERROR("Invalid station number for ride. stationNum: %u", _stationNum.toUnderlying());
             return Result(Status::invalidParameters, errorTitle, STR_ERR_VALUE_OUT_OF_RANGE);
         }
 
@@ -153,7 +153,7 @@ namespace OpenRCT2::GameActions
         auto ride = GetRide(_rideIndex);
         if (ride == nullptr)
         {
-            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, errorTitle, STR_ERR_RIDE_NOT_FOUND);
         }
 
@@ -217,7 +217,7 @@ namespace OpenRCT2::GameActions
         else
         {
             station.entrance = TileCoordsXYZD(CoordsXYZD{ _loc, z, entranceElement->getDirection() });
-            station.lastPeepInQueue = EntityId::GetNull();
+            station.lastPeepInQueue = EntityId::getNull();
             station.queueLength = 0;
 
             MapAnimations::MarkTileForInvalidation(TileCoordsXY(_loc));

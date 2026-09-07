@@ -74,7 +74,7 @@ namespace OpenRCT2
             // There is a random chance that pressing the balloon will not pop it
             // and instead shift it slightly
             uint32_t random = ScenarioRand();
-            if ((id.ToUnderlying() & 7) || (random & 0xFFFF) < 0x2000)
+            if ((id.toUnderlying() & 7) || (random & 0xFFFF) < 0x2000)
             {
                 pop(true);
             }

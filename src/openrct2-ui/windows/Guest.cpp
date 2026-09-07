@@ -230,7 +230,7 @@ namespace OpenRCT2::Ui::Windows
 
         void init(EntityId id)
         {
-            number = id.ToUnderlying();
+            number = id.toUnderlying();
             page = -1; // Set Page to something invalid so that SetPage doesn't set audio on viewport
             setPage(WINDOW_GUEST_OVERVIEW);
         }
@@ -433,7 +433,7 @@ namespace OpenRCT2::Ui::Windows
     private:
         Guest* GetGuest()
         {
-            auto guest = getGameState().entities.getEntity<Guest>(EntityId::FromUnderlying(number));
+            auto guest = getGameState().entities.getEntity<Guest>(EntityId::fromUnderlying(number));
             if (guest == nullptr)
             {
                 close();
@@ -649,7 +649,7 @@ namespace OpenRCT2::Ui::Windows
                     CoordsXYZ nullLoc{};
                     nullLoc.setNull();
                     GameActions::PeepPickupAction pickupAction{ GameActions::PeepPickupType::pickup,
-                                                                EntityId::FromUnderlying(number), nullLoc,
+                                                                EntityId::fromUnderlying(number), nullLoc,
                                                                 Network::GetCurrentPlayerId() };
                     pickupAction.SetCallback(
                         [peepnum = number](const GameActions::GameAction* ga, const GameActions::Result* result) {
@@ -677,7 +677,7 @@ namespace OpenRCT2::Ui::Windows
                     auto newFlags = peep->peepFlags;
                     newFlags.flip(PeepFlag::tracking);
 
-                    auto guestSetFlagsAction = GameActions::GuestSetFlagsAction(EntityId::FromUnderlying(number), newFlags);
+                    auto guestSetFlagsAction = GameActions::GuestSetFlagsAction(EntityId::fromUnderlying(number), newFlags);
                     GameActions::Execute(&guestSetFlagsAction, gameState);
                 }
                 break;
@@ -729,7 +729,7 @@ namespace OpenRCT2::Ui::Windows
         void GuestFollow()
         {
             WindowBase* main = WindowGetMain();
-            WindowFollowSprite(*main, EntityId::FromUnderlying(number));
+            WindowFollowSprite(*main, EntityId::fromUnderlying(number));
         }
 
         void onViewportRotateOverview()
@@ -942,7 +942,7 @@ namespace OpenRCT2::Ui::Windows
             };
 
             // Also update when guest is on a ride but viewport still points to the guest (not the vehicle)
-            bool viewportNeedsVehicleUpdate = isGuestInVehicle() && viewportTargetSprite == EntityId::FromUnderlying(number);
+            bool viewportNeedsVehicleUpdate = isGuestInVehicle() && viewportTargetSprite == EntityId::fromUnderlying(number);
 
             if (focus != currentFocus || viewportNeedsVehicleUpdate)
             {
@@ -967,7 +967,7 @@ namespace OpenRCT2::Ui::Windows
             if (text.empty())
                 return;
             std::string sText(text);
-            auto gameAction = GameActions::GuestSetNameAction(EntityId::FromUnderlying(number), sText);
+            auto gameAction = GameActions::GuestSetNameAction(EntityId::fromUnderlying(number), sText);
             GameActions::Execute(&gameAction, getGameState());
         }
 
@@ -1021,7 +1021,7 @@ namespace OpenRCT2::Ui::Windows
                 return;
 
             GameActions::PeepPickupAction pickupAction{ GameActions::PeepPickupType::place,
-                                                        EntityId::FromUnderlying(number),
+                                                        EntityId::fromUnderlying(number),
                                                         { destCoords, tileElement->getBaseZ() },
                                                         Network::GetCurrentPlayerId() };
             pickupAction.SetCallback([](const GameActions::GameAction* ga, const GameActions::Result* result) {
@@ -1039,7 +1039,7 @@ namespace OpenRCT2::Ui::Windows
                 return;
 
             GameActions::PeepPickupAction pickupAction{ GameActions::PeepPickupType::cancel,
-                                                        EntityId::FromUnderlying(number),
+                                                        EntityId::fromUnderlying(number),
                                                         { _pickedPeepX, 0, 0 },
                                                         Network::GetCurrentPlayerId() };
             GameActions::Execute(&pickupAction, getGameState());
@@ -1915,7 +1915,7 @@ namespace OpenRCT2::Ui::Windows
         }
 
         auto* windowMgr = GetWindowManager();
-        auto* window = static_cast<GuestWindow*>(windowMgr->BringToFrontByNumber(WindowClass::peep, peep->id.ToUnderlying()));
+        auto* window = static_cast<GuestWindow*>(windowMgr->BringToFrontByNumber(WindowClass::peep, peep->id.toUnderlying()));
         if (window == nullptr)
         {
             auto windowSize = kWindowSize;

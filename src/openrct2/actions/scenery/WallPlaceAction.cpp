@@ -349,7 +349,7 @@ namespace OpenRCT2::GameActions
             banner->position = TileCoordsXY(_loc);
 
             RideId rideIndex = BannerGetClosestRideIndex(targetLoc);
-            if (!rideIndex.IsNull())
+            if (!rideIndex.isNull())
             {
                 banner->rideIndex = rideIndex;
                 banner->flags.set(BannerFlag::linkedToRide);
@@ -371,7 +371,7 @@ namespace OpenRCT2::GameActions
         wallElement->setAcrossTrack(wallAcrossTrack);
 
         wallElement->setEntryIndex(_wallType);
-        wallElement->setBannerIndex(banner != nullptr ? banner->id : BannerIndex::GetNull());
+        wallElement->setBannerIndex(banner != nullptr ? banner->id : BannerIndex::getNull());
 
         if (wallEntry->flags.has(WallSceneryFlag::hasTertiaryColour))
         {
@@ -385,7 +385,7 @@ namespace OpenRCT2::GameActions
 
         res.cost = wallEntry->price;
 
-        const auto bannerId = banner != nullptr ? banner->id : BannerIndex::GetNull();
+        const auto bannerId = banner != nullptr ? banner->id : BannerIndex::getNull();
         res.setData(WallPlaceActionResult{ wallElement->getBaseZ(), bannerId });
 
         return res;

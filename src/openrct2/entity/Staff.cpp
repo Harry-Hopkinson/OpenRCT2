@@ -499,7 +499,7 @@ namespace OpenRCT2
         Direction litterDirection = kInvalidDirection;
         uint8_t validDirections = getValidPatrolDirections(nextLoc);
 
-        if ((staffOrders & STAFF_ORDERS_SWEEPING) && ((getGameState().currentTicks + id.ToUnderlying()) & 0xFFF) > 110)
+        if ((staffOrders & STAFF_ORDERS_SWEEPING) && ((getGameState().currentTicks + id.toUnderlying()) & 0xFFF) > 110)
         {
             litterDirection = handymanDirectionToNearestLitter();
         }
@@ -534,7 +534,7 @@ namespace OpenRCT2
                     if (litterDirection != kInvalidDirection && pathDirections & (1 << litterDirection))
                     {
                         // Check whether path is a queue path and connected to a ride
-                        bool connectedQueue = (pathElement->isQueue() && !pathElement->getRideIndex().IsNull());
+                        bool connectedQueue = (pathElement->isQueue() && !pathElement->getRideIndex().isNull());
                         // When in a queue path make the probability of following litter much lower (10% instead of 90%)
                         // as handymen often get stuck when there is litter on a normal path next to a queue they are in
                         uint32_t chooseRandomProbability = connectedQueue ? 0xE666 : 0x1999;
@@ -729,7 +729,7 @@ namespace OpenRCT2
 
             const auto goalPos = TileCoordsXYZ{ location };
             Direction pathfindDirection = PathFinding::ChooseDirection(
-                TileCoordsXYZ{ nextLoc }, goalPos, *this, false, RideId::GetNull());
+                TileCoordsXYZ{ nextLoc }, goalPos, *this, false, RideId::getNull());
             if (pathfindDirection == kInvalidDirection)
             {
                 /* Heuristic search failed for all directions.

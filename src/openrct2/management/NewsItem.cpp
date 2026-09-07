@@ -219,7 +219,7 @@ std::optional<CoordsXYZ> News::GetSubjectLocation(ItemType type, int32_t subject
     {
         case ItemType::ride:
         {
-            Ride* ride = GetRide(RideId::FromUnderlying(subject));
+            Ride* ride = GetRide(RideId::fromUnderlying(subject));
             if (ride == nullptr || ride->overallView.isNull())
             {
                 break;
@@ -230,7 +230,7 @@ std::optional<CoordsXYZ> News::GetSubjectLocation(ItemType type, int32_t subject
         }
         case ItemType::peepOnRide:
         {
-            auto peep = gameState.entities.tryGetEntity<Peep>(EntityId::FromUnderlying(subject));
+            auto peep = gameState.entities.tryGetEntity<Peep>(EntityId::fromUnderlying(subject));
             if (peep == nullptr)
                 break;
 
@@ -267,7 +267,7 @@ std::optional<CoordsXYZ> News::GetSubjectLocation(ItemType type, int32_t subject
         }
         case ItemType::peep:
         {
-            auto peep = gameState.entities.tryGetEntity<Peep>(EntityId::FromUnderlying(subject));
+            auto peep = gameState.entities.tryGetEntity<Peep>(EntityId::fromUnderlying(subject));
             if (peep != nullptr)
             {
                 subjectLoc = peep->getLocation();
@@ -323,7 +323,7 @@ News::Item* News::AddItemToQueue(ItemType type, StringId string_id, uint32_t ass
 // TODO: Use variant for assoc, requires strong type for each possible input.
 News::Item* News::AddItemToQueue(ItemType type, StringId string_id, EntityId assoc, const Formatter& formatter)
 {
-    return AddItemToQueue(type, string_id, assoc.ToUnderlying(), formatter);
+    return AddItemToQueue(type, string_id, assoc.toUnderlying(), formatter);
 }
 
 News::Item* News::AddItemToQueue(ItemType type, const utf8* text, uint32_t assoc)
@@ -380,7 +380,7 @@ void News::OpenSubject(ItemType type, int32_t subject)
         case ItemType::peepOnRide:
         case ItemType::peep:
         {
-            auto peep = getGameState().entities.tryGetEntity<Peep>(EntityId::FromUnderlying(subject));
+            auto peep = getGameState().entities.tryGetEntity<Peep>(EntityId::fromUnderlying(subject));
             if (peep != nullptr)
             {
                 auto intent = Intent(WindowClass::peep);

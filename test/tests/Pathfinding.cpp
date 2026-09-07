@@ -85,7 +85,7 @@ protected:
 
         // Pick the direction the peep should initially move in, given the goal position.
         // This will also store the goal position and initialize pathfinding data for the peep.
-        const Direction moveDir = PathFinding::ChooseDirection(*pos, goal, *peep, false, RideId::GetNull());
+        const Direction moveDir = PathFinding::ChooseDirection(*pos, goal, *peep, false, RideId::getNull());
         if (moveDir == kInvalidDirection)
         {
             // Couldn't determine a direction to move off in

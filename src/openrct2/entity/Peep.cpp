@@ -289,7 +289,7 @@ namespace OpenRCT2
         PROFILED_FUNCTION();
 
         pathCheckOptimisation++;
-        if ((pathCheckOptimisation & 0xF) != (id.ToUnderlying() & 0xF))
+        if ((pathCheckOptimisation & 0xF) != (id.toUnderlying() & 0xF))
         {
             // This condition makes the check happen less often
             // As a side effect peeps hover for a short,
@@ -593,7 +593,7 @@ namespace OpenRCT2
     void PeepWindowStateUpdate(Peep* peep)
     {
         auto* windowMgr = Ui::GetWindowManager();
-        WindowBase* w = windowMgr->FindByNumber(WindowClass::peep, peep->id.ToUnderlying());
+        WindowBase* w = windowMgr->FindByNumber(WindowClass::peep, peep->id.toUnderlying());
         if (w != nullptr)
             w->onPrepareDraw();
 
@@ -729,14 +729,14 @@ namespace OpenRCT2
         bool wasGuest = staff == nullptr;
         if (wasGuest)
         {
-            News::DisableNewsItems(News::ItemType::peepOnRide, peep->id.ToUnderlying());
+            News::DisableNewsItems(News::ItemType::peepOnRide, peep->id.toUnderlying());
         }
         else
         {
             staff->clearPatrolArea();
             UpdateConsolidatedPatrolAreas();
 
-            News::DisableNewsItems(News::ItemType::peep, staff->id.ToUnderlying());
+            News::DisableNewsItems(News::ItemType::peep, staff->id.toUnderlying());
         }
         getGameState().entities.entityRemove(peep);
 
@@ -983,7 +983,7 @@ namespace OpenRCT2
                     break;
 
                 case PeepThoughtType::hungry: // 0x14
-                    if (peep->guestHeadingToRideId.IsNull())
+                    if (peep->guestHeadingToRideId.isNull())
                     {
                         hungerCounter++;
                         break;
@@ -994,7 +994,7 @@ namespace OpenRCT2
                     break;
 
                 case PeepThoughtType::thirsty:
-                    if (peep->guestHeadingToRideId.IsNull())
+                    if (peep->guestHeadingToRideId.isNull())
                     {
                         thirstCounter++;
                         break;
@@ -1005,7 +1005,7 @@ namespace OpenRCT2
                     break;
 
                 case PeepThoughtType::toilet:
-                    if (peep->guestHeadingToRideId.IsNull())
+                    if (peep->guestHeadingToRideId.isNull())
                     {
                         toiletCounter++;
                         break;
@@ -1141,7 +1141,7 @@ namespace OpenRCT2
                 auto rideWithMostQueueComplaints = std::max_element(
                     queueComplainingGuestsMap.begin(), queueComplainingGuestsMap.end(),
                     [](auto& lhs, auto& rhs) { return lhs.second < rhs.second; });
-                auto rideId = rideWithMostQueueComplaints->first.ToUnderlying();
+                auto rideId = rideWithMostQueueComplaints->first.toUnderlying();
                 News::AddItemToQueue(News::ItemType::ride, STR_PEEPS_COMPLAINING_ABOUT_QUEUE_LENGTH_WARNING, rideId, {});
             }
         }
@@ -1324,7 +1324,7 @@ namespace OpenRCT2
             {
                 if (auto* guest = as<Guest>(); guest != nullptr)
                 {
-                    if (!guest->guestHeadingToRideId.IsNull())
+                    if (!guest->guestHeadingToRideId.isNull())
                     {
                         auto ride = GetRide(guest->guestHeadingToRideId);
                         if (ride != nullptr)
@@ -1355,7 +1355,7 @@ namespace OpenRCT2
                 ft.Add<StringId>(STR_SITTING);
                 break;
             case PeepState::watching:
-                if (!currentRide.IsNull())
+                if (!currentRide.isNull())
                 {
                     auto ride = GetRide(currentRide);
                     if (ride != nullptr)
@@ -1653,7 +1653,7 @@ namespace OpenRCT2
         {
             // Default guest/staff behaviour attempting to enter a
             // ride exit is to turn around.
-            peep->interactionRideIndex = RideId::GetNull();
+            peep->interactionRideIndex = RideId::getNull();
             PeepReturnToCentreOfTile(peep);
             return true;
         }
@@ -1669,7 +1669,7 @@ namespace OpenRCT2
             {
                 // Default staff behaviour attempting to enter a
                 // ride entrance is to turn around.
-                peep->interactionRideIndex = RideId::GetNull();
+                peep->interactionRideIndex = RideId::getNull();
                 PeepReturnToCentreOfTile(peep);
                 return true;
             }
@@ -2133,7 +2133,7 @@ namespace OpenRCT2
                 else
                 {
                     // Queue got disconnected from the original ride.
-                    guest->interactionRideIndex = RideId::GetNull();
+                    guest->interactionRideIndex = RideId::getNull();
                     guest->removeFromQueue();
                     guest->setState(PeepState::one);
                     PeepFootpathMoveForward(guest, coords, vandalismPresent);
@@ -2211,7 +2211,7 @@ namespace OpenRCT2
         }
         else
         {
-            peep->interactionRideIndex = RideId::GetNull();
+            peep->interactionRideIndex = RideId::getNull();
             if (guest != nullptr && peep->state == PeepState::queuing)
             {
                 guest->removeFromQueue();
@@ -2269,7 +2269,7 @@ namespace OpenRCT2
         if (ride->getRideTypeDescriptor().flags.has(RtdFlag::guestsShouldGoInsideFacility))
         {
             guest->timeLost = 0;
-            if (!guest->shouldGoOnRide(*ride, StationIndex::FromUnderlying(0), false, false))
+            if (!guest->shouldGoOnRide(*ride, StationIndex::fromUnderlying(0), false, false))
             {
                 PeepReturnToCentreOfTile(guest);
                 return true;
@@ -2308,7 +2308,7 @@ namespace OpenRCT2
         else
         {
             if (guest->guestHeadingToRideId == rideIndex)
-                guest->guestHeadingToRideId = RideId::GetNull();
+                guest->guestHeadingToRideId = RideId::getNull();
             guest->animationImageIdOffset = _backupAnimationImageIdOffset;
             guest->setState(PeepState::buying);
             guest->currentRide = rideIndex;
@@ -2430,7 +2430,7 @@ namespace OpenRCT2
             int16_t height = abs(TileElementHeight(newLoc) - z);
             if (height <= 3 || (is<Staff>() && height <= 32))
             {
-                interactionRideIndex = RideId::GetNull();
+                interactionRideIndex = RideId::getNull();
                 if (guest != nullptr && state == PeepState::queuing)
                 {
                     guest->removeFromQueue();

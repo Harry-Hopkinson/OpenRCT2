@@ -94,10 +94,10 @@ namespace OpenRCT2::Scripting
                 }
                 else if constexpr (std::is_same_v<T, FollowEntityCommand>)
                 {
-                    if (command.Follow.SpriteIndex.IsNull())
+                    if (command.Follow.SpriteIndex.isNull())
                         JS_SetPropertyStr(ctx, obj, "id", JS_NULL);
                     else
-                        JS_SetPropertyStr(ctx, obj, "id", JS_NewInt32(ctx, command.Follow.SpriteIndex.ToUnderlying()));
+                        JS_SetPropertyStr(ctx, obj, "id", JS_NewInt32(ctx, command.Follow.SpriteIndex.toUnderlying()));
                 }
                 else if constexpr (std::is_same_v<T, SetSpeedCommand>)
                 {
@@ -164,11 +164,11 @@ namespace OpenRCT2::Scripting
             case TitleScript::follow:
                 if (auto id = JSToOptionalInt(ctx, value, "id"); id.has_value())
                 {
-                    return FollowEntityCommand{ EntityId::FromUnderlying(id.value()) };
+                    return FollowEntityCommand{ EntityId::fromUnderlying(id.value()) };
                 }
                 else
                 {
-                    return FollowEntityCommand{ EntityId::GetNull() };
+                    return FollowEntityCommand{ EntityId::getNull() };
                 }
             case TitleScript::speed:
             {

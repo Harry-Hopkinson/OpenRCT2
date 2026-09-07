@@ -679,7 +679,7 @@ namespace OpenRCT2::Drawing::LightFx
 
     void Add3DLight(const EntityBase& entity, const uint8_t id, const CoordsXYZ& loc, const LightType lightType)
     {
-        Add3DLight(entity.id.ToUnderlying(), Qualifier::entity, id, loc, lightType);
+        Add3DLight(entity.id.toUnderlying(), Qualifier::entity, id, loc, lightType);
     }
 
     void Add3DLightMagicFromDrawingTile(

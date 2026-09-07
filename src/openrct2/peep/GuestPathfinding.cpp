@@ -97,7 +97,7 @@ namespace OpenRCT2::PathFinding
 
             if (peep != nullptr)
             {
-                LOG_INFO("[%05u:%s] %s", peep->id.ToUnderlying(), peep->getName().c_str(), buffer);
+                LOG_INFO("[%05u:%s] %s", peep->id.toUnderlying(), peep->getName().c_str(), buffer);
             }
             else
             {
@@ -365,7 +365,7 @@ namespace OpenRCT2::PathFinding
             if (nextPathElement->isWide())
                 return PathSearchResult::wide;
             // Only queue tiles that are connected to a ride are returned as ride queues.
-            if (nextPathElement->isQueue() && !nextPathElement->getRideIndex().IsNull())
+            if (nextPathElement->isQueue() && !nextPathElement->getRideIndex().isNull())
                 return PathSearchResult::rideQueue;
 
             return PathSearchResult::other;
@@ -772,7 +772,7 @@ namespace OpenRCT2::PathFinding
             if (tileElement->isGhost())
                 continue;
 
-            RideId rideIndex = RideId::GetNull();
+            RideId rideIndex = RideId::getNull();
             switch (tileElement->getType())
             {
                 case TileElementType::track:
@@ -874,7 +874,7 @@ namespace OpenRCT2::PathFinding
                     { // numEdges == 2
                         if (pathElement->isQueue() && pathElement->getRideIndex() != state.queueRideIndex)
                         {
-                            if (state.ignoreForeignQueues && !pathElement->getRideIndex().IsNull())
+                            if (state.ignoreForeignQueues && !pathElement->getRideIndex().isNull())
                             {
                                 // Path is a queue we aren't interested in
                                 /* The rideIndex will be useful for
@@ -1590,7 +1590,7 @@ namespace OpenRCT2::PathFinding
             return GuestPathfindAimless(peep, edges);
 
         const auto goalPos = TileCoordsXYZ(chosenEntrance.value());
-        Direction chosenDirection = ChooseDirection(TileCoordsXYZ{ peep.nextLoc }, goalPos, peep, true, RideId::GetNull());
+        Direction chosenDirection = ChooseDirection(TileCoordsXYZ{ peep.nextLoc }, goalPos, peep, true, RideId::getNull());
 
         if (chosenDirection == kInvalidDirection)
             return GuestPathfindAimless(peep, edges);
@@ -1644,7 +1644,7 @@ namespace OpenRCT2::PathFinding
         }
 
         const auto goalPos = TileCoordsXYZ(peepSpawnLoc);
-        direction = ChooseDirection(TileCoordsXYZ{ peep.nextLoc }, goalPos, peep, true, RideId::GetNull());
+        direction = ChooseDirection(TileCoordsXYZ{ peep.nextLoc }, goalPos, peep, true, RideId::getNull());
         if (direction == kInvalidDirection)
             return GuestPathfindAimless(peep, edges);
 
@@ -1680,7 +1680,7 @@ namespace OpenRCT2::PathFinding
             entranceGoal = TileCoordsXYZ(*chosenEntrance);
         }
 
-        Direction chosenDirection = ChooseDirection(TileCoordsXYZ{ peep.nextLoc }, entranceGoal, peep, true, RideId::GetNull());
+        Direction chosenDirection = ChooseDirection(TileCoordsXYZ{ peep.nextLoc }, entranceGoal, peep, true, RideId::getNull());
         if (chosenDirection == kInvalidDirection)
             return GuestPathfindAimless(peep, edges);
 
@@ -1862,11 +1862,11 @@ namespace OpenRCT2::PathFinding
         {
             if (entranceStations[i])
             {
-                return StationIndex::FromUnderlying(i);
+                return StationIndex::fromUnderlying(i);
             }
         }
 
-        return StationIndex::FromUnderlying(0);
+        return StationIndex::fromUnderlying(0);
     }
     /**
      *
@@ -1978,7 +1978,7 @@ namespace OpenRCT2::PathFinding
                 if (!(adjustedEdges & (1 << chosenDirection)))
                     continue;
 
-                RideId rideIndex = RideId::GetNull();
+                RideId rideIndex = RideId::getNull();
                 auto pathSearchResult = FootpathElementDestinationInDirection(loc, pathElement, chosenDirection, &rideIndex);
                 switch (pathSearchResult)
                 {
@@ -2022,7 +2022,7 @@ namespace OpenRCT2::PathFinding
             return GuestPathFindParkEntranceLeaving(peep, edges);
         }
 
-        if (peep.guestHeadingToRideId.IsNull())
+        if (peep.guestHeadingToRideId.isNull())
         {
             LogPathfinding(&peep, "Completed CalculateNextDestination - peep is aimless.");
 
@@ -2043,7 +2043,7 @@ namespace OpenRCT2::PathFinding
          * At the same time, count how many entrance stations there are and
          * which stations are entrance stations. */
         auto bestScore = std::numeric_limits<int32_t>::max();
-        StationIndex closestStationNum = StationIndex::FromUnderlying(0);
+        StationIndex closestStationNum = StationIndex::fromUnderlying(0);
 
         int32_t numEntranceStations = 0;
         BitSet<Limits::kMaxStationsPerRide> entranceStations = {};
@@ -2057,7 +2057,7 @@ namespace OpenRCT2::PathFinding
             const auto stationIndex = ride->getStationIndex(&station);
 
             numEntranceStations++;
-            entranceStations[stationIndex.ToUnderlying()] = true;
+            entranceStations[stationIndex.toUnderlying()] = true;
 
             TileCoordsXYZD entranceLocation = station.entrance;
             auto score = CalculateHeuristicPathingScore(entranceLocation, TileCoordsXYZ{ peep.nextLoc });
@@ -2070,7 +2070,7 @@ namespace OpenRCT2::PathFinding
 
         // Ride has no stations with an entrance, so head to station 0.
         if (numEntranceStations == 0)
-            closestStationNum = StationIndex::FromUnderlying(0);
+            closestStationNum = StationIndex::fromUnderlying(0);
 
         if (numEntranceStations > 1 && (ride->departFlags & RIDE_DEPART_SYNCHRONISE_WITH_ADJACENT_STATIONS))
         {

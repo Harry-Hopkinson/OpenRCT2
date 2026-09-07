@@ -44,7 +44,7 @@ namespace OpenRCT2::GameActions
         auto* peep = gameState.entities.tryGetEntity<Guest>(_peepId);
         if (peep == nullptr)
         {
-            LOG_ERROR("Guest entity not found for peepID %u", _peepId.ToUnderlying());
+            LOG_ERROR("Guest entity not found for peepID %u", _peepId.toUnderlying());
             return Result(Status::invalidParameters, STR_CANT_CHANGE_THIS, kStringIdNone);
         }
         return Result();
@@ -55,7 +55,7 @@ namespace OpenRCT2::GameActions
         auto* peep = gameState.entities.tryGetEntity<Guest>(_peepId);
         if (peep == nullptr)
         {
-            LOG_ERROR("Guest entity not found for peepID %u", _peepId.ToUnderlying());
+            LOG_ERROR("Guest entity not found for peepID %u", _peepId.toUnderlying());
             return Result(Status::invalidParameters, STR_CANT_CHANGE_THIS, kStringIdNone);
         }
 

@@ -23,7 +23,7 @@ namespace OpenRCT2::GameActions
     class StaffSetPatrolAreaAction final : public GameActionBase<GameCommand::setStaffPatrol>
     {
     private:
-        EntityId _spriteId{ EntityId::GetNull() };
+        EntityId _spriteId{ EntityId::getNull() };
         MapRange _range;
         StaffSetPatrolAreaMode _mode;
 

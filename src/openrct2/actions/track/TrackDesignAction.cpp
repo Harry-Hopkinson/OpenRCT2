@@ -134,7 +134,7 @@ namespace OpenRCT2::GameActions
         }
 
         res.cost = queryRes.cost;
-        res.setData(RideId{ RideId::GetNull() });
+        res.setData(RideId{ RideId::getNull() });
 
         return res;
     }

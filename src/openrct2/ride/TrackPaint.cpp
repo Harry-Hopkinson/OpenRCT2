@@ -1998,7 +1998,7 @@ void PaintTrack(PaintSession& session, Direction direction, int32_t height, cons
                 || rtd.specialType == RtdSpecialType::cashMachine)
                 zOffset = 23;
 
-            const auto* originElement = ride->getOriginElement(StationIndex::FromUnderlying(0));
+            const auto* originElement = ride->getOriginElement(StationIndex::fromUnderlying(0));
             if (originElement != nullptr && originElement->getTrackType() == TrackElemType::flatTrack1x1B)
                 LightFx::AddKioskLights(session.MapPosition, height, zOffset);
             else if (kRideTypeDescriptors[ride->type].flags.has(RtdFlag::isShopOrFacility))

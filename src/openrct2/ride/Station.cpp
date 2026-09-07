@@ -386,7 +386,7 @@ namespace OpenRCT2
                 return ride.getStationIndex(&station);
             }
         }
-        return StationIndex::GetNull();
+        return StationIndex::getNull();
     }
 
     StationIndex RideGetFirstValidStationStart(const Ride& ride)
@@ -398,7 +398,7 @@ namespace OpenRCT2
                 return ride.getStationIndex(&station);
             }
         }
-        return StationIndex::GetNull();
+        return StationIndex::getNull();
     }
 
     StationIndex RideGetFirstEmptyStationStart(const Ride& ride)
@@ -410,7 +410,7 @@ namespace OpenRCT2
                 return ride.getStationIndex(&station);
             }
         }
-        return StationIndex::GetNull();
+        return StationIndex::getNull();
     }
 
     int32_t RideStation::getBaseZ() const

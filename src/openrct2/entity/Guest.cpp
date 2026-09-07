@@ -954,7 +954,7 @@ namespace OpenRCT2
         }
 
         if (state == PeepState::walking && !outsideOfPark && !peepFlags.has(PeepFlag::leavingPark) && guestNumRides == 0
-            && guestHeadingToRideId.IsNull())
+            && guestHeadingToRideId.isNull())
         {
             uint32_t time_duration = currentTicks - parkEntryTime;
             time_duration /= 2048;
@@ -963,7 +963,7 @@ namespace OpenRCT2
             {
                 GuestPickRideToGoOn(*this);
 
-                if (guestHeadingToRideId.IsNull())
+                if (guestHeadingToRideId.isNull())
                 {
                     happinessTarget = std::max(happinessTarget - 128, 0);
                     GuestLeavePark(*this);
@@ -1356,7 +1356,7 @@ namespace OpenRCT2
      */
     void Guest::checkCantFindRide()
     {
-        if (guestHeadingToRideId.IsNull())
+        if (guestHeadingToRideId.isNull())
             return;
 
         // Peeps will think "I can't find ride X" twice before giving up completely.
@@ -1370,7 +1370,7 @@ namespace OpenRCT2
         if (guestIsLostCountdown != 0)
             return;
 
-        guestHeadingToRideId = RideId::GetNull();
+        guestHeadingToRideId = RideId::getNull();
 
         auto* windowMgr = Ui::GetWindowManager();
         WindowBase* w = windowMgr->FindByNumber(WindowClass::peep, id);
@@ -1761,7 +1761,7 @@ namespace OpenRCT2
     {
         if (guest.state != PeepState::walking)
             return;
-        if (!guest.guestHeadingToRideId.IsNull())
+        if (!guest.guestHeadingToRideId.isNull())
             return;
         if (guest.peepFlags.has(PeepFlag::leavingPark))
             return;
@@ -1800,7 +1800,7 @@ namespace OpenRCT2
             auto& gameState = getGameState();
             for (auto& ride : RideManager(gameState))
             {
-                rideConsideration[ride.id.ToUnderlying()] = true;
+                rideConsideration[ride.id.toUnderlying()] = true;
             }
         }
         else
@@ -1820,9 +1820,9 @@ namespace OpenRCT2
                     for (auto* trackElement : TileElementsView<TrackElement>(location))
                     {
                         auto rideIndex = trackElement->getRideIndex();
-                        if (!rideIndex.IsNull())
+                        if (!rideIndex.isNull())
                         {
-                            rideConsideration[rideIndex.ToUnderlying()] = true;
+                            rideConsideration[rideIndex.toUnderlying()] = true;
                         }
                     }
                 }
@@ -1834,7 +1834,7 @@ namespace OpenRCT2
             {
                 if (ride.highestDropHeight > 66 || ride.ratings.excitement >= RideRating::make(8, 00))
                 {
-                    rideConsideration[ride.id.ToUnderlying()] = true;
+                    rideConsideration[ride.id.toUnderlying()] = true;
                 }
             }
         }
@@ -1855,12 +1855,12 @@ namespace OpenRCT2
             {
                 continue;
             }
-            const auto rideIndex = ride.id.ToUnderlying();
+            const auto rideIndex = ride.id.toUnderlying();
             if (rideConsideration.size() > rideIndex && rideConsideration[rideIndex])
             {
                 if (!ride.flags.has(RideFlag::queueFull))
                 {
-                    if (guest.shouldGoOnRide(ride, StationIndex::FromUnderlying(0), false, true) && RideHasRatings(ride))
+                    if (guest.shouldGoOnRide(ride, StationIndex::fromUnderlying(0), false, true) && RideHasRatings(ride))
                     {
                         if (mostExcitingRide == nullptr || ride.ratings.excitement > mostExcitingRide->ratings.excitement)
                         {
@@ -1912,7 +1912,7 @@ namespace OpenRCT2
                 // Rides without queues can only have one peep waiting at a time.
                 if (!atQueue)
                 {
-                    if (!station.lastPeepInQueue.IsNull())
+                    if (!station.lastPeepInQueue.isNull())
                     {
                         GuestTriedToEnterFullQueue(*this, ride);
                         return false;
@@ -2374,7 +2374,7 @@ namespace OpenRCT2
 
     static void GuestResetRideHeading(Guest& guest)
     {
-        guest.guestHeadingToRideId = RideId::GetNull();
+        guest.guestHeadingToRideId = RideId::getNull();
         guest.windowInvalidateFlags |= PEEP_INVALIDATE_PEEP_ACTION;
     }
 
@@ -2548,7 +2548,7 @@ namespace OpenRCT2
             if (ride.mode == RideMode::forwardRotation || ride.mode == RideMode::backwardRotation)
             {
                 uint8_t position = (((~vehicle->flatRideAnimationFrame + 1) >> 3) & 0xF) * 2;
-                if (!vehicle->peep[position].IsNull())
+                if (!vehicle->peep[position].isNull())
                     continue;
             }
             car_array.push_back(i);
@@ -3059,7 +3059,7 @@ namespace OpenRCT2
      */
     static void GuestLeavePark(Guest& guest)
     {
-        guest.guestHeadingToRideId = RideId::GetNull();
+        guest.guestHeadingToRideId = RideId::getNull();
         if (guest.peepFlags.has(PeepFlag::leavingPark))
         {
             if (guest.guestIsLostCountdown < 60)
@@ -3094,7 +3094,7 @@ namespace OpenRCT2
             return;
         if (guest.x == kLocationNull)
             return;
-        if (!guest.guestHeadingToRideId.IsNull())
+        if (!guest.guestHeadingToRideId.isNull())
         {
             auto ride = GetRide(guest.guestHeadingToRideId);
             if (ride != nullptr && predicate(*ride))
@@ -3112,7 +3112,7 @@ namespace OpenRCT2
             {
                 if (predicate(ride))
                 {
-                    rideConsideration[ride.id.ToUnderlying()] = true;
+                    rideConsideration[ride.id.toUnderlying()] = true;
                 }
             }
         }
@@ -3140,7 +3140,7 @@ namespace OpenRCT2
                         if (!predicate(*ride))
                             continue;
 
-                        rideConsideration[ride->id.ToUnderlying()] = true;
+                        rideConsideration[ride->id.toUnderlying()] = true;
                     }
                 }
             }
@@ -3153,11 +3153,11 @@ namespace OpenRCT2
         auto& gameState = getGameState();
         for (auto& ride : RideManager(gameState))
         {
-            if (rideConsideration[ride.id.ToUnderlying()])
+            if (rideConsideration[ride.id.toUnderlying()])
             {
                 if (!ride.flags.has(RideFlag::queueFull))
                 {
-                    if (guest.shouldGoOnRide(ride, StationIndex::FromUnderlying(0), false, true))
+                    if (guest.shouldGoOnRide(ride, StationIndex::fromUnderlying(0), false, true))
                     {
                         potentialRides[numPotentialRides++] = ride.id;
                     }
@@ -3552,7 +3552,7 @@ namespace OpenRCT2
             if (Config::Get().notifications.rideWarnings)
             {
                 News::AddItemToQueue(
-                    News::ItemType::ride, STR_GUESTS_GETTING_STUCK_ON_RIDE, guest.currentRide.ToUnderlying(), ft);
+                    News::ItemType::ride, STR_GUESTS_GETTING_STUCK_ON_RIDE, guest.currentRide.toUnderlying(), ft);
             }
         }
     }
@@ -3763,7 +3763,7 @@ namespace OpenRCT2
 
         guest.moveTo({ x, y, z });
 
-        Guard::Assert(guest.currentRideStation.ToUnderlying() < Limits::kMaxStationsPerRide);
+        Guard::Assert(guest.currentRideStation.toUnderlying() < Limits::kMaxStationsPerRide);
         auto exit = ride.getStation(guest.currentRideStation).exit;
         x = exit.x;
         y = exit.y;
@@ -3840,7 +3840,7 @@ namespace OpenRCT2
         {
             station.queueTime = queueTime;
             auto* windowMgr = Ui::GetWindowManager();
-            windowMgr->InvalidateByNumber(WindowClass::ride, currentRide.ToUnderlying());
+            windowMgr->InvalidateByNumber(WindowClass::ride, currentRide.toUnderlying());
         }
 
         if (peepFlags.has(PeepFlag::tracking))
@@ -4003,7 +4003,7 @@ namespace OpenRCT2
         }
 
         vehicle->next_free_seat--;
-        vehicle->peep[currentSeat] = EntityId::GetNull();
+        vehicle->peep[currentSeat] = EntityId::getNull();
 
         PeepUpdateRideNoFreeVehicleRejoinQueue(*this, *ride);
     }
@@ -4115,13 +4115,13 @@ namespace OpenRCT2
         vehicle->ApplyMass(-mass);
         vehicle->invalidate();
 
-        if (ride_station.ToUnderlying() >= Limits::kMaxStationsPerRide)
+        if (ride_station.toUnderlying() >= Limits::kMaxStationsPerRide)
         {
             // HACK #5658: Some parks have hacked rides which end up in this state
             auto bestStationIndex = RideGetFirstValidStationExit(*ride);
-            if (bestStationIndex.IsNull())
+            if (bestStationIndex.isNull())
             {
-                bestStationIndex = StationIndex::FromUnderlying(0);
+                bestStationIndex = StationIndex::fromUnderlying(0);
             }
             ride_station = bestStationIndex;
         }
@@ -4134,7 +4134,7 @@ namespace OpenRCT2
 
         const auto* carEntry = &rideEntry->Cars[vehicle->vehicle_type];
 
-        assert(currentRideStation.ToUnderlying() < Limits::kMaxStationsPerRide);
+        assert(currentRideStation.toUnderlying() < Limits::kMaxStationsPerRide);
         auto& station = ride->getStation(currentRideStation);
 
         if (!carEntry->flags.has(CarEntryFlag::loadingWaypoints))
@@ -4314,7 +4314,7 @@ namespace OpenRCT2
     void Guest::updateRidePrepareForExit()
     {
         const auto* ride = GetRide(currentRide);
-        if (ride == nullptr || currentRideStation.ToUnderlying() >= std::size(ride->getStations()))
+        if (ride == nullptr || currentRideStation.toUnderlying() >= std::size(ride->getStations()))
             return;
 
         auto exit = ride->getStation(currentRideStation).exit;
@@ -5021,7 +5021,7 @@ namespace OpenRCT2
             }
         }
 
-        interactionRideIndex = RideId::GetNull();
+        interactionRideIndex = RideId::getNull();
         setState(PeepState::falling);
 
         CoordsXY targetLoc = { x, y };
@@ -5226,11 +5226,11 @@ namespace OpenRCT2
             peepFlags.unset(PeepFlag::animationFrozen);
         }
 
-        if (!previousRide.IsNull())
+        if (!previousRide.isNull())
         {
             if (++previousRideTimeOut >= 720)
             {
-                previousRide = RideId::GetNull();
+                previousRide = RideId::getNull();
             }
         }
 
@@ -5435,7 +5435,7 @@ namespace OpenRCT2
         }
         else if (hasEmptyContainer())
         {
-            if ((!getNextIsSurface()) && (static_cast<uint32_t>(id.ToUnderlying() & 0x1FF) == (currentTicks & 0x1FF))
+            if ((!getNextIsSurface()) && (static_cast<uint32_t>(id.toUnderlying() & 0x1FF) == (currentTicks & 0x1FF))
                 && ((0xFFFF & ScenarioRand()) <= 4096))
             {
                 int32_t container = Numerics::bitScanForward(getEmptyContainerFlags());
@@ -5614,7 +5614,7 @@ namespace OpenRCT2
         {
             insertNewThought(PeepThoughtType::newRide);
         }
-        if (currentRide.IsNull())
+        if (currentRide.isNull())
         {
             insertNewThought(PeepThoughtType::scenery);
         }
@@ -6521,7 +6521,7 @@ namespace OpenRCT2
                     *rideSeatToView = 0x02;
                 }
 
-                *rideToView = RideId::GetNull();
+                *rideToView = RideId::getNull();
 
                 return true;
             }
@@ -6638,7 +6638,7 @@ namespace OpenRCT2
                     *rideSeatToView = 0x02;
                 }
 
-                *rideToView = RideId::GetNull();
+                *rideToView = RideId::getNull();
 
                 return true;
             }
@@ -6754,7 +6754,7 @@ namespace OpenRCT2
                     *rideSeatToView = 0x02;
                 }
 
-                *rideToView = RideId::GetNull();
+                *rideToView = RideId::getNull();
 
                 return true;
             }
@@ -6939,7 +6939,7 @@ namespace OpenRCT2
 
     bool Guest::headingForRideOrParkExit() const
     {
-        return peepFlags.has(PeepFlag::leavingPark) || !guestHeadingToRideId.IsNull();
+        return peepFlags.has(PeepFlag::leavingPark) || !guestHeadingToRideId.isNull();
     }
 
     /**
@@ -6988,7 +6988,7 @@ namespace OpenRCT2
 
     void Guest::insertNewThought(PeepThoughtType thought_type, RideId rideId)
     {
-        insertNewThought(thought_type, rideId.ToUnderlying());
+        insertNewThought(thought_type, rideId.toUnderlying());
     }
     /**
      *
@@ -7163,7 +7163,7 @@ namespace OpenRCT2
         peep->walkingAnimationFrameNum = 0;
         peep->animationType = PeepAnimationType::walking;
         peep->peepFlags = {};
-        peep->favouriteRide = RideId::GetNull();
+        peep->favouriteRide = RideId::getNull();
         peep->favouriteRideRating = 0;
 
         auto& objManager = GetContext()->GetObjectManager();
@@ -7178,8 +7178,8 @@ namespace OpenRCT2
         peep->moveTo(coords);
         peep->mass = (ScenarioRand() & 0x1F) + 45;
         peep->pathCheckOptimisation = 0;
-        peep->interactionRideIndex = RideId::GetNull();
-        peep->previousRide = RideId::GetNull();
+        peep->interactionRideIndex = RideId::getNull();
+        peep->previousRide = RideId::getNull();
         std::get<0>(peep->thoughts).type = PeepThoughtType::none;
         peep->windowInvalidateFlags = 0;
 
@@ -7285,8 +7285,8 @@ namespace OpenRCT2
         peep->parkEntryTime = -1;
         peep->resetPathfindGoal();
         peep->removeAllItems();
-        peep->guestHeadingToRideId = RideId::GetNull();
-        peep->guestNextInQueue = EntityId::GetNull();
+        peep->guestHeadingToRideId = RideId::getNull();
+        peep->guestNextInQueue = EntityId::getNull();
         peep->litterCount = 0;
         peep->disgustingCount = 0;
         peep->vandalismSeen = 0;
@@ -7320,7 +7320,7 @@ namespace OpenRCT2
         auto& hookEngine = GetContext()->GetScriptEngine().GetHookEngine();
         if (hookEngine.HasSubscriptions(Scripting::HookType::guestGeneration))
         {
-            hookEngine.Call(Scripting::HookType::guestGeneration, { { "id", peep->id.ToUnderlying() } }, true);
+            hookEngine.Call(Scripting::HookType::guestGeneration, { { "id", peep->id.toUnderlying() } }, true);
         }
 #endif
 
@@ -7601,7 +7601,7 @@ namespace OpenRCT2
         {
             if (currentRide == rideId)
             {
-                currentRide = RideId::GetNull();
+                currentRide = RideId::getNull();
                 if (timeToStand >= 50)
                 {
                     // make peep stop watching the ride
@@ -7651,11 +7651,11 @@ namespace OpenRCT2
 
         if (guestHeadingToRideId == rideId)
         {
-            guestHeadingToRideId = RideId::GetNull();
+            guestHeadingToRideId = RideId::getNull();
         }
         if (favouriteRide == rideId)
         {
-            favouriteRide = RideId::GetNull();
+            favouriteRide = RideId::getNull();
         }
 
         // Erase all thoughts that contain the ride.
@@ -7698,7 +7698,7 @@ namespace OpenRCT2
         windowInvalidateFlags |= PEEP_INVALIDATE_PEEP_2;
 
         const auto curLoc = getLocation();
-        Litter::create({ curLoc, orientation }, (id.ToUnderlying() & 1) ? Litter::Type::vomitAlt : Litter::Type::vomit);
+        Litter::create({ curLoc, orientation }, (id.toUnderlying() & 1) ? Litter::Type::vomitAlt : Litter::Type::vomit);
 
         static constexpr Audio::SoundId coughs[4] = {
             Audio::SoundId::cough1,

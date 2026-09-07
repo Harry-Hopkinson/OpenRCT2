@@ -59,7 +59,7 @@ struct MapProposedConstructionInfo
     uint8_t slope = OpenRCT2::kTileSlopeFlat;
     CreateCrossingMode crossingMode = CreateCrossingMode::none;
     bool isTree = false;
-    RideId ignoreRideId = RideId::GetNull();
+    RideId ignoreRideId = RideId::getNull();
 };
 
 [[nodiscard]] OpenRCT2::GameActions::Result MapCanConstructWithClearAt(

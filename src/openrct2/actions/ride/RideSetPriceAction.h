@@ -16,7 +16,7 @@ namespace OpenRCT2::GameActions
     class RideSetPriceAction final : public GameActionBase<GameCommand::setRidePrice>
     {
     private:
-        RideId _rideIndex{ RideId::GetNull() };
+        RideId _rideIndex{ RideId::getNull() };
         money64 _price{ kMoney64Undefined };
         bool _primaryPrice{ true };
 

@@ -21,7 +21,7 @@ namespace OpenRCT2
         size_t count = 0;
         for (size_t i = 0; i < _gameState.ridesEndOfUsedRange; i++)
         {
-            if (!_gameState.rides[i].id.IsNull())
+            if (!_gameState.rides[i].id.isNull())
             {
                 count++;
             }
@@ -41,6 +41,6 @@ namespace OpenRCT2
 
     RideManager::Iterator RideManager::get(RideId rideId)
     {
-        return Iterator(*this, rideId.ToUnderlying(), _gameState.ridesEndOfUsedRange);
+        return Iterator(*this, rideId.toUnderlying(), _gameState.ridesEndOfUsedRange);
     }
 } // namespace OpenRCT2

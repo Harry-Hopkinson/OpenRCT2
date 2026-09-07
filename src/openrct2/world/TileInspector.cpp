@@ -313,7 +313,7 @@ namespace OpenRCT2::TileInspector
         if (isExecuting)
         {
             // Check if the element to be pasted has a banner
-            if (element.getBannerIndex() != BannerIndex::GetNull())
+            if (element.getBannerIndex() != BannerIndex::getNull())
             {
                 // The element to be pasted has a banner - make a copy of it from the banner provided
                 auto newBanner = CreateBanner();
@@ -333,7 +333,7 @@ namespace OpenRCT2::TileInspector
                 if (newBanner->flags.has(BannerFlag::linkedToRide) && GetRide(newBanner->rideIndex) == nullptr)
                 {
                     newBanner->flags.unset(BannerFlag::linkedToRide);
-                    newBanner->rideIndex = RideId::GetNull();
+                    newBanner->rideIndex = RideId::getNull();
                 }
 
                 // Use the new banner index

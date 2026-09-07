@@ -121,7 +121,7 @@ void Vehicle::UpdateSceneryDoor() const
     auto wallCoords = CoordsXYZ{ x, y, TrackLocation.z - trackBlock.z + trackCoordinates->zEnd }.toTileStart();
     int32_t direction = (GetTrackDirection() + trackCoordinates->rotationEnd) & 3;
 
-    AnimateSceneryDoor<false>({ wallCoords, static_cast<Direction>(direction) }, TrackLocation, next_vehicle_on_train.IsNull());
+    AnimateSceneryDoor<false>({ wallCoords, static_cast<Direction>(direction) }, TrackLocation, next_vehicle_on_train.isNull());
 }
 
 template<bool isBackwards>
@@ -184,7 +184,7 @@ void Vehicle::UpdateLandscapeDoors(const int32_t previousTrackHeight) const
             if (edgeObject != nullptr && edgeObject->HasDoors)
             {
                 AnimateLandscapeDoor<false>(
-                    previousTrackLocation, *previousTrackElement->asTrack(), next_vehicle_on_train.IsNull(),
+                    previousTrackLocation, *previousTrackElement->asTrack(), next_vehicle_on_train.isNull(),
                     edgeObject->doorSound, TrackLocation);
             }
         }
@@ -198,7 +198,7 @@ void Vehicle::UpdateLandscapeDoors(const int32_t previousTrackHeight) const
             if (edgeObject != nullptr && edgeObject->HasDoors)
             {
                 AnimateLandscapeDoor<true>(
-                    TrackLocation, *currentTrackElement->asTrack(), next_vehicle_on_train.IsNull(), edgeObject->doorSound,
+                    TrackLocation, *currentTrackElement->asTrack(), next_vehicle_on_train.isNull(), edgeObject->doorSound,
                     previousTrackLocation);
             }
         }
@@ -219,5 +219,5 @@ void Vehicle::UpdateSceneryDoorBackwards() const
     int32_t direction = (GetTrackDirection() + trackCoordinates->rotationBegin) & 3;
     direction = DirectionReverse(direction);
 
-    AnimateSceneryDoor<true>({ wallCoords, static_cast<Direction>(direction) }, TrackLocation, next_vehicle_on_train.IsNull());
+    AnimateSceneryDoor<true>({ wallCoords, static_cast<Direction>(direction) }, TrackLocation, next_vehicle_on_train.isNull());
 }

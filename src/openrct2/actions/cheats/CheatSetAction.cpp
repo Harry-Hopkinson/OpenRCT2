@@ -718,7 +718,7 @@ namespace OpenRCT2::GameActions
             for (auto& station : ride.getStations())
             {
                 station.queueLength = 0;
-                station.lastPeepInQueue = EntityId::GetNull();
+                station.lastPeepInQueue = EntityId::getNull();
             }
 
             for (auto trainIndex : ride.vehicles)
@@ -742,7 +742,7 @@ namespace OpenRCT2::GameActions
                                 vehicle->ApplyMass(-peep->mass);
                             }
                         }
-                        peepInTrainIndex = EntityId::GetNull();
+                        peepInTrainIndex = EntityId::getNull();
                         i++;
                     }
 

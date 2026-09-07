@@ -248,7 +248,7 @@ namespace OpenRCT2::GameActions
             banner->position = TileCoordsXY(_loc);
 
             RideId rideIndex = BannerGetClosestRideIndex({ _loc, maxHeight });
-            if (!rideIndex.IsNull())
+            if (!rideIndex.isNull())
             {
                 banner->rideIndex = rideIndex;
                 banner->flags.set(BannerFlag::linkedToRide);

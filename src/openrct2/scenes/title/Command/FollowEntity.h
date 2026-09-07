@@ -24,7 +24,7 @@ namespace OpenRCT2::Title
 
         struct
         {
-            EntityId SpriteIndex{ EntityId::GetNull() };
+            EntityId SpriteIndex{ EntityId::getNull() };
             utf8 SpriteName[kUserStringMaxLength]{};
         } Follow;
 

@@ -214,7 +214,7 @@ GameActions::Result MapCanConstructWithClearAt(
         if (tileElement->getType() != TileElementType::surface)
         {
             // Skip track elements belonging to the ride that's being ignored for rides that intersect themselves.
-            if (!additionalInfo.ignoreRideId.IsNull() && tileElement->getType() == TileElementType::track
+            if (!additionalInfo.ignoreRideId.isNull() && tileElement->getType() == TileElementType::track
                 && tileElement->asTrack()->getRideIndex() == additionalInfo.ignoreRideId)
             {
                 continue;

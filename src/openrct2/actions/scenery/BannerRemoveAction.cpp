@@ -70,7 +70,7 @@ namespace OpenRCT2::GameActions
         }
 
         auto bannerIndex = bannerElement->getIndex();
-        if (bannerIndex == BannerIndex::GetNull())
+        if (bannerIndex == BannerIndex::getNull())
         {
             LOG_ERROR("Invalid banner index %u", bannerIndex);
             return Result(Status::invalidParameters, STR_CANT_REMOVE_THIS, kStringIdNone);
@@ -110,7 +110,7 @@ namespace OpenRCT2::GameActions
         }
 
         auto bannerIndex = bannerElement->getIndex();
-        if (bannerIndex == BannerIndex::GetNull())
+        if (bannerIndex == BannerIndex::getNull())
         {
             LOG_ERROR("Invalid banner index %u", bannerIndex);
             return Result(Status::invalidParameters, STR_CANT_REMOVE_THIS, kStringIdNone);

@@ -1298,7 +1298,7 @@ namespace OpenRCT2
                     [[maybe_unused]] size_t numWritten = 0;
                     for (BannerIndex::UnderlyingType i = 0; i < kMaxBanners; i++)
                     {
-                        auto banner = GetBanner(BannerIndex::FromUnderlying(i));
+                        auto banner = GetBanner(BannerIndex::fromUnderlying(i));
                         if (banner != nullptr)
                         {
                             ReadWriteBanner(version, cs, *banner);
@@ -1316,7 +1316,7 @@ namespace OpenRCT2
                         cs.readWriteVector(banners, [version, &cs](Banner& banner) { ReadWriteBanner(version, cs, banner); });
                         for (BannerIndex::UnderlyingType i = 0; i < banners.size(); i++)
                         {
-                            auto bannerIndex = BannerIndex::FromUnderlying(i);
+                            auto bannerIndex = BannerIndex::fromUnderlying(i);
                             auto banner = GetOrCreateBanner(bannerIndex);
                             if (banner != nullptr)
                             {
@@ -1771,7 +1771,7 @@ namespace OpenRCT2
             {
                 if (srcArray[i / 8] & (1 << (i % 8)))
                 {
-                    ridesBeenOn.push_back(RideId::FromUnderlying(i));
+                    ridesBeenOn.push_back(RideId::fromUnderlying(i));
                 }
             }
             return ridesBeenOn;

@@ -276,7 +276,7 @@ namespace OpenRCT2::GameActions
             pathElement->setSloped(_slope.type == FootpathSlopeType::sloped);
             pathElement->setIsQueue(isQueue);
             pathElement->setAddition(0);
-            pathElement->setRideIndex(RideId::GetNull());
+            pathElement->setRideIndex(RideId::getNull());
             pathElement->setAdditionStatus(255);
             pathElement->setIsBroken(false);
             pathElement->setEdges(_edges);

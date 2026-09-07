@@ -69,7 +69,7 @@ namespace OpenRCT2::Ui::Windows
 
         BannerIndex GetBannerIndex() const
         {
-            return BannerIndex::FromUnderlying(number);
+            return BannerIndex::fromUnderlying(number);
         }
 
         void ShowTextInput()

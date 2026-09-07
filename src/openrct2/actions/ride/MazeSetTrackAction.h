@@ -25,7 +25,7 @@ namespace OpenRCT2::GameActions
     private:
         CoordsXYZD _loc;
         bool _initialPlacement{};
-        RideId _rideIndex{ RideId::GetNull() };
+        RideId _rideIndex{ RideId::getNull() };
         MazeBuildMode _mode{};
 
     public:

@@ -23,7 +23,7 @@ namespace OpenRCT2::GameActions
     class RideFreezeRatingAction final : public GameActionBase<GameCommand::freezeRideRating>
     {
     private:
-        RideId _rideIndex{ RideId::GetNull() };
+        RideId _rideIndex{ RideId::getNull() };
         RideRatingType _type{};
         RideRating_t _value{};
 

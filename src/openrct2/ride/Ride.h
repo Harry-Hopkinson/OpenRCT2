@@ -179,7 +179,7 @@ namespace OpenRCT2
         uint16_t segmentTime{};  // Time for train to reach the next station from this station.
         uint8_t queueTime{};
         uint16_t queueLength{};
-        EntityId lastPeepInQueue{ EntityId::GetNull() };
+        EntityId lastPeepInQueue{ EntityId::getNull() };
 
         int32_t getBaseZ() const;
         void setBaseZ(int32_t newZ);
@@ -244,7 +244,7 @@ namespace OpenRCT2
      */
     struct Ride
     {
-        RideId id{ RideId::GetNull() };
+        RideId id{ RideId::getNull() };
         ride_type_t type{ kRideTypeNull };
         // pointer to static info. for example, wild mouse type is 0x36, subtype is
         // 0x4c.
@@ -347,8 +347,8 @@ namespace OpenRCT2
         uint32_t musicPosition{};
         Breakdown breakdownReasonPending{};
         MechanicStatus mechanicStatus{};
-        EntityId mechanic{ EntityId::GetNull() };
-        StationIndex inspectionStation{ StationIndex::GetNull() };
+        EntityId mechanic{ EntityId::getNull() };
+        StationIndex inspectionStation{ StationIndex::getNull() };
         uint8_t brokenTrain{};
         uint8_t brokenCar{};
         Breakdown breakdownReason{};
@@ -388,10 +388,10 @@ namespace OpenRCT2
         uint32_t guestsFavourite{};
         RideFlags flags{};
         uint16_t totalAirTime{};
-        StationIndex currentTestStation{ StationIndex::GetNull() };
+        StationIndex currentTestStation{ StationIndex::getNull() };
         uint8_t numCircuits{};
         CoordsXYZ cableLiftLoc{};
-        EntityId cableLift{ EntityId::GetNull() };
+        EntityId cableLift{ EntityId::getNull() };
 
         // These two fields are used to warn users about issues.
         // Such issue can be hacked rides with incompatible options set.
@@ -410,8 +410,8 @@ namespace OpenRCT2
         std::unique_ptr<RideMeasurement> measurement;
 
     public:
-        RideStation& getStation(StationIndex stationIndex = StationIndex::FromUnderlying(0));
-        const RideStation& getStation(StationIndex stationIndex = StationIndex::FromUnderlying(0)) const;
+        RideStation& getStation(StationIndex stationIndex = StationIndex::fromUnderlying(0));
+        const RideStation& getStation(StationIndex stationIndex = StationIndex::fromUnderlying(0)) const;
         std::span<RideStation> getStations();
         std::span<const RideStation> getStations() const;
         StationIndex getStationIndex(const RideStation* station) const;
@@ -491,7 +491,7 @@ namespace OpenRCT2
         void formatStatusTo(Formatter&) const;
 
         static void updateAll();
-        static bool nameExists(std::string_view name, RideId excludeRideId = RideId::GetNull());
+        static bool nameExists(std::string_view name, RideId excludeRideId = RideId::getNull());
 
         [[nodiscard]] std::unique_ptr<TrackDesign> saveToTrackDesign(TrackDesignState& tds) const;
 

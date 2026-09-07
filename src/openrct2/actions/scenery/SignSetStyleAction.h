@@ -16,7 +16,7 @@ namespace OpenRCT2::GameActions
     class SignSetStyleAction final : public GameActionBase<GameCommand::setSignStyle>
     {
     private:
-        BannerIndex _bannerIndex{ BannerIndex::GetNull() };
+        BannerIndex _bannerIndex{ BannerIndex::getNull() };
         Drawing::Colour _mainColour{};
         Drawing::Colour _textColour{};
         bool _isLarge{};

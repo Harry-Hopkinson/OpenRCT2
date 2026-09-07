@@ -324,7 +324,7 @@ namespace OpenRCT2
     {
         auto* windowManager = Ui::GetWindowManager();
         auto intent = Intent(INTENT_ACTION_RIDE_CONSTRUCTION_FOCUS);
-        intent.PutExtra(INTENT_EXTRA_RIDE_ID, rideIndex.ToUnderlying());
+        intent.PutExtra(INTENT_EXTRA_RIDE_ID, rideIndex.toUnderlying());
         windowManager->BroadcastIntent(intent);
         return windowManager->FindByClass(WindowClass::rideConstruction);
     }
@@ -370,7 +370,7 @@ namespace OpenRCT2
                 vehicle->invalidate();
                 spriteIndex = vehicle->next_vehicle_on_train;
                 getGameState().entities.entityRemove(vehicle);
-            } while (!spriteIndex.IsNull());
+            } while (!spriteIndex.isNull());
         }
     }
 
@@ -387,7 +387,7 @@ namespace OpenRCT2
             for (size_t i = 0; i <= Limits::kMaxTrainsPerRide; i++)
             {
                 auto spriteIndex = vehicles[i];
-                while (!spriteIndex.IsNull())
+                while (!spriteIndex.isNull())
                 {
                     Vehicle* vehicle = getGameState().entities.getEntity<Vehicle>(spriteIndex);
                     if (vehicle == nullptr)
@@ -399,7 +399,7 @@ namespace OpenRCT2
                     getGameState().entities.entityRemove(vehicle);
                 }
 
-                vehicles[i] = EntityId::GetNull();
+                vehicles[i] = EntityId::getNull();
             }
 
             for (size_t i = 0; i < Limits::kMaxStationsPerRide; i++)
@@ -447,7 +447,7 @@ namespace OpenRCT2
         }
 
         auto* windowMgr = Ui::GetWindowManager();
-        auto w = windowMgr->FindByNumber(WindowClass::ride, ride.id.ToUnderlying());
+        auto w = windowMgr->FindByNumber(WindowClass::ride, ride.id.toUnderlying());
         if (w != nullptr)
             w->onResize();
     }
@@ -463,7 +463,7 @@ namespace OpenRCT2
 
         // Get exit position and direction
         auto exitPosition = CoordsXYZD{ 0, 0, 0, kInvalidDirection };
-        if (!stationIndex.IsNull())
+        if (!stationIndex.isNull())
         {
             auto location = getStation(stationIndex).exit.toCoordsXYZD();
             if (!location.isNull())
@@ -1576,7 +1576,7 @@ namespace OpenRCT2
                     auto trackType = trackElement->asTrack()->getTrackType();
 
                     // get the StationIndex for the station
-                    StationIndex stationId = StationIndex::FromUnderlying(0);
+                    StationIndex stationId = StationIndex::fromUnderlying(0);
                     if (trackType != TrackElemType::maze)
                     {
                         uint8_t trackSequence = trackElement->asTrack()->getSequenceIndex();

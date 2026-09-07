@@ -63,7 +63,7 @@ namespace OpenRCT2::Scripting
     private:
         struct RideData
         {
-            RideId _rideId = RideId::GetNull();
+            RideId _rideId = RideId::getNull();
         };
 
     public:

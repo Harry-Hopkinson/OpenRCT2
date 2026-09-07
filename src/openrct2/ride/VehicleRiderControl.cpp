@@ -134,7 +134,7 @@ int32_t Vehicle::CalculateRiderBraking() const
     if (num_peeps == 0)
         return 0;
 
-    RiderControlSettings riderSettings = riderTable[peep[0].ToUnderlying() & 0xFF];
+    RiderControlSettings riderSettings = riderTable[peep[0].toUnderlying() & 0xFF];
 
     // Brake if close to the vehicle in front
     Vehicle* prevVehicle = getGameState().entities.getEntity<Vehicle>(prev_vehicle_on_ride);

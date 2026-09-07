@@ -190,7 +190,7 @@ namespace OpenRCT2::Ui::Windows
             {
                 case GuestListFilterType::guestsOnRide:
                 {
-                    auto guestRide = GetRide(RideId::FromUnderlying(index));
+                    auto guestRide = GetRide(RideId::fromUnderlying(index));
                     if (guestRide != nullptr)
                     {
                         ft.Add<StringId>(
@@ -207,7 +207,7 @@ namespace OpenRCT2::Ui::Windows
                 }
                 case GuestListFilterType::guestsInQueue:
                 {
-                    auto guestRide = GetRide(RideId::FromUnderlying(index));
+                    auto guestRide = GetRide(RideId::fromUnderlying(index));
                     if (guestRide != nullptr)
                     {
                         ft.Add<StringId>(STR_QUEUING_FOR);
@@ -222,7 +222,7 @@ namespace OpenRCT2::Ui::Windows
                 }
                 case GuestListFilterType::guestsThinkingAboutRide:
                 {
-                    auto guestRide = GetRide(RideId::FromUnderlying(index));
+                    auto guestRide = GetRide(RideId::fromUnderlying(index));
                     if (guestRide != nullptr)
                     {
                         ft.Add<StringId>(kStringIdNone);

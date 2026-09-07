@@ -86,17 +86,17 @@ namespace OpenRCT2::GameActions
         if (!_name.empty())
         {
             banner->flags.unset(BannerFlag::linkedToRide);
-            banner->rideIndex = RideId::GetNull();
+            banner->rideIndex = RideId::getNull();
             banner->text = _name;
         }
         else
         {
             // If empty name take closest ride name.
             RideId rideIndex = BannerGetClosestRideIndex({ banner->position.toCoordsXY(), 16 });
-            if (rideIndex.IsNull())
+            if (rideIndex.isNull())
             {
                 banner->flags.unset(BannerFlag::linkedToRide);
-                banner->rideIndex = RideId::GetNull();
+                banner->rideIndex = RideId::getNull();
                 banner->text = {};
             }
             else

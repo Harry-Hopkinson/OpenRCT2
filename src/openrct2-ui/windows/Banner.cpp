@@ -96,7 +96,7 @@ namespace OpenRCT2::Ui::Windows
 
         BannerIndex GetBannerIndex() const
         {
-            return BannerIndex::FromUnderlying(number);
+            return BannerIndex::fromUnderlying(number);
         }
 
         BannerElement* GetBannerElement()
@@ -128,7 +128,7 @@ namespace OpenRCT2::Ui::Windows
         void initialise(WindowNumber _number)
         {
             number = _number;
-            auto* banner = GetBanner(BannerIndex::FromUnderlying(number));
+            auto* banner = GetBanner(BannerIndex::fromUnderlying(number));
 
             auto* bannerElement = GetBannerElement();
             if (bannerElement == nullptr)

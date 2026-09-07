@@ -155,7 +155,7 @@ static constexpr uint8_t kDuckAnimationFlyAway[] =
     {
         const auto currentTicks = getGameState().currentTicks;
 
-        if (((currentTicks + id.ToUnderlying()) & 3) != 0)
+        if (((currentTicks + id.toUnderlying()) & 3) != 0)
             return;
 
         uint32_t randomNumber = ScenarioRand();

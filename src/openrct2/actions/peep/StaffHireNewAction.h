@@ -16,7 +16,7 @@ namespace OpenRCT2::GameActions
 {
     struct StaffHireNewActionResult
     {
-        EntityId StaffEntityId = EntityId::GetNull();
+        EntityId StaffEntityId = EntityId::getNull();
     };
 
     class StaffHireNewAction final : public GameActionBase<GameCommand::hireNewStaffMember>

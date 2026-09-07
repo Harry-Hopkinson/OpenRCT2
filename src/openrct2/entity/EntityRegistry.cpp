@@ -96,17 +96,17 @@ namespace OpenRCT2
 
     EntityBase* EntityRegistry::tryGetEntity(EntityId entityIndex)
     {
-        const auto idx = entityIndex.ToUnderlying();
+        const auto idx = entityIndex.toUnderlying();
         return idx >= kMaxEntities ? nullptr : &entities[idx].base;
     }
 
     EntityBase* EntityRegistry::getEntity(EntityId entityIndex)
     {
-        if (entityIndex.IsNull())
+        if (entityIndex.isNull())
         {
             return nullptr;
         }
-        Guard::Assert(entityIndex.ToUnderlying() < kMaxEntities, "Tried getting entity %u", entityIndex.ToUnderlying());
+        Guard::Assert(entityIndex.toUnderlying() < kMaxEntities, "Tried getting entity %u", entityIndex.toUnderlying());
         return tryGetEntity(entityIndex);
     }
 
@@ -131,7 +131,7 @@ namespace OpenRCT2
         // List needs to be back to front to simplify removing
         auto nextId = 0;
         std::for_each(std::rbegin(_freeIdList), std::rend(_freeIdList), [&](auto& elem) {
-            elem = EntityId::FromUnderlying(nextId);
+            elem = EntityId::fromUnderlying(nextId);
             nextId++;
         });
     }
@@ -150,7 +150,7 @@ namespace OpenRCT2
         // Free all associated Entity pointers prior to zeroing memory
         for (int32_t i = 0; i < kMaxEntities; ++i)
         {
-            auto* spr = getEntity(EntityId::FromUnderlying(i));
+            auto* spr = getEntity(EntityId::fromUnderlying(i));
             if (spr == nullptr)
             {
                 continue;
@@ -163,13 +163,13 @@ namespace OpenRCT2
         RideUse::GetTypeHistory().Clear();
         for (int32_t i = 0; i < kMaxEntities; ++i)
         {
-            auto* spr = getEntity(EntityId::FromUnderlying(i));
+            auto* spr = getEntity(EntityId::fromUnderlying(i));
             if (spr == nullptr)
             {
                 continue;
             }
             spr->type = EntityType::null;
-            spr->id = EntityId::FromUnderlying(i);
+            spr->id = EntityId::fromUnderlying(i);
 
             _entityFlashingList[i] = false;
         }
@@ -192,7 +192,7 @@ namespace OpenRCT2
         }
         for (EntityId::UnderlyingType i = 0; i < kMaxEntities; i++)
         {
-            auto* entity = getEntity(EntityId::FromUnderlying(i));
+            auto* entity = getEntity(EntityId::fromUnderlying(i));
             if (entity != nullptr && entity->type != EntityType::null)
             {
                 entitySpatialInsert(*entity, { entity->x, entity->y });
@@ -222,7 +222,7 @@ namespace OpenRCT2
     {
         // Need to retain how the sprite is linked in lists
         auto entityIndex = entity.id;
-        _entityFlashingList[entityIndex.ToUnderlying()] = false;
+        _entityFlashingList[entityIndex.toUnderlying()] = false;
 
         Entity_t* tempEntity = reinterpret_cast<Entity_t*>(&entity);
         *tempEntity = Entity_t();
@@ -434,7 +434,7 @@ namespace OpenRCT2
         else if (guest != nullptr)
         {
             guest->setName({});
-            guest->guestNextInQueue = EntityId::GetNull();
+            guest->guestNextInQueue = EntityId::getNull();
 
             RideUse::GetHistory().RemoveHandle(guest->id);
             RideUse::GetTypeHistory().RemoveHandle(guest->id);
@@ -487,14 +487,14 @@ namespace OpenRCT2
 
     void EntityRegistry::entitySetFlashing(EntityBase* entity, bool flashing)
     {
-        assert(entity->id.ToUnderlying() < kMaxEntities);
-        _entityFlashingList[entity->id.ToUnderlying()] = flashing;
+        assert(entity->id.toUnderlying() < kMaxEntities);
+        _entityFlashingList[entity->id.toUnderlying()] = flashing;
     }
 
     bool EntityRegistry::entityGetFlashing(EntityBase* entity)
     {
-        assert(entity->id.ToUnderlying() < kMaxEntities);
-        return _entityFlashingList[entity->id.ToUnderlying()];
+        assert(entity->id.toUnderlying() < kMaxEntities);
+        return _entityFlashingList[entity->id.toUnderlying()];
     }
 } // namespace OpenRCT2
 

@@ -73,7 +73,7 @@ namespace OpenRCT2::Scripting
         if (entity == nullptr)
             return JS_UNDEFINED;
 
-        return JS_NewInt32(ctx, entity->id.ToUnderlying());
+        return JS_NewInt32(ctx, entity->id.toUnderlying());
     }
 
     JSValue ScEntity::type_get(JSContext* ctx, JSValue thisVal)

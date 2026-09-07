@@ -170,8 +170,8 @@ namespace OpenRCT2::Scripting
     JSValue ScVehicle::ride_get(JSContext* ctx, JSValue thisVal)
     {
         auto vehicle = GetVehicle(thisVal);
-        auto rideId = vehicle != nullptr ? vehicle->ride : RideId::GetNull();
-        return JS_NewUint32(ctx, rideId.ToUnderlying());
+        auto rideId = vehicle != nullptr ? vehicle->ride : RideId::getNull();
+        return JS_NewUint32(ctx, rideId.toUnderlying());
     }
     JSValue ScVehicle::ride_set(JSContext* ctx, JSValue thisVal, JSValue jsValue)
     {
@@ -180,7 +180,7 @@ namespace OpenRCT2::Scripting
         auto vehicle = GetVehicle(thisVal);
         if (vehicle != nullptr)
         {
-            vehicle->ride = RideId::FromUnderlying(value);
+            vehicle->ride = RideId::fromUnderlying(value);
         }
         return JS_UNDEFINED;
     }
@@ -208,9 +208,9 @@ namespace OpenRCT2::Scripting
         auto vehicle = GetVehicle(thisVal);
         if (vehicle != nullptr)
         {
-            if (!vehicle->next_vehicle_on_train.IsNull())
+            if (!vehicle->next_vehicle_on_train.isNull())
             {
-                return JS_NewUint32(ctx, vehicle->next_vehicle_on_train.ToUnderlying());
+                return JS_NewUint32(ctx, vehicle->next_vehicle_on_train.toUnderlying());
             }
         }
         return JS_NULL;
@@ -223,12 +223,12 @@ namespace OpenRCT2::Scripting
         {
             if (JS_IsNull(jsValue))
             {
-                vehicle->next_vehicle_on_train = EntityId::GetNull();
+                vehicle->next_vehicle_on_train = EntityId::getNull();
             }
             else
             {
                 JS_UNPACK_UINT32(entityId, ctx, jsValue);
-                vehicle->next_vehicle_on_train = EntityId::FromUnderlying(entityId);
+                vehicle->next_vehicle_on_train = EntityId::fromUnderlying(entityId);
             }
         }
         return JS_UNDEFINED;
@@ -240,10 +240,10 @@ namespace OpenRCT2::Scripting
         if (vehicle == nullptr)
             return JS_NULL;
 
-        if (vehicle->prev_vehicle_on_ride.IsNull())
+        if (vehicle->prev_vehicle_on_ride.isNull())
             return JS_NULL;
 
-        return JS_NewUint32(ctx, vehicle->prev_vehicle_on_ride.ToUnderlying());
+        return JS_NewUint32(ctx, vehicle->prev_vehicle_on_ride.toUnderlying());
     }
     JSValue ScVehicle::previousCarOnRide_set(JSContext* ctx, JSValue thisVal, JSValue jsValue)
     {
@@ -254,12 +254,12 @@ namespace OpenRCT2::Scripting
 
         if (JS_IsNull(jsValue))
         {
-            vehicle->prev_vehicle_on_ride = EntityId::GetNull();
+            vehicle->prev_vehicle_on_ride = EntityId::getNull();
         }
         else
         {
             JS_UNPACK_UINT32(entityId, ctx, jsValue);
-            vehicle->prev_vehicle_on_ride = EntityId::FromUnderlying(entityId);
+            vehicle->prev_vehicle_on_ride = EntityId::fromUnderlying(entityId);
         }
         return JS_UNDEFINED;
     }
@@ -270,10 +270,10 @@ namespace OpenRCT2::Scripting
         if (vehicle == nullptr)
             return JS_NULL;
 
-        if (vehicle->next_vehicle_on_ride.IsNull())
+        if (vehicle->next_vehicle_on_ride.isNull())
             return JS_NULL;
 
-        return JS_NewUint32(ctx, vehicle->next_vehicle_on_ride.ToUnderlying());
+        return JS_NewUint32(ctx, vehicle->next_vehicle_on_ride.toUnderlying());
     }
     JSValue ScVehicle::nextCarOnRide_set(JSContext* ctx, JSValue thisVal, JSValue jsValue)
     {
@@ -284,12 +284,12 @@ namespace OpenRCT2::Scripting
 
         if (JS_IsNull(jsValue))
         {
-            vehicle->next_vehicle_on_ride = EntityId::GetNull();
+            vehicle->next_vehicle_on_ride = EntityId::getNull();
         }
         else
         {
             JS_UNPACK_UINT32(entityId, ctx, jsValue);
-            vehicle->next_vehicle_on_ride = EntityId::FromUnderlying(entityId);
+            vehicle->next_vehicle_on_ride = EntityId::fromUnderlying(entityId);
         }
         return JS_UNDEFINED;
     }
@@ -297,7 +297,7 @@ namespace OpenRCT2::Scripting
     JSValue ScVehicle::currentStation_get(JSContext* ctx, JSValue thisVal)
     {
         auto vehicle = GetVehicle(thisVal);
-        return JS_NewUint32(ctx, vehicle != nullptr ? vehicle->current_station.ToUnderlying() : 0);
+        return JS_NewUint32(ctx, vehicle != nullptr ? vehicle->current_station.toUnderlying() : 0);
     }
     JSValue ScVehicle::currentStation_set(JSContext* ctx, JSValue thisVal, JSValue jsValue)
     {
@@ -306,7 +306,7 @@ namespace OpenRCT2::Scripting
         auto vehicle = GetVehicle(thisVal);
         if (vehicle != nullptr)
         {
-            vehicle->current_station = StationIndex::FromUnderlying(value);
+            vehicle->current_station = StationIndex::fromUnderlying(value);
         }
         return JS_UNDEFINED;
     }
@@ -568,7 +568,7 @@ namespace OpenRCT2::Scripting
             for (size_t i = 0; i < std::size(vehicle->peep); i++)
             {
                 auto peep = vehicle->peep[i];
-                if (!peep.IsNull())
+                if (!peep.isNull())
                 {
                     // Set all peep slots between last valid peep and current to NULL (if there were any null peeps).
                     for (size_t j = len; j < i; j++)
@@ -576,7 +576,7 @@ namespace OpenRCT2::Scripting
                         JS_SetPropertyInt64(ctx, result, j, JS_NULL);
                     }
 
-                    JS_SetPropertyInt64(ctx, result, i, JS_NewUint32(ctx, peep.ToUnderlying()));
+                    JS_SetPropertyInt64(ctx, result, i, JS_NewUint32(ctx, peep.toUnderlying()));
                     len = i + 1;
                 }
             }

@@ -16,7 +16,7 @@ namespace OpenRCT2::GameActions
     class RideSetNameAction final : public GameActionBase<GameCommand::setRideName>
     {
     private:
-        RideId _rideIndex{ RideId::GetNull() };
+        RideId _rideIndex{ RideId::getNull() };
         std::string _name;
 
     public:

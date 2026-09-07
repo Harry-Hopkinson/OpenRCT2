@@ -520,9 +520,9 @@ ObjectEntryIndex RCTEntryIndexToOpenRCT2EntryIndex(const RCT12ObjectEntryIndex i
 RideId RCT12RideIdToOpenRCT2RideId(const RCT12RideId rideId)
 {
     if (rideId == kRCT12RideIdNull)
-        return RideId::GetNull();
+        return RideId::getNull();
 
-    return RideId::FromUnderlying(rideId);
+    return RideId::fromUnderlying(rideId);
 }
 
 static bool RCT12IsFormatChar(codepoint_t c)

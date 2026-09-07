@@ -1303,7 +1303,7 @@ namespace OpenRCT2::Ui::Windows
                 auto stationIndex = trackEl.getStationIndex();
                 ft = Formatter();
                 ft.Add<StringId>(STR_COMMA16);
-                ft.Add<int16_t>(stationIndex.ToUnderlying());
+                ft.Add<int16_t>(stationIndex.toUnderlying());
                 drawText(rt, screenCoords + ScreenCoordsXY{ 0, 55 }, STR_TILE_INSPECTOR_STATION_INDEX, ft, { colours[1] });
             }
             else
@@ -1403,7 +1403,7 @@ namespace OpenRCT2::Ui::Windows
             else
             {
                 ft = Formatter();
-                ft.Add<int16_t>(entranceEl.getStationIndex().ToUnderlying());
+                ft.Add<int16_t>(entranceEl.getStationIndex().toUnderlying());
                 if (entranceEl.getEntranceType() == EntranceType::rideEntrance)
                 {
                     // Ride entrance ID
@@ -1436,7 +1436,7 @@ namespace OpenRCT2::Ui::Windows
                 auto stationIndex = entranceEl.getStationIndex();
                 ft = Formatter();
                 ft.Add<StringId>(STR_COMMA16);
-                ft.Add<int16_t>(stationIndex.ToUnderlying());
+                ft.Add<int16_t>(stationIndex.toUnderlying());
                 drawText(rt, screenCoords + ScreenCoordsXY{ 0, 33 }, STR_TILE_INSPECTOR_STATION_INDEX, ft, { colours[1] });
             }
 
@@ -1693,7 +1693,7 @@ namespace OpenRCT2::Ui::Windows
                     case TileElementType::banner:
                         snprintf(
                             buffer, sizeof(buffer), "%s (%u)", LanguageGetString(STR_BANNER_WINDOW_TITLE),
-                            tileElement->asBanner()->getIndex().ToUnderlying());
+                            tileElement->asBanner()->getIndex().toUnderlying());
                         typeName = buffer;
                         break;
 
@@ -1907,7 +1907,7 @@ namespace OpenRCT2::Ui::Windows
             _copiedElement = *tileElement;
             _copiedBanner = {};
             auto bannerIndex = _copiedElement.getBannerIndex();
-            if (bannerIndex != BannerIndex::GetNull())
+            if (bannerIndex != BannerIndex::getNull())
             {
                 auto banner = GetBanner(bannerIndex);
                 if (banner != nullptr)

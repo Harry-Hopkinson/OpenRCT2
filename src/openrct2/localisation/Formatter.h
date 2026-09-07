@@ -105,11 +105,11 @@ namespace OpenRCT2
             uint64_t convertedValue;
             if constexpr (std::is_same_v<std::remove_cv_t<TDeduced>, RideId>)
             {
-                convertedValue = static_cast<uint64_t>(value.ToUnderlying());
+                convertedValue = static_cast<uint64_t>(value.toUnderlying());
             }
             else if constexpr (std::is_same_v<std::remove_cv_t<TDeduced>, EntityId>)
             {
-                convertedValue = static_cast<uint64_t>(value.ToUnderlying());
+                convertedValue = static_cast<uint64_t>(value.toUnderlying());
             }
             else if constexpr (std::is_integral_v<TSpecified> || std::is_enum_v<TSpecified>)
             {

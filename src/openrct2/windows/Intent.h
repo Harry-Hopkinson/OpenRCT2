@@ -112,7 +112,7 @@ namespace OpenRCT2
         template<typename T, T TNull, typename TTag>
         Intent* PutExtra(uint32_t key, const TIdentifier<T, TNull, TTag>& value)
         {
-            const auto val = value.ToUnderlying();
+            const auto val = value.toUnderlying();
             return PutExtra(key, static_cast<uint32_t>(val));
         }
     };

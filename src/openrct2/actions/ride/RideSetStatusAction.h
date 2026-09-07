@@ -17,7 +17,7 @@ namespace OpenRCT2::GameActions
     class RideSetStatusAction final : public GameActionBase<GameCommand::setRideStatus>
     {
     private:
-        RideId _rideIndex{ RideId::GetNull() };
+        RideId _rideIndex{ RideId::getNull() };
         RideStatus _status{ RideStatus::closed };
 
     public:

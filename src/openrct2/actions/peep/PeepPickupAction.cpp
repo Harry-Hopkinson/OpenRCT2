@@ -50,7 +50,7 @@ namespace OpenRCT2::GameActions
 
     Result PeepPickupAction::Query(GameState_t& gameState, Park::ParkData& park) const
     {
-        if (_entityId.ToUnderlying() >= kMaxEntities || _entityId.IsNull())
+        if (_entityId.toUnderlying() >= kMaxEntities || _entityId.isNull())
         {
             LOG_ERROR("Failed to pick up peep for sprite %d", _entityId);
             return Result(Status::invalidParameters, STR_ERR_CANT_PLACE_PERSON_HERE, kStringIdNone);

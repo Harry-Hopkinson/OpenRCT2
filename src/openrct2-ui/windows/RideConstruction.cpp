@@ -228,7 +228,7 @@ namespace OpenRCT2::Ui::Windows
     static void CloseRideWindowForConstruction(RideId rideId)
     {
         auto* windowMgr = GetWindowManager();
-        WindowBase* w = windowMgr->FindByNumber(WindowClass::ride, rideId.ToUnderlying());
+        WindowBase* w = windowMgr->FindByNumber(WindowClass::ride, rideId.toUnderlying());
         if (w != nullptr && w->page == 1)
             windowMgr->Close(*w);
     }
@@ -259,7 +259,7 @@ namespace OpenRCT2::Ui::Windows
             }
 
             setWidgets(kRideConstructionWidgets);
-            number = _currentRideIndex.ToUnderlying();
+            number = _currentRideIndex.toUnderlying();
 
             initScrollWidgets();
 
@@ -337,7 +337,7 @@ namespace OpenRCT2::Ui::Windows
                 }
 
                 auto intent = Intent(WindowClass::ride);
-                intent.PutExtra(INTENT_EXTRA_RIDE_ID, currentRide->id.ToUnderlying());
+                intent.PutExtra(INTENT_EXTRA_RIDE_ID, currentRide->id.toUnderlying());
                 ContextOpenIntent(&intent);
             }
             else
@@ -2449,7 +2449,7 @@ namespace OpenRCT2::Ui::Windows
             {
                 gRideEntranceExitPlaceType = EntranceType::rideEntrance;
                 gRideEntranceExitPlaceRideIndex = _currentRideIndex;
-                gRideEntranceExitPlaceStationIndex = StationIndex::FromUnderlying(0);
+                gRideEntranceExitPlaceStationIndex = StationIndex::fromUnderlying(0);
                 gInputFlags.set(InputFlag::allowRightMouseRemoval);
                 RideConstructionInvalidateCurrentTrack();
                 if (_rideConstructionState != RideConstructionState::entranceExit)
@@ -2475,7 +2475,7 @@ namespace OpenRCT2::Ui::Windows
             {
                 gRideEntranceExitPlaceType = EntranceType::rideExit;
                 gRideEntranceExitPlaceRideIndex = _currentRideIndex;
-                gRideEntranceExitPlaceStationIndex = StationIndex::FromUnderlying(0);
+                gRideEntranceExitPlaceStationIndex = StationIndex::fromUnderlying(0);
                 gInputFlags.set(InputFlag::allowRightMouseRemoval);
                 RideConstructionInvalidateCurrentTrack();
                 if (_rideConstructionState != RideConstructionState::entranceExit)

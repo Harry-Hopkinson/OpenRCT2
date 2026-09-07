@@ -1517,19 +1517,19 @@ JSValue ScriptEngine::GameActionResultToJS(
         if (action.GetType() == GameCommand::createRide)
         {
             const auto rideIndex = result.getData<RideId>();
-            JS_SetPropertyStr(ctx, obj, "ride", JS_NewInt32(ctx, rideIndex.ToUnderlying()));
+            JS_SetPropertyStr(ctx, obj, "ride", JS_NewInt32(ctx, rideIndex.toUnderlying()));
         }
         // StaffHireNewAction only
         else if (action.GetType() == GameCommand::hireNewStaffMember)
         {
             const auto actionResult = result.getData<GameActions::StaffHireNewActionResult>();
-            if (!actionResult.StaffEntityId.IsNull())
+            if (!actionResult.StaffEntityId.isNull())
             {
-                JS_SetPropertyStr(ctx, obj, "peep", JS_NewInt32(ctx, actionResult.StaffEntityId.ToUnderlying()));
+                JS_SetPropertyStr(ctx, obj, "peep", JS_NewInt32(ctx, actionResult.StaffEntityId.toUnderlying()));
             }
         }
         // BannerPlaceAction, LargeSceneryPlaceAction, WallPlaceAction
-        auto bannerId = BannerIndex::GetNull();
+        auto bannerId = BannerIndex::getNull();
         switch (action.GetType())
         {
             case GameCommand::placeBanner:
@@ -1544,9 +1544,9 @@ JSValue ScriptEngine::GameActionResultToJS(
             default:
                 break;
         }
-        if (!bannerId.IsNull())
+        if (!bannerId.isNull())
         {
-            JS_SetPropertyStr(ctx, obj, "bannerIndex", JS_NewInt32(ctx, bannerId.ToUnderlying()));
+            JS_SetPropertyStr(ctx, obj, "bannerIndex", JS_NewInt32(ctx, bannerId.toUnderlying()));
         }
     }
 

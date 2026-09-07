@@ -50,7 +50,7 @@ static void InvokeVehicleCrashHook(const EntityId vehicleId, const std::string_v
 
         // Create event args object
         JSValue obj = JS_NewObject(ctx);
-        JS_SetPropertyStr(ctx, obj, "id", JS_NewInt64(ctx, vehicleId.ToUnderlying()));
+        JS_SetPropertyStr(ctx, obj, "id", JS_NewInt64(ctx, vehicleId.toUnderlying()));
         JS_SetPropertyStr(ctx, obj, "crashIntoType", Scripting::JSFromStdString(ctx, crashId));
 
         // Call the subscriptions
@@ -185,7 +185,7 @@ void Vehicle::UpdateCrashSetup()
 
     Vehicle* lastVehicle = this;
     auto spriteId = id;
-    for (Vehicle* trainVehicle; !spriteId.IsNull(); spriteId = trainVehicle->next_vehicle_on_train)
+    for (Vehicle* trainVehicle; !spriteId.isNull(); spriteId = trainVehicle->next_vehicle_on_train)
     {
         trainVehicle = getGameState().entities.getEntity<Vehicle>(spriteId);
         if (trainVehicle == nullptr)
@@ -298,7 +298,7 @@ static void ride_train_crash(Ride& ride, uint16_t numFatalities)
             ride.formatNameTo(ft);
             News::AddItemToQueue(
                 News::ItemType::ride, numFatalities == 1 ? STR_X_PERSON_DIED_ON_X : STR_X_PEOPLE_DIED_ON_X,
-                ride.id.ToUnderlying(), ft);
+                ride.id.toUnderlying(), ft);
         }
 
         // TODO: get park id from ride/vehicle

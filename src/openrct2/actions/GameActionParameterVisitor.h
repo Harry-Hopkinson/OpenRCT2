@@ -83,9 +83,9 @@ namespace OpenRCT2::GameActions
         template<typename T, T TNull, typename TTag>
         void Visit(std::string_view name, TIdentifier<T, TNull, TTag>& param)
         {
-            auto value = param.ToUnderlying();
+            auto value = param.toUnderlying();
             Visit(name, value);
-            param = TIdentifier<T, TNull, TTag>::FromUnderlying(value);
+            param = TIdentifier<T, TNull, TTag>::fromUnderlying(value);
         }
 
         template<typename T, size_t _TypeID>

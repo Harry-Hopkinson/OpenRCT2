@@ -30,7 +30,7 @@ namespace OpenRCT2::GameActions
     class RideSetAppearanceAction final : public GameActionBase<GameCommand::setRideAppearance>
     {
     private:
-        RideId _rideIndex{ RideId::GetNull() };
+        RideId _rideIndex{ RideId::getNull() };
         RideSetAppearanceType _type{};
         uint16_t _value{};
         uint32_t _index{};

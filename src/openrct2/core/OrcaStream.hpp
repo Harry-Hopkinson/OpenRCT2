@@ -364,11 +364,11 @@ namespace OpenRCT2
                 {
                     T temp{};
                     readWrite(temp);
-                    value = TIdentifier<T, TNullValue, TTag>::FromUnderlying(temp);
+                    value = TIdentifier<T, TNullValue, TTag>::fromUnderlying(temp);
                 }
                 else
                 {
-                    auto temp = value.ToUnderlying();
+                    auto temp = value.toUnderlying();
                     readWrite(temp);
                 }
             }

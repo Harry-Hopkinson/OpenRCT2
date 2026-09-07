@@ -27,7 +27,7 @@ namespace OpenRCT2::GameActions
     {
     private:
         BannerSetStyleType _type{ BannerSetStyleType::count };
-        BannerIndex _bannerIndex{ BannerIndex::GetNull() };
+        BannerIndex _bannerIndex{ BannerIndex::getNull() };
         uint8_t _parameter{};
 
     public:

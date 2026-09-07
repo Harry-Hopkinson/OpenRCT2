@@ -170,7 +170,7 @@ namespace OpenRCT2
 
     void ClearPatrolAreaToRender()
     {
-        SetPatrolAreaToRender(EntityId::GetNull());
+        SetPatrolAreaToRender(EntityId::getNull());
     }
 
     void SetPatrolAreaToRender(EntityId staffId)

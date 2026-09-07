@@ -44,7 +44,7 @@ using BannerFlags = FlagHolder<uint8_t, BannerFlag>;
 
 struct Banner
 {
-    BannerIndex id = BannerIndex::GetNull();
+    BannerIndex id = BannerIndex::getNull();
     OpenRCT2::ObjectEntryIndex type = kBannerNull;
     BannerFlags flags{};
     std::string text;

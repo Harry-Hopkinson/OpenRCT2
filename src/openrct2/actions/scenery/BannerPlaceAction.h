@@ -20,7 +20,7 @@ namespace OpenRCT2::GameActions
 {
     struct BannerPlaceActionResult
     {
-        BannerIndex bannerId = BannerIndex::GetNull();
+        BannerIndex bannerId = BannerIndex::getNull();
     };
 
     class BannerPlaceAction final : public GameActionBase<GameCommand::placeBanner>

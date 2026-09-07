@@ -107,7 +107,7 @@ namespace OpenRCT2::Scripting
     JSValue ScRide::id_get(JSContext* ctx, JSValue thisVal)
     {
         RideData* data = GetRideData(thisVal);
-        return JS_NewInt32(ctx, data->_rideId.ToUnderlying());
+        return JS_NewInt32(ctx, data->_rideId.toUnderlying());
     }
 
     JSValue ScRide::object_get(JSContext* ctx, JSValue thisVal)
@@ -303,7 +303,7 @@ namespace OpenRCT2::Scripting
         {
             int64_t index = 0;
             std::for_each(std::begin(ride->vehicles), std::begin(ride->vehicles) + ride->numTrains, [&](auto& veh) {
-                JS_SetPropertyInt64(ctx, result, index++, JS_NewUint32(ctx, veh.ToUnderlying()));
+                JS_SetPropertyInt64(ctx, result, index++, JS_NewUint32(ctx, veh.toUnderlying()));
             });
         }
         return result;

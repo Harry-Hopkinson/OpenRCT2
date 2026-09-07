@@ -66,7 +66,7 @@ Vehicle* CableLiftSegmentCreate(
     current->roll = VehicleRoll::unbanked;
     for (auto& peep : current->peep)
     {
-        peep = EntityId::GetNull();
+        peep = EntityId::getNull();
     }
     current->TrackSubposition = VehicleTrackSubposition::standard;
     current->orientation = direction << 3;
@@ -363,7 +363,7 @@ int32_t Vehicle::CableLiftUpdateTrackMotion()
     _vehicleBrakeSoundTimeout = 0;
     gCurrentVehicle = this;
     _vehicleMotionTrackFlags = 0;
-    _vehicleStationIndex = StationIndex::GetNull();
+    _vehicleStationIndex = StationIndex::getNull();
 
     velocity += acceleration;
     _vehicleVelocity = velocity;

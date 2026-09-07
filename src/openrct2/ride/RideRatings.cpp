@@ -278,7 +278,7 @@ namespace OpenRCT2
         auto rm = RideManager(gameState);
         if (rm.size() == 0)
         {
-            return RideId::GetNull();
+            return RideId::getNull();
         }
 
         auto it = rm.get(currentRide);
@@ -1081,7 +1081,7 @@ namespace OpenRCT2
 
                 // Create event args object
                 JSValue obj = JS_NewObject(ctx);
-                JS_SetPropertyStr(ctx, obj, "rideId", JS_NewInt32(ctx, ride.id.ToUnderlying()));
+                JS_SetPropertyStr(ctx, obj, "rideId", JS_NewInt32(ctx, ride.id.toUnderlying()));
                 JS_SetPropertyStr(ctx, obj, "excitement", JS_NewInt32(ctx, originalRatings.excitement));
                 JS_SetPropertyStr(ctx, obj, "intensity", JS_NewInt32(ctx, originalRatings.intensity));
                 JS_SetPropertyStr(ctx, obj, "nausea", JS_NewInt32(ctx, originalRatings.nausea));
@@ -1755,7 +1755,7 @@ namespace OpenRCT2
         auto stationIndex = RideGetFirstValidStationStart(ride);
         CoordsXY location;
 
-        if (stationIndex.IsNull())
+        if (stationIndex.isNull())
         {
             return 0;
         }

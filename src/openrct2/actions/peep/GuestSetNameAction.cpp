@@ -55,7 +55,7 @@ namespace OpenRCT2::GameActions
 
     Result GuestSetNameAction::Query(GameState_t& gameState, Park::ParkData& park) const
     {
-        if (_spriteIndex.ToUnderlying() >= kMaxEntities || _spriteIndex.IsNull())
+        if (_spriteIndex.toUnderlying() >= kMaxEntities || _spriteIndex.isNull())
         {
             return Result(Status::invalidParameters, STR_CANT_NAME_GUEST, STR_ERR_VALUE_OUT_OF_RANGE);
         }

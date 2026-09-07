@@ -92,7 +92,7 @@ void Banner::formatTextTo(Formatter& ft) const
  */
 static RideId BannerGetRideIndexAt(const CoordsXYZ& bannerCoords)
 {
-    RideId resultRideIndex = RideId::GetNull();
+    RideId resultRideIndex = RideId::getNull();
     for (auto* trackElement : TileElementsView<TrackElement>(bannerCoords))
     {
         RideId rideIndex = trackElement->getRideIndex();
@@ -118,16 +118,16 @@ static BannerIndex BannerGetNewIndex()
         {
             if (gameState.banners[bannerIndex].isNull())
             {
-                return BannerIndex::FromUnderlying(bannerIndex);
+                return BannerIndex::fromUnderlying(bannerIndex);
             }
         }
         else
         {
             gameState.banners.emplace_back();
-            return BannerIndex::FromUnderlying(bannerIndex);
+            return BannerIndex::fromUnderlying(bannerIndex);
         }
     }
-    return BannerIndex::GetNull();
+    return BannerIndex::getNull();
 }
 
 /**
@@ -208,13 +208,13 @@ RideId BannerGetClosestRideIndex(const CoordsXYZ& mapPos)
     for (const auto& neighhbourCoords : NeighbourCheckOrder)
     {
         RideId rideIndex = BannerGetRideIndexAt({ CoordsXY{ mapPos } + neighhbourCoords, mapPos.z });
-        if (!rideIndex.IsNull())
+        if (!rideIndex.isNull())
         {
             return rideIndex;
         }
     }
 
-    auto rideIndex = RideId::GetNull();
+    auto rideIndex = RideId::getNull();
     auto resultDistance = std::numeric_limits<int32_t>::max();
 
     auto& gameState = getGameState();
@@ -256,7 +256,7 @@ static std::vector<BannerElementWithPos> GetAllBannerElementsOnMap()
             for (auto* bannerElement : OpenRCT2::TileElementsView<BannerElement>(tilePos.toCoordsXY()))
             {
                 auto bannerIndex = bannerElement->getIndex();
-                if (bannerIndex == BannerIndex::GetNull())
+                if (bannerIndex == BannerIndex::getNull())
                     continue;
 
                 banners.push_back({ bannerElement, tilePos });
@@ -273,7 +273,7 @@ static void BannerDeallocateUnlinked()
     auto& gameState = getGameState();
     for (BannerIndex::UnderlyingType index = 0; index < gameState.banners.size(); index++)
     {
-        const auto bannerId = BannerIndex::FromUnderlying(index);
+        const auto bannerId = BannerIndex::fromUnderlying(index);
         auto* tileElement = BannerGetTileElement(bannerId);
         if (tileElement == nullptr)
         {
@@ -313,7 +313,7 @@ static void BannerFixDuplicates(std::vector<BannerElementWithPos>& bannerElement
         const auto* oldBanner = GetBanner(oldIndex);
         if (oldBanner == nullptr)
         {
-            LOG_ERROR("Unable to get old banner for index %u.", oldIndex.ToUnderlying());
+            LOG_ERROR("Unable to get old banner for index %u.", oldIndex.toUnderlying());
             continue;
         }
 
@@ -345,7 +345,7 @@ static void BannerFixPositions(std::vector<BannerElementWithPos>& bannerElements
         auto* banner = GetBanner(index);
         if (banner == nullptr)
         {
-            LOG_ERROR("Unable to get banner for index %u.", index.ToUnderlying());
+            LOG_ERROR("Unable to get banner for index %u.", index.toUnderlying());
             continue;
         }
         banner->position = entry.Pos;
@@ -371,7 +371,7 @@ void UnlinkAllRideBanners()
         if (!banner.isNull())
         {
             banner.flags.unset(BannerFlag::linkedToRide);
-            banner.rideIndex = RideId::GetNull();
+            banner.rideIndex = RideId::getNull();
         }
     }
 }
@@ -384,7 +384,7 @@ void UnlinkAllBannersForRide(RideId rideId)
         if (!banner.isNull() && banner.flags.has(BannerFlag::linkedToRide) && banner.rideIndex == rideId)
         {
             banner.flags.unset(BannerFlag::linkedToRide);
-            banner.rideIndex = RideId::GetNull();
+            banner.rideIndex = RideId::getNull();
             banner.text = {};
         }
     }
@@ -393,7 +393,7 @@ void UnlinkAllBannersForRide(RideId rideId)
 Banner* GetBanner(BannerIndex id)
 {
     auto& gameState = getGameState();
-    const auto index = id.ToUnderlying();
+    const auto index = id.toUnderlying();
     if (index < gameState.banners.size())
     {
         auto banner = &gameState.banners[index];
@@ -408,7 +408,7 @@ Banner* GetBanner(BannerIndex id)
 Banner* GetOrCreateBanner(BannerIndex id)
 {
     auto& gameState = getGameState();
-    const auto index = id.ToUnderlying();
+    const auto index = id.toUnderlying();
     if (index < kMaxBanners)
     {
         if (index >= gameState.banners.size())

@@ -218,9 +218,9 @@ public:
             case WindowDetail::newCampaign:
                 return NewCampaignOpen(id);
             case WindowDetail::demolishRide:
-                return RideDemolishPromptOpen(*GetRide(RideId::FromUnderlying(id)));
+                return RideDemolishPromptOpen(*GetRide(RideId::fromUnderlying(id)));
             case WindowDetail::refurbishRide:
-                return RideRefurbishPromptOpen(*GetRide(RideId::FromUnderlying(id)));
+                return RideRefurbishPromptOpen(*GetRide(RideId::fromUnderlying(id)));
             case WindowDetail::sign:
                 return SignOpen(id);
             case WindowDetail::signSmall:
@@ -295,7 +295,7 @@ public:
             }
             case WindowClass::ride:
             {
-                const auto rideId = RideId::FromUnderlying(intent->GetSIntExtra(INTENT_EXTRA_RIDE_ID));
+                const auto rideId = RideId::fromUnderlying(intent->GetSIntExtra(INTENT_EXTRA_RIDE_ID));
                 auto ride = GetRide(rideId);
                 return ride == nullptr ? nullptr : RideMainOpen(*ride);
             }
@@ -439,13 +439,13 @@ public:
                 if (w == nullptr || w->number != static_cast<int16_t>(rideIndex))
                 {
                     CloseConstructionWindows();
-                    _currentRideIndex = RideId::FromUnderlying(rideIndex);
+                    _currentRideIndex = RideId::fromUnderlying(rideIndex);
                     OpenWindow(WindowClass::rideConstruction);
                 }
                 else
                 {
                     RideConstructionInvalidateCurrentTrack();
-                    _currentRideIndex = RideId::FromUnderlying(rideIndex);
+                    _currentRideIndex = RideId::fromUnderlying(rideIndex);
                 }
                 break;
             }
@@ -501,7 +501,7 @@ public:
             case INTENT_ACTION_RIDE_PAINT_RESET_VEHICLE:
             {
                 auto rideIndex = intent.GetUIntExtra(INTENT_EXTRA_RIDE_ID);
-                WindowRidePaintResetVehicle(RideId::FromUnderlying(rideIndex));
+                WindowRidePaintResetVehicle(RideId::fromUnderlying(rideIndex));
                 break;
             }
 
@@ -638,7 +638,7 @@ public:
         {
             auto viewport = WindowGetViewport(mainWindow);
 
-            mainWindow->viewportTargetSprite = EntityId::GetNull();
+            mainWindow->viewportTargetSprite = EntityId::getNull();
             mainWindow->savedViewPos = viewPos;
             viewport->zoom = zoom;
             viewport->rotation = rotation;
@@ -1041,7 +1041,7 @@ public:
     // TODO: Refactor this to use variant once the new window class is done.
     void CloseByNumber(WindowClass cls, EntityId number) override
     {
-        CloseByNumber(cls, static_cast<WindowNumber>(number.ToUnderlying()));
+        CloseByNumber(cls, static_cast<WindowNumber>(number.toUnderlying()));
     }
 
     /**
@@ -1163,7 +1163,7 @@ public:
     // TODO: Use variant for this once the window framework is done.
     WindowBase* FindByNumber(WindowClass cls, EntityId id) override
     {
-        return FindByNumber(cls, static_cast<WindowNumber>(id.ToUnderlying()));
+        return FindByNumber(cls, static_cast<WindowNumber>(id.toUnderlying()));
     }
 
     /**
@@ -1270,7 +1270,7 @@ public:
     // TODO: Use variant for this once the window framework is done.
     void InvalidateByNumber(WindowClass cls, EntityId id) override
     {
-        InvalidateByNumber(cls, static_cast<WindowNumber>(id.ToUnderlying()));
+        InvalidateByNumber(cls, static_cast<WindowNumber>(id.toUnderlying()));
     }
 
     /**

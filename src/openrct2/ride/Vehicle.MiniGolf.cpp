@@ -461,7 +461,7 @@ void OpenRCT2::RideUpdateMeasurementsSpecialElements_MiniGolf(Ride& ride, const 
             if (flags.has(VehicleFlag::onLiftHill))
             {
                 flags.unset(VehicleFlag::onLiftHill);
-                if (next_vehicle_on_train.IsNull())
+                if (next_vehicle_on_train.isNull())
                 {
                     if (_vehicleVelocity < 0)
                     {
@@ -501,7 +501,7 @@ void OpenRCT2::RideUpdateMeasurementsSpecialElements_MiniGolf(Ride& ride, const 
         {
             if (_vehicleVelocity >= 0)
             {
-                auto otherVehicleIndex = EntityId::FromUnderlying(var_44); // Possibly wrong?.
+                auto otherVehicleIndex = EntityId::fromUnderlying(var_44); // Possibly wrong?.
                 if (UpdateMotionCollisionDetection(trackPos, &otherVehicleIndex))
                 {
                     _vehicleRemainingDistance -= remaining_distance - 0x368A;
@@ -706,7 +706,7 @@ int32_t Vehicle::UpdateTrackMotionMiniGolf(int32_t* outStation)
         if (vehicle->flags.has(VehicleFlag::moveSingleCar))
         {
             if (outStation != nullptr)
-                *outStation = _vehicleStationIndex.ToUnderlying();
+                *outStation = _vehicleStationIndex.toUnderlying();
             return _vehicleMotionTrackFlags;
         }
         if (_vehicleVelocity >= 0)
@@ -726,6 +726,6 @@ int32_t Vehicle::UpdateTrackMotionMiniGolf(int32_t* outStation)
     acceleration = UpdateTrackMotionMiniGolfCalculateAcceleration(*carEntry);
 
     if (outStation != nullptr)
-        *outStation = _vehicleStationIndex.ToUnderlying();
+        *outStation = _vehicleStationIndex.toUnderlying();
     return _vehicleMotionTrackFlags;
 }

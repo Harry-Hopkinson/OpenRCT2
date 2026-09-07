@@ -36,7 +36,7 @@ using namespace OpenRCT2;
 static constexpr int32_t kTrackNearbySceneryDistance = 1;
 
 bool gTrackDesignSaveMode = false;
-RideId gTrackDesignSaveRideIndex = RideId::GetNull();
+RideId gTrackDesignSaveRideIndex = RideId::getNull();
 
 static std::vector<const TileElement*> _trackSavedTileElements;
 std::vector<TrackDesignSceneryElement> _trackSavedTileElementsDesc;

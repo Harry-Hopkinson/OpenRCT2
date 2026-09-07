@@ -173,29 +173,29 @@ namespace OpenRCT2
         auto& gameState = getGameState();
         for (RideId::UnderlyingType i = 0; i < gameState.rides.size(); i++)
         {
-            if (gameState.rides[i].id.IsNull())
+            if (gameState.rides[i].id.isNull())
             {
-                return RideId::FromUnderlying(i);
+                return RideId::fromUnderlying(i);
             }
         }
-        return RideId::GetNull();
+        return RideId::getNull();
     }
 
     Ride* RideAllocateAtIndex(RideId index)
     {
-        const auto idx = index.ToUnderlying();
+        const auto idx = index.toUnderlying();
 
         auto& gameState = getGameState();
         gameState.ridesEndOfUsedRange = std::max<size_t>(idx + 1, gameState.ridesEndOfUsedRange);
 
         auto result = &gameState.rides[idx];
-        assert(result->id == RideId::GetNull());
+        assert(result->id == RideId::getNull());
 
         // Initialize the ride to all the defaults.
         *result = Ride{};
 
         // Because it is default initialized to zero rather than the magic constant for Null, fill the array.
-        std::fill(std::begin(result->vehicles), std::end(result->vehicles), EntityId::GetNull());
+        std::fill(std::begin(result->vehicles), std::end(result->vehicles), EntityId::getNull());
 
         result->id = index;
         return result;
@@ -208,7 +208,7 @@ namespace OpenRCT2
 
     static void RideReset(Ride& ride)
     {
-        ride.id = RideId::GetNull();
+        ride.id = RideId::getNull();
         ride.type = kRideTypeNull;
         ride.customName = {};
         ride.measurement = {};
@@ -217,7 +217,7 @@ namespace OpenRCT2
     void RideDelete(RideId id)
     {
         auto& gameState = getGameState();
-        const auto idx = id.ToUnderlying();
+        const auto idx = id.toUnderlying();
 
         assert(idx < gameState.rides.size());
         assert(gameState.rides[idx].type != kRideTypeNull);
@@ -226,7 +226,7 @@ namespace OpenRCT2
         RideReset(ride);
 
         // Shrink maximum ride size.
-        while (gameState.ridesEndOfUsedRange > 0 && gameState.rides[gameState.ridesEndOfUsedRange - 1].id.IsNull())
+        while (gameState.ridesEndOfUsedRange > 0 && gameState.rides[gameState.ridesEndOfUsedRange - 1].id.isNull())
         {
             gameState.ridesEndOfUsedRange--;
         }
@@ -234,13 +234,13 @@ namespace OpenRCT2
 
     Ride* GetRide(RideId index)
     {
-        if (index.IsNull())
+        if (index.isNull())
         {
             return nullptr;
         }
 
         auto& gameState = getGameState();
-        const auto idx = index.ToUnderlying();
+        const auto idx = index.toUnderlying();
         if (idx >= gameState.rides.size())
         {
             return nullptr;
@@ -380,10 +380,10 @@ namespace OpenRCT2
 
     void Ride::queueInsertGuestAtFront(StationIndex stationIndex, Guest* peep)
     {
-        assert(stationIndex.ToUnderlying() < Limits::kMaxStationsPerRide);
+        assert(stationIndex.toUnderlying() < Limits::kMaxStationsPerRide);
         assert(peep != nullptr);
 
-        peep->guestNextInQueue = EntityId::GetNull();
+        peep->guestNextInQueue = EntityId::getNull();
         auto* queueHeadGuest = getQueueHeadGuest(peep->currentRideStation);
         if (queueHeadGuest == nullptr)
         {
@@ -408,7 +408,7 @@ namespace OpenRCT2
 
         for (auto peep : EntityList<Guest>())
         {
-            if (!peep->favouriteRide.IsNull())
+            if (!peep->favouriteRide.isNull())
             {
                 auto ride = GetRide(peep->favouriteRide);
                 if (ride != nullptr)
@@ -563,7 +563,7 @@ namespace OpenRCT2
         {
             ft.Add<StringId>(STR_TEST_RUN);
         }
-        else if (mode == RideMode::race && !flags.has(RideFlag::passStationNoStopping) && !raceWinner.IsNull())
+        else if (mode == RideMode::race && !flags.has(RideFlag::passStationNoStopping) && !raceWinner.isNull())
         {
             auto peep = getGameState().entities.getEntity<Guest>(raceWinner);
             if (peep != nullptr)
@@ -758,13 +758,13 @@ namespace OpenRCT2
 
     RideStation& Ride::getStation(StationIndex stationIndex)
     {
-        return stations[stationIndex.ToUnderlying()];
+        return stations[stationIndex.toUnderlying()];
     }
 
     StationIndex::UnderlyingType Ride::getStationNumber(StationIndex in) const
     {
         StationIndex::UnderlyingType nullStationsSeen{ 0 };
-        for (size_t i = 0; i < in.ToUnderlying(); i++)
+        for (size_t i = 0; i < in.toUnderlying(); i++)
         {
             if (stations[i].start.isNull())
             {
@@ -772,12 +772,12 @@ namespace OpenRCT2
             }
         }
 
-        return in.ToUnderlying() - nullStationsSeen + 1;
+        return in.toUnderlying() - nullStationsSeen + 1;
     }
 
     const RideStation& Ride::getStation(StationIndex stationIndex) const
     {
-        return stations[stationIndex.ToUnderlying()];
+        return stations[stationIndex.toUnderlying()];
     }
 
     std::span<RideStation> Ride::getStations()
@@ -794,7 +794,7 @@ namespace OpenRCT2
     {
         auto distance = std::distance(stations.data(), station);
         Guard::Assert(distance >= 0 && distance < int32_t(std::size(stations)));
-        return StationIndex::FromUnderlying(distance);
+        return StationIndex::fromUnderlying(distance);
     }
 
     /**
@@ -812,7 +812,7 @@ namespace OpenRCT2
         const auto& rtd = getRideTypeDescriptor();
         if (rtd.specialType != RtdSpecialType::maze)
             for (StationIndex::UnderlyingType i = 0; i < Limits::kMaxStationsPerRide; i++)
-                RideUpdateStation(*this, StationIndex::FromUnderlying(i));
+                RideUpdateStation(*this, StationIndex::fromUnderlying(i));
 
         // Update financial statistics
         numCustomersTimeout++;
@@ -852,7 +852,7 @@ namespace OpenRCT2
             // with the increased MAX_RIDES the update is tied to the first byte of the id this allows
             // for identical balance with vanilla.
             const auto updatingRideByte = static_cast<uint8_t>((getGameState().currentTicks / 2) & 0xFF);
-            if (updatingRideByte == static_cast<uint8_t>(id.ToUnderlying()))
+            if (updatingRideByte == static_cast<uint8_t>(id.toUnderlying()))
                 RideBreakdownStatusUpdate(*this);
         }
 
@@ -992,7 +992,7 @@ namespace OpenRCT2
 
             auto startLoc = ride.stations[i].start;
 
-            TileElement* tileElement = RideGetStationStartTrackElement(ride, StationIndex::FromUnderlying(i));
+            TileElement* tileElement = RideGetStationStartTrackElement(ride, StationIndex::fromUnderlying(i));
             if (tileElement == nullptr)
                 continue;
 
@@ -1054,7 +1054,7 @@ namespace OpenRCT2
         ride.mechanicStatus = MechanicStatus::calling;
 
         auto stationIndex = RideGetFirstValidStationExit(ride);
-        ride.inspectionStation = (!stationIndex.IsNull()) ? stationIndex : StationIndex::FromUnderlying(0);
+        ride.inspectionStation = (!stationIndex.isNull()) ? stationIndex : StationIndex::fromUnderlying(0);
     }
 
     static int32_t getAgePenalty(const Ride& ride)
@@ -1232,7 +1232,7 @@ namespace OpenRCT2
 
         // Prevent crash caused by accessing SPRITE_INDEX_NULL on hacked rides.
         // This should probably be cleaned up on import instead.
-        while (ride.vehicles[ride.brokenTrain].IsNull() && ride.brokenTrain != 0)
+        while (ride.vehicles[ride.brokenTrain].isNull() && ride.brokenTrain != 0)
         {
             --ride.brokenTrain;
         }
@@ -1255,7 +1255,7 @@ namespace OpenRCT2
         ride.breakdownReasonPending = breakdownReason;
         ride.breakdownSoundModifier = 0;
         ride.notFixedTimeout = 0;
-        ride.inspectionStation = StationIndex::FromUnderlying(0); // ensure set to something.
+        ride.inspectionStation = StationIndex::fromUnderlying(0); // ensure set to something.
 
         switch (breakdownReason)
         {
@@ -1263,7 +1263,7 @@ namespace OpenRCT2
             case Breakdown::controlFailure:
                 // Inspect first station with an exit
                 i = RideGetFirstValidStationExit(ride);
-                if (!i.IsNull())
+                if (!i.isNull())
                 {
                     ride.inspectionStation = i;
                 }
@@ -1307,7 +1307,7 @@ namespace OpenRCT2
                 // Original code generates a random number but does not use it
                 // Unsure if this was supposed to choose a random station (or random station with an exit)
                 i = RideGetFirstValidStationExit(ride);
-                if (!i.IsNull())
+                if (!i.isNull())
                 {
                     ride.inspectionStation = i;
                 }
@@ -1322,7 +1322,7 @@ namespace OpenRCT2
             auto ctx = GetContext()->GetScriptEngine().GetContext();
             JSValue obj = JS_NewObject(ctx);
 
-            JS_SetPropertyStr(ctx, obj, "rideId", JS_NewInt32(ctx, ride.id.ToUnderlying()));
+            JS_SetPropertyStr(ctx, obj, "rideId", JS_NewInt32(ctx, ride.id.toUnderlying()));
 
             auto it = kBreakdownMap.find(breakdownReason);
             if (it != kBreakdownMap.end())
@@ -1345,7 +1345,7 @@ namespace OpenRCT2
         {
             Formatter ft;
             ride.formatNameTo(ft);
-            News::AddItemToQueue(News::ItemType::ride, STR_RIDE_IS_BROKEN_DOWN, ride.id.ToUnderlying(), ft);
+            News::AddItemToQueue(News::ItemType::ride, STR_RIDE_IS_BROKEN_DOWN, ride.id.toUnderlying(), ft);
         }
     }
 
@@ -1372,7 +1372,7 @@ namespace OpenRCT2
                 {
                     Formatter ft;
                     ride.formatNameTo(ft);
-                    News::AddItemToQueue(News::ItemType::ride, STR_RIDE_IS_STILL_NOT_FIXED, ride.id.ToUnderlying(), ft);
+                    News::AddItemToQueue(News::ItemType::ride, STR_RIDE_IS_STILL_NOT_FIXED, ride.id.toUnderlying(), ft);
                 }
             }
         }
@@ -1487,8 +1487,8 @@ namespace OpenRCT2
 
     Staff* RideFindClosestMechanic(const Ride& ride, int32_t forInspection)
     {
-        const auto stationIndex = ride.inspectionStation.IsNull() ? RideGetFirstValidStationExit(ride) : ride.inspectionStation;
-        if (stationIndex.IsNull())
+        const auto stationIndex = ride.inspectionStation.isNull() ? RideGetFirstValidStationExit(ride) : ride.inspectionStation;
+        if (stationIndex.isNull())
             return nullptr;
 
         // Get either exit position or entrance position if there is no exit
@@ -2062,7 +2062,7 @@ namespace OpenRCT2
                 ride.formatNameTo(ft);
                 if (Config::Get().notifications.rideWarnings)
                 {
-                    News::AddItemToQueue(News::ItemType::ride, STR_ENTRANCE_NOT_CONNECTED, ride.id.ToUnderlying(), ft);
+                    News::AddItemToQueue(News::ItemType::ride, STR_ENTRANCE_NOT_CONNECTED, ride.id.toUnderlying(), ft);
                 }
                 ride.connectedMessageThrottle = 3;
             }
@@ -2074,7 +2074,7 @@ namespace OpenRCT2
                 ride.formatNameTo(ft);
                 if (Config::Get().notifications.rideWarnings)
                 {
-                    News::AddItemToQueue(News::ItemType::ride, STR_EXIT_NOT_CONNECTED, ride.id.ToUnderlying(), ft);
+                    News::AddItemToQueue(News::ItemType::ride, STR_EXIT_NOT_CONNECTED, ride.id.toUnderlying(), ft);
                 }
                 ride.connectedMessageThrottle = 3;
             }
@@ -2141,7 +2141,7 @@ namespace OpenRCT2
         {
             Formatter ft;
             ride2->formatNameTo(ft);
-            News::AddItemToQueue(News::ItemType::ride, STR_ENTRANCE_NOT_CONNECTED, ride2->id.ToUnderlying(), ft);
+            News::AddItemToQueue(News::ItemType::ride, STR_ENTRANCE_NOT_CONNECTED, ride2->id.toUnderlying(), ft);
         }
 
         ride2->connectedMessageThrottle = 3;
@@ -2345,16 +2345,16 @@ namespace OpenRCT2
     {
         auto stationIndex = RideGetFirstValidStationStart(ride);
 
-        if (stationIndex.IsNull())
+        if (stationIndex.isNull())
         {
             const auto& rtd = ride.getRideTypeDescriptor();
             if (!rtd.flags.has(RtdFlag::hasTrack))
-                return { StationIndex::GetNull(), STR_NOT_YET_CONSTRUCTED };
+                return { StationIndex::getNull(), STR_NOT_YET_CONSTRUCTED };
 
             if (rtd.specialType == RtdSpecialType::maze)
-                return { StationIndex::GetNull(), STR_NOT_YET_CONSTRUCTED };
+                return { StationIndex::getNull(), STR_NOT_YET_CONSTRUCTED };
 
-            return { StationIndex::GetNull(), STR_REQUIRES_A_STATION_PLATFORM };
+            return { StationIndex::getNull(), STR_REQUIRES_A_STATION_PLATFORM };
         }
 
         return { stationIndex };
@@ -3017,7 +3017,7 @@ namespace OpenRCT2
         vehicle->sound2_flags = 0;
         vehicle->sound1_id = Audio::SoundId::null;
         vehicle->sound2_id = Audio::SoundId::null;
-        vehicle->next_vehicle_on_train = EntityId::GetNull();
+        vehicle->next_vehicle_on_train = EntityId::getNull();
         vehicle->CollisionDetectionTimer = 0;
         vehicle->animation_frame = 0;
         vehicle->animationState = 0;
@@ -3028,7 +3028,7 @@ namespace OpenRCT2
         vehicle->seat_rotation = 4;
         for (size_t i = 0; i < std::size(vehicle->peep); i++)
         {
-            vehicle->peep[i] = EntityId::GetNull();
+            vehicle->peep[i] = EntityId::getNull();
         }
 
         const auto& rtd = ride.getRideTypeDescriptor();
@@ -3240,7 +3240,7 @@ namespace OpenRCT2
 
             for (int32_t i = 0; i <= Limits::kMaxTrainsPerRide; i++)
             {
-                if (ride.vehicles[i].IsNull())
+                if (ride.vehicles[i].isNull())
                 {
                     ride.vehicles[i] = train.head->id;
                     break;
@@ -3659,7 +3659,7 @@ namespace OpenRCT2
 
             Vehicle* current = CableLiftSegmentCreate(
                 *ride, cableLiftLoc.x, cableLiftLoc.y, cableLiftLoc.z / 8, direction, var_44, remaining_distance, i == 0);
-            current->next_vehicle_on_train = EntityId::GetNull();
+            current->next_vehicle_on_train = EntityId::getNull();
             if (i == 0)
             {
                 head = current;
@@ -3788,12 +3788,12 @@ namespace OpenRCT2
     {
         if (type == kRideTypeNull)
         {
-            LOG_WARNING("Invalid ride type for ride %u", id.ToUnderlying());
+            LOG_WARNING("Invalid ride type for ride %u", id.toUnderlying());
             return { false };
         }
 
         auto* windowMgr = Ui::GetWindowManager();
-        windowMgr->CloseByNumber(WindowClass::rideConstruction, id.ToUnderlying());
+        windowMgr->CloseByNumber(WindowClass::rideConstruction, id.toUnderlying());
 
         StationIndex stationIndex = {};
         auto message = changeStatusDoStationChecks(stationIndex);
@@ -3836,7 +3836,7 @@ namespace OpenRCT2
         CoordsXYE trackElement = {};
         if (type == kRideTypeNull)
         {
-            LOG_WARNING("Invalid ride type for ride %u", id.ToUnderlying());
+            LOG_WARNING("Invalid ride type for ride %u", id.toUnderlying());
             return { false };
         }
 
@@ -3872,10 +3872,10 @@ namespace OpenRCT2
         // to set the track to its final state and clean up ghosts.
         // We can't just call close as it would cause a stack overflow during shop creation
         // with auto open on.
-        if (isToolActive(WindowClass::rideConstruction, static_cast<WindowNumber>(id.ToUnderlying())))
+        if (isToolActive(WindowClass::rideConstruction, static_cast<WindowNumber>(id.toUnderlying())))
         {
             auto* windowMgr = Ui::GetWindowManager();
-            windowMgr->CloseByNumber(WindowClass::rideConstruction, id.ToUnderlying());
+            windowMgr->CloseByNumber(WindowClass::rideConstruction, id.toUnderlying());
         }
 
         StationIndex stationIndex = {};
@@ -4412,7 +4412,7 @@ namespace OpenRCT2
         }
 
         auto* windowMgr = Ui::GetWindowManager();
-        windowMgr->InvalidateByNumber(WindowClass::ride, ride.id.ToUnderlying());
+        windowMgr->InvalidateByNumber(WindowClass::ride, ride.id.toUnderlying());
     }
 
     /**
@@ -4966,7 +4966,7 @@ namespace OpenRCT2
             numTrains = newNumTrains;
 
             auto* windowMgr = Ui::GetWindowManager();
-            windowMgr->InvalidateByNumber(WindowClass::ride, id.ToUnderlying());
+            windowMgr->InvalidateByNumber(WindowClass::ride, id.toUnderlying());
         }
     }
 
@@ -5033,7 +5033,7 @@ namespace OpenRCT2
         {
             Formatter ft;
             formatNameTo(ft);
-            News::AddItemToQueue(News::ItemType::ride, STR_RIDE_HAS_CRASHED, id.ToUnderlying(), ft);
+            News::AddItemToQueue(News::ItemType::ride, STR_RIDE_HAS_CRASHED, id.toUnderlying(), ft);
         }
     }
 
@@ -5594,7 +5594,7 @@ namespace OpenRCT2
             auto trackEl = it.element->asTrack();
             if (trackEl != nullptr && !trackEl->isGhost())
             {
-                auto rideId = trackEl->getRideIndex().ToUnderlying();
+                auto rideId = trackEl->getRideIndex().toUnderlying();
                 if (rideId >= seen.size())
                 {
                     seen.resize(rideId + 1);
@@ -5609,7 +5609,7 @@ namespace OpenRCT2
         std::vector<RideId> result;
         for (const auto& ride : rideManager)
         {
-            const auto rideIndex = ride.id.ToUnderlying();
+            const auto rideIndex = ride.id.toUnderlying();
             if (seen.size() <= rideIndex || !seen[rideIndex])
             {
                 result.push_back(ride.id);
@@ -5622,7 +5622,7 @@ namespace OpenRCT2
     {
         auto stationIndexCheck = RideModeCheckStationPresent(*this);
         stationIndex = stationIndexCheck.StationIndex;
-        if (stationIndex.IsNull())
+        if (stationIndex.isNull())
             return { false, stationIndexCheck.Message };
 
         auto stationNumbersCheck = RideModeCheckValidStationNumbers(*this);

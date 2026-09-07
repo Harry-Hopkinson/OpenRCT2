@@ -783,7 +783,7 @@ namespace OpenRCT2
                 spinningInertia += 6;
                 spinSpeed = dword_F64E08 >> spinningInertia;
                 // Alternate the spin direction (roughly). Perhaps in future save a value to the track
-                if (id.ToUnderlying() & 1)
+                if (id.toUnderlying() & 1)
                 {
                     spin_speed -= spinSpeed;
                 }

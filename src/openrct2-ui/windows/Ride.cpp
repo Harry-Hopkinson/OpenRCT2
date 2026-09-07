@@ -1484,7 +1484,7 @@ namespace OpenRCT2::Ui::Windows
                 max.z = std::max(max.z, clearZ);
             }
 
-            const auto rideIndex = ride.id.ToUnderlying();
+            const auto rideIndex = ride.id.toUnderlying();
             if (rideIndex >= _rideOverallViewsCache.size())
             {
                 _rideOverallViewsCache.resize(rideIndex + 1);
@@ -1516,7 +1516,7 @@ namespace OpenRCT2::Ui::Windows
 
         std::optional<StationIndex> GetStationIndexFromViewSelection() const
         {
-            const auto* ride = GetRide(RideId::FromUnderlying(number));
+            const auto* ride = GetRide(RideId::fromUnderlying(number));
             if (ride == nullptr)
                 return std::nullopt;
 
@@ -1559,14 +1559,14 @@ namespace OpenRCT2::Ui::Windows
                     Vehicle* vehicle = getGameState().entities.getEntity<Vehicle>(vehId);
                     if (vehicle == nullptr)
                     {
-                        vehId = EntityId::GetNull();
+                        vehId = EntityId::getNull();
                     }
-                    else if (!vehicle->next_vehicle_on_train.IsNull())
+                    else if (!vehicle->next_vehicle_on_train.isNull())
                     {
                         vehId = vehicle->next_vehicle_on_train;
                     }
                 }
-                if (!vehId.IsNull())
+                if (!vehId.isNull())
                 {
                     newFocus = Focus(vehId);
                 }
@@ -1671,7 +1671,7 @@ namespace OpenRCT2::Ui::Windows
                     {
                         RideConstructionStart(*ride);
                         auto* windowMgr = GetWindowManager();
-                        if (windowMgr->FindByNumber(WindowClass::rideConstruction, ride->id.ToUnderlying()) != nullptr)
+                        if (windowMgr->FindByNumber(WindowClass::rideConstruction, ride->id.toUnderlying()) != nullptr)
                         {
                             close();
                             return;
@@ -2538,7 +2538,7 @@ namespace OpenRCT2::Ui::Windows
             ft.Add<uint16_t>(speedInMph);
             const RideComponentName stationName = GetRideComponentName(ride->getRideTypeDescriptor().NameConvention.station);
             ft.Add<StringId>(ride->numStations > 1 ? stationName.number : stationName.singular);
-            ft.Add<uint16_t>(vehicle->current_station.ToUnderlying() + 1);
+            ft.Add<uint16_t>(vehicle->current_station.toUnderlying() + 1);
 
             if (stringId != STR_CRASHING && stringId != STR_CRASHED_0)
                 return STR_BLACK_STRING;
@@ -6015,7 +6015,7 @@ namespace OpenRCT2::Ui::Windows
                             // as formatter cannot take more than 256 bytes
                             for (int32_t i = 0; i < std::min<int32_t>(ride->numStations, 4); i++)
                             {
-                                StationIndex stationIndex = StationIndex::FromUnderlying(numTimes);
+                                StationIndex stationIndex = StationIndex::fromUnderlying(numTimes);
                                 auto time = ride->getStation(stationIndex).segmentTime;
                                 if (time != 0)
                                 {
@@ -6054,7 +6054,7 @@ namespace OpenRCT2::Ui::Windows
                         // TODO: see above STR_RIDE_LENGTH is also only able to display max 4
                         for (int32_t i = 0; i < std::min<int32_t>(ride->numStations, 4); i++)
                         {
-                            StationIndex stationIndex = StationIndex::FromUnderlying(i);
+                            StationIndex stationIndex = StationIndex::fromUnderlying(i);
                             auto length = ride->getStation(stationIndex).segmentLength;
                             if (length != 0)
                             {
@@ -7236,7 +7236,7 @@ namespace OpenRCT2::Ui::Windows
         }
 
         auto* windowMgr = GetWindowManager();
-        RideWindow* w = static_cast<RideWindow*>(windowMgr->BringToFrontByNumber(WindowClass::ride, ride.id.ToUnderlying()));
+        RideWindow* w = static_cast<RideWindow*>(windowMgr->BringToFrontByNumber(WindowClass::ride, ride.id.toUnderlying()));
         if (w == nullptr)
         {
             w = WindowRideOpen(ride);
@@ -7274,7 +7274,7 @@ namespace OpenRCT2::Ui::Windows
             return RideMainOpen(ride);
 
         auto* windowMgr = GetWindowManager();
-        auto* w = static_cast<RideWindow*>(windowMgr->BringToFrontByNumber(WindowClass::ride, ride.id.ToUnderlying()));
+        auto* w = static_cast<RideWindow*>(windowMgr->BringToFrontByNumber(WindowClass::ride, ride.id.toUnderlying()));
         if (w == nullptr)
         {
             w = WindowRideOpen(ride);
@@ -7286,15 +7286,15 @@ namespace OpenRCT2::Ui::Windows
         }
 
         // View
-        for (int32_t i = stationIndex.ToUnderlying(); i >= 0; i--)
+        for (int32_t i = stationIndex.toUnderlying(); i >= 0; i--)
         {
             if (ride.getStations()[i].start.isNull())
             {
-                stationIndex = StationIndex::FromUnderlying(stationIndex.ToUnderlying() - 1);
+                stationIndex = StationIndex::fromUnderlying(stationIndex.toUnderlying() - 1);
             }
         }
 
-        w->setViewIndex(1 + ride.numTrains + stationIndex.ToUnderlying());
+        w->setViewIndex(1 + ride.numTrains + stationIndex.toUnderlying());
 
         return w;
     }
@@ -7303,7 +7303,7 @@ namespace OpenRCT2::Ui::Windows
     {
         assert(tileElement != nullptr);
         auto rideIndex = tileElement->getRideIndex();
-        if (!rideIndex.IsNull())
+        if (!rideIndex.isNull())
         {
             auto ride = GetRide(rideIndex);
             if (ride != nullptr)
@@ -7365,7 +7365,7 @@ namespace OpenRCT2::Ui::Windows
         }
 
         auto* windowMgr = GetWindowManager();
-        auto* w = static_cast<RideWindow*>(windowMgr->FindByNumber(WindowClass::ride, ride->id.ToUnderlying()));
+        auto* w = static_cast<RideWindow*>(windowMgr->FindByNumber(WindowClass::ride, ride->id.toUnderlying()));
         if (w != nullptr)
         {
             w->invalidate();
@@ -7401,8 +7401,8 @@ namespace OpenRCT2::Ui::Windows
             }
 
             w = static_cast<RideWindow*>(
-                openedPeepWindow ? windowMgr->FindByNumber(WindowClass::ride, ride->id.ToUnderlying())
-                                 : windowMgr->BringToFrontByNumber(WindowClass::ride, ride->id.ToUnderlying()));
+                openedPeepWindow ? windowMgr->FindByNumber(WindowClass::ride, ride->id.toUnderlying())
+                                 : windowMgr->BringToFrontByNumber(WindowClass::ride, ride->id.toUnderlying()));
         }
 
         if (w == nullptr)
@@ -7419,7 +7419,7 @@ namespace OpenRCT2::Ui::Windows
     void WindowRideInvalidateVehicle(const Vehicle& vehicle)
     {
         auto* windowMgr = GetWindowManager();
-        auto* w = static_cast<RideWindow*>(windowMgr->FindByNumber(WindowClass::ride, vehicle.ride.ToUnderlying()));
+        auto* w = static_cast<RideWindow*>(windowMgr->FindByNumber(WindowClass::ride, vehicle.ride.toUnderlying()));
         if (w == nullptr)
             return;
 
@@ -7437,7 +7437,7 @@ namespace OpenRCT2::Ui::Windows
     void WindowRidePaintResetVehicle(RideId rideIndex)
     {
         auto* windowMgr = GetWindowManager();
-        auto w = static_cast<RideWindow*>(windowMgr->FindByNumber(WindowClass::ride, rideIndex.ToUnderlying()));
+        auto w = static_cast<RideWindow*>(windowMgr->FindByNumber(WindowClass::ride, rideIndex.toUnderlying()));
         if (w != nullptr)
         {
             if (w->page == 4) // WINDOW_RIDE_PAGE_COLOUR

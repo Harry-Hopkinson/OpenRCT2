@@ -80,7 +80,7 @@ namespace OpenRCT2::GameActions
         }
 
         auto rideIndex = GetNextFreeRideId();
-        if (rideIndex.IsNull())
+        if (rideIndex.isNull())
         {
             // No more free slots available.
             return Result(Status::noFreeElements, STR_CANT_CREATE_NEW_RIDE_ATTRACTION, STR_TOO_MANY_RIDES);

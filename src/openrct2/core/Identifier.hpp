@@ -10,7 +10,6 @@
 #pragma once
 
 #include <compare>
-#include <cstdint>
 #include <cstdio>
 
 template<typename T, T TNullValue, typename TTag>
@@ -37,17 +36,17 @@ public:
 
     constexpr TIdentifier() = default;
 
-    static constexpr TIdentifier GetNull() noexcept
+    static constexpr TIdentifier getNull() noexcept
     {
         return TIdentifier{ ValueType::null };
     }
 
-    static constexpr TIdentifier FromUnderlying(const T val) noexcept
+    static constexpr TIdentifier fromUnderlying(const T val) noexcept
     {
         return TIdentifier{ val };
     }
 
-    constexpr T ToUnderlying() const noexcept
+    constexpr T toUnderlying() const noexcept
     {
         return static_cast<T>(_handle);
     }
@@ -55,10 +54,10 @@ public:
     // Support for static_cast<size_t>.
     explicit operator size_t() const noexcept
     {
-        return static_cast<std::size_t>(ToUnderlying());
+        return static_cast<std::size_t>(toUnderlying());
     }
 
-    constexpr bool IsNull() const noexcept
+    constexpr bool isNull() const noexcept
     {
         return _handle == ValueType::null;
     }

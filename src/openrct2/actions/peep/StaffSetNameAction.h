@@ -16,7 +16,7 @@ namespace OpenRCT2::GameActions
     class StaffSetNameAction final : public GameActionBase<GameCommand::setStaffName>
     {
     private:
-        EntityId _spriteIndex{ EntityId::GetNull() };
+        EntityId _spriteIndex{ EntityId::getNull() };
         std::string _name;
 
     public:

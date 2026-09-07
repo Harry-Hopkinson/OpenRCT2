@@ -18,8 +18,8 @@ namespace OpenRCT2::GameActions
     private:
         CoordsXY _loc;
         Direction _direction{ kInvalidDirection };
-        RideId _rideIndex{ RideId::GetNull() };
-        StationIndex _stationNum{ StationIndex::GetNull() };
+        RideId _rideIndex{ RideId::getNull() };
+        StationIndex _stationNum{ StationIndex::getNull() };
         bool _isExit{};
 
     public:

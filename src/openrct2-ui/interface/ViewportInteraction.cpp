@@ -390,9 +390,9 @@ namespace OpenRCT2::Ui
 
                 StationIndex::UnderlyingType stationIndex;
                 if (tileElement->getType() == TileElementType::entrance)
-                    stationIndex = tileElement->asEntrance()->getStationIndex().ToUnderlying();
+                    stationIndex = tileElement->asEntrance()->getStationIndex().toUnderlying();
                 else
-                    stationIndex = tileElement->asTrack()->getStationIndex().ToUnderlying();
+                    stationIndex = tileElement->asTrack()->getStationIndex().toUnderlying();
 
                 for (int32_t i = stationIndex; i >= 0; i--)
                     if (ride->getStations()[i].start.isNull())
@@ -605,7 +605,7 @@ namespace OpenRCT2::Ui
                 ViewportInteractionRemoveLargeScenery(*info.Element->asLargeScenery(), info.Loc);
                 break;
             case ViewportInteractionItem::banner:
-                ContextOpenDetailWindow(WindowDetail::banner, info.Element->asBanner()->getIndex().ToUnderlying());
+                ContextOpenDetailWindow(WindowDetail::banner, info.Element->asBanner()->getIndex().toUnderlying());
                 break;
         }
 
@@ -695,7 +695,7 @@ namespace OpenRCT2::Ui
         auto* wallEntry = wallElement.getEntry();
         if (wallEntry->scrolling_mode != kScrollingModeNone)
         {
-            ContextOpenDetailWindow(WindowDetail::signSmall, wallElement.getBannerIndex().ToUnderlying());
+            ContextOpenDetailWindow(WindowDetail::signSmall, wallElement.getBannerIndex().toUnderlying());
         }
         else
         {
@@ -716,7 +716,7 @@ namespace OpenRCT2::Ui
         if (sceneryEntry->scrolling_mode != kScrollingModeNone)
         {
             auto bannerIndex = largeSceneryElement.getBannerIndex();
-            ContextOpenDetailWindow(WindowDetail::sign, bannerIndex.ToUnderlying());
+            ContextOpenDetailWindow(WindowDetail::sign, bannerIndex.toUnderlying());
         }
         else
         {

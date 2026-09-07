@@ -70,7 +70,7 @@ namespace OpenRCT2::GameActions
         auto ride = GetRide(_rideIndex);
         if (ride == nullptr)
         {
-            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, errTitle, STR_ERR_RIDE_NOT_FOUND);
         }
 
@@ -128,7 +128,7 @@ namespace OpenRCT2::GameActions
         auto ride = GetRide(_rideIndex);
         if (ride == nullptr)
         {
-            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, errTitle, STR_ERR_RIDE_NOT_FOUND);
         }
 
@@ -219,7 +219,7 @@ namespace OpenRCT2::GameActions
         }
 
         auto intent = Intent(INTENT_ACTION_RIDE_PAINT_RESET_VEHICLE);
-        intent.PutExtra(INTENT_EXTRA_RIDE_ID, _rideIndex.ToUnderlying());
+        intent.PutExtra(INTENT_EXTRA_RIDE_ID, _rideIndex.toUnderlying());
         ContextBroadcastIntent(&intent);
 
         Drawing::GfxInvalidateScreen();

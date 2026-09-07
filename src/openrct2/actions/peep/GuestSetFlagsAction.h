@@ -16,7 +16,7 @@ namespace OpenRCT2::GameActions
     class GuestSetFlagsAction final : public GameActionBase<GameCommand::guestSetFlags>
     {
     private:
-        EntityId _peepId{ EntityId::GetNull() };
+        EntityId _peepId{ EntityId::getNull() };
         PeepFlags _newFlags{};
 
     public:

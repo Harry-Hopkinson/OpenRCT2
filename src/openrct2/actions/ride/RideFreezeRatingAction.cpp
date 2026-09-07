@@ -40,13 +40,13 @@ namespace OpenRCT2::GameActions
         auto ride = GetRide(_rideIndex);
         if (ride == nullptr)
         {
-            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, STR_ERR_INVALID_PARAMETER, STR_ERR_RIDE_NOT_FOUND);
         }
 
         if (_value <= 0)
         {
-            LOG_ERROR("Rating value must be positive: %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Rating value must be positive: %u", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, STR_ERR_INVALID_PARAMETER, STR_ERR_VALUE_OUT_OF_RANGE);
         }
 
@@ -73,7 +73,7 @@ namespace OpenRCT2::GameActions
         ride->flags.set(RideFlag::fixedRatings);
 
         auto* windowMgr = Ui::GetWindowManager();
-        windowMgr->InvalidateByNumber(WindowClass::ride, _rideIndex.ToUnderlying());
+        windowMgr->InvalidateByNumber(WindowClass::ride, _rideIndex.toUnderlying());
 
         auto res = Result();
         return res;

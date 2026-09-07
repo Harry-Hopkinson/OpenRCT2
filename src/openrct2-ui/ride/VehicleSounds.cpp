@@ -91,7 +91,7 @@ namespace OpenRCT2::Audio
 
         private:
             T* Current = nullptr;
-            EntityId NextVehicleId = EntityId::GetNull();
+            EntityId NextVehicleId = EntityId::getNull();
         };
     } // namespace
 
@@ -159,7 +159,7 @@ namespace OpenRCT2::Audio
 
         for (const auto& vehicleSound : gVehicleSoundList)
         {
-            if (vehicleSound.id == vehicle.id.ToUnderlying())
+            if (vehicleSound.id == vehicle.id.toUnderlying())
             {
                 // Vehicle sounds will get higher priority if they are already playing
                 return result + 300;
@@ -216,7 +216,7 @@ namespace OpenRCT2::Audio
         frequency += 11025;
         frequency += 16 * vehicle.dopplerShift;
         param.frequency = static_cast<uint16_t>(frequency);
-        param.id = vehicle.id.ToUnderlying();
+        param.id = vehicle.id.toUnderlying();
         param.volume = 0;
 
         if (vehicle.x != kLocationNull)
@@ -602,7 +602,7 @@ namespace OpenRCT2::Audio
             vehicleSound->volume = tempvolume;
             panVol = std::max(0, panVol - tempvolume);
 
-            Vehicle* vehicle = getGameState().entities.getEntity<Vehicle>(EntityId::FromUnderlying(vehicleSoundParams.id));
+            Vehicle* vehicle = getGameState().entities.getEntity<Vehicle>(EntityId::fromUnderlying(vehicleSoundParams.id));
             if (vehicle != nullptr)
             {
                 UpdateSound<SoundType::trackNoises>(

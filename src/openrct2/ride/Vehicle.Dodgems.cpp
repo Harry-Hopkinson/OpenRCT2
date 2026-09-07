@@ -299,7 +299,7 @@ std::optional<EntityId> Vehicle::DodgemsCarWouldCollideAt(const CoordsXY& coords
 
     if (wouldCollideWithDodgemsTrackEdge(coords, TrackLocation, trackType, (var_44 * 30) >> 9))
     {
-        return EntityId::GetNull();
+        return EntityId::getNull();
     }
 
     auto location = coords;

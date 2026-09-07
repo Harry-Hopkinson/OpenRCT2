@@ -52,7 +52,7 @@ namespace OpenRCT2::GameActions
         auto ride = GetRide(_rideIndex);
         if (ride == nullptr)
         {
-            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, STR_ERR_INVALID_PARAMETER, STR_ERR_RIDE_NOT_FOUND);
         }
 
@@ -65,7 +65,7 @@ namespace OpenRCT2::GameActions
 
         if (_price < kRideMinPrice || _price > kRideMaxPrice)
         {
-            LOG_ERROR("Attempting to set an invalid price for rideIndex %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Attempting to set an invalid price for rideIndex %u", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, STR_ERR_INVALID_PARAMETER, kStringIdEmpty);
         }
 
@@ -80,7 +80,7 @@ namespace OpenRCT2::GameActions
         auto ride = GetRide(_rideIndex);
         if (ride == nullptr)
         {
-            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, STR_ERR_INVALID_PARAMETER, STR_ERR_RIDE_NOT_FOUND);
         }
 
@@ -93,7 +93,7 @@ namespace OpenRCT2::GameActions
 
         if (_price < kRideMinPrice || _price > kRideMaxPrice)
         {
-            LOG_ERROR("Attempting to set an invalid price for rideIndex %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Attempting to set an invalid price for rideIndex %u", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, STR_ERR_INVALID_PARAMETER, kStringIdEmpty);
         }
 
@@ -196,7 +196,7 @@ namespace OpenRCT2::GameActions
             if (invalidate)
             {
                 auto* windowMgr = Ui::GetWindowManager();
-                windowMgr->InvalidateByNumber(WindowClass::ride, ride.id.ToUnderlying());
+                windowMgr->InvalidateByNumber(WindowClass::ride, ride.id.toUnderlying());
             }
         }
     }

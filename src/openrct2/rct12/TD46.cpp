@@ -29,7 +29,7 @@ namespace OpenRCT2::RCT12
         if (trackTypeIsStation(target.type))
         {
             auto stationIndex = flags & TD46Flags::stationIdMask;
-            target.stationIndex = StationIndex::FromUnderlying(stationIndex);
+            target.stationIndex = StationIndex::fromUnderlying(stationIndex);
         }
         else
         {
@@ -57,7 +57,7 @@ namespace OpenRCT2::RCT12
         uint8_t trackFlags = 0;
         if (trackTypeIsStation(source.type))
         {
-            trackFlags = source.stationIndex.ToUnderlying() & TD46Flags::stationIdMask;
+            trackFlags = source.stationIndex.toUnderlying() & TD46Flags::stationIdMask;
         }
         else if (
             trackTypeHasSpeedSetting(source.type)

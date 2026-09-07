@@ -26,7 +26,7 @@ namespace OpenRCT2::GameActions
     {
     private:
         PeepPickupType _type{ PeepPickupType::count };
-        EntityId _entityId{ EntityId::GetNull() };
+        EntityId _entityId{ EntityId::getNull() };
         CoordsXYZ _loc;
         Network::PlayerId_t _owner{ -1 };
 

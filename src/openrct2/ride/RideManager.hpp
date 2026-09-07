@@ -55,7 +55,7 @@ namespace OpenRCT2
                 , _index(static_cast<RideId::UnderlyingType>(beginIndex))
                 , _endIndex(static_cast<RideId::UnderlyingType>(endIndex))
             {
-                if (_index < _endIndex && (*_rideManager)[RideId::FromUnderlying(_index)] == nullptr)
+                if (_index < _endIndex && (*_rideManager)[RideId::fromUnderlying(_index)] == nullptr)
                 {
                     ++(*this);
                 }
@@ -67,7 +67,7 @@ namespace OpenRCT2
                 do
                 {
                     _index++;
-                } while (_index < _endIndex && (*_rideManager)[RideId::FromUnderlying(_index)] == nullptr);
+                } while (_index < _endIndex && (*_rideManager)[RideId::fromUnderlying(_index)] == nullptr);
                 return *this;
             }
             Iterator operator++(int)
@@ -86,7 +86,7 @@ namespace OpenRCT2
             }
             Ride& operator*()
             {
-                return *(*_rideManager)[RideId::FromUnderlying(_index)];
+                return *(*_rideManager)[RideId::fromUnderlying(_index)];
             }
         };
 

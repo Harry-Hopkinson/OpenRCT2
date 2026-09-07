@@ -25,7 +25,7 @@ namespace OpenRCT2::GameActions
     struct WallPlaceActionResult
     {
         int32_t BaseHeight{};
-        BannerIndex BannerId = BannerIndex::GetNull();
+        BannerIndex BannerId = BannerIndex::getNull();
     };
 
     class WallPlaceAction final : public GameActionBase<GameCommand::placeWall>

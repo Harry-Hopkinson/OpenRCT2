@@ -29,7 +29,7 @@ namespace OpenRCT2::Scripting
     private:
         struct RideStationData
         {
-            RideId _rideId = RideId::GetNull();
+            RideId _rideId = RideId::getNull();
             StationIndex _stationIndex{};
         };
 

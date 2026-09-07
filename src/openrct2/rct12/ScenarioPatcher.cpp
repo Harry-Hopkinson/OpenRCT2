@@ -625,12 +625,12 @@ static void ApplyRideFixes(const json_t& scenarioPatch)
         {
             for (size_t j = 0; j < rideFixes[i][_rideIdKey].size(); j++)
             {
-                rideIds.push_back(RideId::FromUnderlying(Json::GetNumber<uint16_t>(rideFixes[i][_rideIdKey][j])));
+                rideIds.push_back(RideId::fromUnderlying(Json::GetNumber<uint16_t>(rideFixes[i][_rideIdKey][j])));
             }
         }
         else
         {
-            rideIds.push_back(RideId::FromUnderlying(Json::GetNumber<uint16_t>(rideFixes[i][_rideIdKey])));
+            rideIds.push_back(RideId::fromUnderlying(Json::GetNumber<uint16_t>(rideFixes[i][_rideIdKey])));
         }
         auto operation = Json::GetString(rideFixes[i][_operationKey]);
 

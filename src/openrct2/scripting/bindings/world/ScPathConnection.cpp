@@ -140,9 +140,9 @@ namespace OpenRCT2::Scripting
         if (pathEl == nullptr || !pathEl->isQueue())
             return JS_NULL;
         auto rideIndex = pathEl->getRideIndex();
-        if (rideIndex.IsNull())
+        if (rideIndex.isNull())
             return JS_NULL;
-        return JS_NewInt32(ctx, rideIndex.ToUnderlying());
+        return JS_NewInt32(ctx, rideIndex.toUnderlying());
     }
 
     JSValue ScPathConnection::getStation(JSContext* ctx, JSValue thisVal)
@@ -154,9 +154,9 @@ namespace OpenRCT2::Scripting
         if (pathEl == nullptr || !pathEl->isQueue())
             return JS_NULL;
         auto stationIndex = pathEl->getStationIndex();
-        if (stationIndex.IsNull())
+        if (stationIndex.isNull())
             return JS_NULL;
-        return JS_NewInt32(ctx, stationIndex.ToUnderlying());
+        return JS_NewInt32(ctx, stationIndex.toUnderlying());
     }
 
 } // namespace OpenRCT2::Scripting

@@ -36,7 +36,7 @@ static void PaintTwistStructure(
 
     height += 7;
 
-    if (ride.flags.has(RideFlag::onTrack) && !ride.vehicles[0].IsNull())
+    if (ride.flags.has(RideFlag::onTrack) && !ride.vehicles[0].isNull())
     {
         vehicle = getGameState().entities.getEntity<Vehicle>(ride.vehicles[0]);
 

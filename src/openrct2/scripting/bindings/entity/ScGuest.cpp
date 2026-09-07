@@ -532,9 +532,9 @@ namespace OpenRCT2::Scripting
         auto peep = GetGuest(thisVal);
         if (peep != nullptr)
         {
-            if (peep->favouriteRide != RideId::GetNull())
+            if (peep->favouriteRide != RideId::getNull())
             {
-                return JS_NewUint32(ctx, peep->favouriteRide.ToUnderlying());
+                return JS_NewUint32(ctx, peep->favouriteRide.toUnderlying());
             }
         }
         return JS_NULL;
@@ -549,14 +549,14 @@ namespace OpenRCT2::Scripting
             auto& gameState = getGameState();
             if (JS_IsNull(jsValue))
             {
-                peep->favouriteRide = RideId::GetNull();
+                peep->favouriteRide = RideId::getNull();
             }
             else if (JS_IsNumber(jsValue))
             {
                 JS_UNPACK_UINT32(rideId, ctx, jsValue);
                 if (rideId < gameState.rides.size() && gameState.rides[rideId].type != kRideTypeNull)
                 {
-                    peep->favouriteRide = RideId::FromUnderlying(rideId);
+                    peep->favouriteRide = RideId::fromUnderlying(rideId);
                 }
             }
         }
@@ -615,7 +615,7 @@ namespace OpenRCT2::Scripting
                         if (peep->voucherType == VOUCHER_TYPE_RIDE_FREE)
                         {
                             // RideVoucher
-                            JS_SetPropertyStr(ctx, obj, "rideId", JS_NewUint32(ctx, peep->voucherRideId.ToUnderlying()));
+                            JS_SetPropertyStr(ctx, obj, "rideId", JS_NewUint32(ctx, peep->voucherRideId.toUnderlying()));
                         }
                         else if (peep->voucherType == VOUCHER_TYPE_FOOD_OR_DRINK_FREE)
                         {
@@ -652,7 +652,7 @@ namespace OpenRCT2::Scripting
                             return JS_EXCEPTION;
                     }
 
-                    JS_SetPropertyStr(ctx, obj, "rideId", JS_NewUint32(ctx, rideId.ToUnderlying()));
+                    JS_SetPropertyStr(ctx, obj, "rideId", JS_NewUint32(ctx, rideId.toUnderlying()));
                 }
 
                 JS_SetPropertyInt64(ctx, array, index++, obj);
@@ -701,7 +701,7 @@ namespace OpenRCT2::Scripting
                     if (rideId.has_value())
                     {
                         // RideVoucher
-                        if (rideId.value() != peep->voucherRideId.ToUnderlying())
+                        if (rideId.value() != peep->voucherRideId.toUnderlying())
                         {
                             return false;
                         }
@@ -731,25 +731,25 @@ namespace OpenRCT2::Scripting
                 switch (*shopItem)
                 {
                     case ShopItem::photo:
-                        if (rideId.value() != peep->photo1RideRef.ToUnderlying())
+                        if (rideId.value() != peep->photo1RideRef.toUnderlying())
                         {
                             return false;
                         }
                         break;
                     case ShopItem::photo2:
-                        if (rideId.value() != peep->photo2RideRef.ToUnderlying())
+                        if (rideId.value() != peep->photo2RideRef.toUnderlying())
                         {
                             return false;
                         }
                         break;
                     case ShopItem::photo3:
-                        if (rideId.value() != peep->photo3RideRef.ToUnderlying())
+                        if (rideId.value() != peep->photo3RideRef.toUnderlying())
                         {
                             return false;
                         }
                         break;
                     case ShopItem::photo4:
-                        if (rideId.value() != peep->photo4RideRef.ToUnderlying())
+                        if (rideId.value() != peep->photo4RideRef.toUnderlying())
                         {
                             return false;
                         }
@@ -822,7 +822,7 @@ namespace OpenRCT2::Scripting
                     return JS_EXCEPTION;
                 }
 
-                peep->voucherRideId = RideId::FromUnderlying(rideId.value());
+                peep->voucherRideId = RideId::fromUnderlying(rideId.value());
             }
             else if (*voucherType == VOUCHER_TYPE_FOOD_OR_DRINK_FREE)
             {
@@ -859,16 +859,16 @@ namespace OpenRCT2::Scripting
             switch (*shopItem)
             {
                 case ShopItem::photo:
-                    peep->photo1RideRef = RideId::FromUnderlying(rideId.value());
+                    peep->photo1RideRef = RideId::fromUnderlying(rideId.value());
                     break;
                 case ShopItem::photo2:
-                    peep->photo2RideRef = RideId::FromUnderlying(rideId.value());
+                    peep->photo2RideRef = RideId::fromUnderlying(rideId.value());
                     break;
                 case ShopItem::photo3:
-                    peep->photo3RideRef = RideId::FromUnderlying(rideId.value());
+                    peep->photo3RideRef = RideId::fromUnderlying(rideId.value());
                     break;
                 case ShopItem::photo4:
-                    peep->photo4RideRef = RideId::FromUnderlying(rideId.value());
+                    peep->photo4RideRef = RideId::fromUnderlying(rideId.value());
                     break;
                 default:
                     return JS_UNDEFINED;

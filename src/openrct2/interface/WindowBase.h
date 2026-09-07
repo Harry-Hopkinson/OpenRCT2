@@ -107,12 +107,12 @@ namespace OpenRCT2
         uint16_t listInformationType{}; // 0 for none
         int16_t pickedPeepFrame;        // Animation frame of picked peep in staff window and guest window
         int16_t selectedTab{};
-        EntityId viewportTargetSprite{ EntityId::GetNull() };
+        EntityId viewportTargetSprite{ EntityId::getNull() };
         ScreenCoordsXY savedViewPos{};
         WindowClass classification{};
         ColourWithFlags colours[6]{};
         bool isVisible = true;
-        EntityId viewportSmartFollowSprite{ EntityId::GetNull() }; // Handles setting viewport target sprite etc
+        EntityId viewportSmartFollowSprite{ EntityId::getNull() }; // Handles setting viewport target sprite etc
 
         void setViewportLocation(const CoordsXYZ& coords);
         void invalidate();

@@ -137,7 +137,7 @@ namespace OpenRCT2::Ui::Windows
     public:
         void initialise(EntityId entityId)
         {
-            number = entityId.ToUnderlying();
+            number = entityId.toUnderlying();
             auto* staff = GetStaff();
             if (staff == nullptr)
                 return;
@@ -383,7 +383,7 @@ namespace OpenRCT2::Ui::Windows
                     CoordsXYZ nullLoc{};
                     nullLoc.setNull();
                     GameActions::PeepPickupAction pickupAction{ GameActions::PeepPickupType::pickup,
-                                                                EntityId::FromUnderlying(number), nullLoc,
+                                                                EntityId::fromUnderlying(number), nullLoc,
                                                                 Network::GetCurrentPlayerId() };
                     pickupAction.SetCallback(
                         [peepnum = number](const GameActions::GameAction* ga, const GameActions::Result* result) {
@@ -490,7 +490,7 @@ namespace OpenRCT2::Ui::Windows
                     }
                     else
                     {
-                        auto staffId = EntityId::FromUnderlying(number);
+                        auto staffId = EntityId::fromUnderlying(number);
                         if (WindowPatrolAreaGetCurrentStaffId() == staffId)
                         {
                             auto* windowMgr = GetWindowManager();
@@ -705,7 +705,7 @@ namespace OpenRCT2::Ui::Windows
             if (widgetIndex != WIDX_PICKUP)
                 return;
 
-            const auto staffEntityId = EntityId::FromUnderlying(number);
+            const auto staffEntityId = EntityId::fromUnderlying(number);
             TileElement* tileElement;
             auto destCoords = FootpathGetCoordinatesFromPos({ screenCoords.x, screenCoords.y + 16 }, nullptr, &tileElement);
 
@@ -731,7 +731,7 @@ namespace OpenRCT2::Ui::Windows
                 return;
 
             GameActions::PeepPickupAction pickupAction{ GameActions::PeepPickupType::cancel,
-                                                        EntityId::FromUnderlying(number),
+                                                        EntityId::fromUnderlying(number),
                                                         { _pickedPeepOldX, 0, 0 },
                                                         Network::GetCurrentPlayerId() };
             GameActions::Execute(&pickupAction, getGameState());
@@ -750,7 +750,7 @@ namespace OpenRCT2::Ui::Windows
             if (text.empty())
                 return;
 
-            auto gameAction = GameActions::StaffSetNameAction(EntityId::FromUnderlying(number), std::string{ text });
+            auto gameAction = GameActions::StaffSetNameAction(EntityId::fromUnderlying(number), std::string{ text });
             GameActions::Execute(&gameAction, getGameState());
         }
 #pragma endregion
@@ -817,7 +817,7 @@ namespace OpenRCT2::Ui::Windows
                 return;
 
             ObjectEntryIndex costume = _availableCostumes[dropdownIndex].index;
-            auto staffSetCostumeAction = GameActions::StaffSetCostumeAction(EntityId::FromUnderlying(number), costume);
+            auto staffSetCostumeAction = GameActions::StaffSetCostumeAction(EntityId::fromUnderlying(number), costume);
             GameActions::Execute(&staffSetCostumeAction, getGameState());
         }
 
@@ -1105,7 +1105,7 @@ namespace OpenRCT2::Ui::Windows
             }
 
             uint8_t newOrders = staff->staffOrders ^ (1 << orderId);
-            auto staffSetOrdersAction = GameActions::StaffSetOrdersAction(EntityId::FromUnderlying(number), newOrders);
+            auto staffSetOrdersAction = GameActions::StaffSetOrdersAction(EntityId::fromUnderlying(number), newOrders);
             GameActions::Execute(&staffSetOrdersAction, getGameState());
         }
 
@@ -1182,7 +1182,7 @@ namespace OpenRCT2::Ui::Windows
         void FollowPeep()
         {
             WindowBase* main = WindowGetMain();
-            WindowFollowSprite(*main, EntityId::FromUnderlying(number));
+            WindowFollowSprite(*main, EntityId::fromUnderlying(number));
         }
 
         void DrawTabImages(Drawing::RenderTarget& rt)
@@ -1214,7 +1214,7 @@ namespace OpenRCT2::Ui::Windows
 
         Staff* GetStaff()
         {
-            return getGameState().entities.getEntity<Staff>(EntityId::FromUnderlying(number));
+            return getGameState().entities.getEntity<Staff>(EntityId::fromUnderlying(number));
         }
 
         static constexpr int32_t TabAnimationDivisor[] = {
@@ -1229,7 +1229,7 @@ namespace OpenRCT2::Ui::Windows
     {
         auto* windowMgr = GetWindowManager();
 
-        auto w = static_cast<StaffWindow*>(windowMgr->BringToFrontByNumber(WindowClass::peep, peep->id.ToUnderlying()));
+        auto w = static_cast<StaffWindow*>(windowMgr->BringToFrontByNumber(WindowClass::peep, peep->id.toUnderlying()));
         if (w != nullptr)
             return w;
 

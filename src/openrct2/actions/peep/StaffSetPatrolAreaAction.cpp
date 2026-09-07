@@ -65,7 +65,7 @@ namespace OpenRCT2::GameActions
         auto staff = gameState.entities.tryGetEntity<Staff>(_spriteId);
         if (staff == nullptr)
         {
-            LOG_ERROR("Staff entity not found for spriteID %u", _spriteId.ToUnderlying());
+            LOG_ERROR("Staff entity not found for spriteID %u", _spriteId.toUnderlying());
             return Result(Status::invalidParameters, STR_ERR_INVALID_PARAMETER, STR_ERR_STAFF_NOT_FOUND);
         }
 

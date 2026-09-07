@@ -948,19 +948,19 @@ namespace OpenRCT2
     {
         static void encode(IStream* stream, const TIdentifier<T, TNull, TTag>& id)
         {
-            stream->WriteValue(ByteSwapBE(id.ToUnderlying()));
+            stream->WriteValue(ByteSwapBE(id.toUnderlying()));
         }
 
         static void decode(IStream* stream, TIdentifier<T, TNull, TTag>& id)
         {
             auto temp = ByteSwapBE(stream->ReadValue<T>());
-            id = TIdentifier<T, TNull, TTag>::FromUnderlying(temp);
+            id = TIdentifier<T, TNull, TTag>::fromUnderlying(temp);
         }
 
         static void log(IStream* stream, const TIdentifier<T, TNull, TTag>& id)
         {
             char msg[128] = {};
-            snprintf(msg, sizeof(msg), "Id(%u)", static_cast<uint32_t>(id.ToUnderlying()));
+            snprintf(msg, sizeof(msg), "Id(%u)", static_cast<uint32_t>(id.toUnderlying()));
             stream->Write(msg, strlen(msg));
         }
     };

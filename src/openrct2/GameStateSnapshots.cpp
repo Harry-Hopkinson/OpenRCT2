@@ -90,7 +90,7 @@ struct GameStateSnapshot_t
         {
             for (EntityId::UnderlyingType i = 0; i < numSprites; i++)
             {
-                auto entity = getEntity(EntityId::FromUnderlying(i));
+                auto entity = getEntity(EntityId::fromUnderlying(i));
                 if (entity == nullptr || entity->base.type == EntityType::null)
                     continue;
                 indexTable.push_back(static_cast<uint32_t>(i));
@@ -116,7 +116,7 @@ struct GameStateSnapshot_t
         {
             ds << indexTable[i];
 
-            const EntityId spriteIdx = EntityId::FromUnderlying(indexTable[i]);
+            const EntityId spriteIdx = EntityId::fromUnderlying(indexTable[i]);
             EntitySnapshot* entity = getEntity(spriteIdx);
             if (entity == nullptr)
             {
@@ -225,7 +225,7 @@ struct GameStateSnapshots final : public IGameStateSnapshots
         }
 
         snapshot.SerialiseSprites(
-            [&spriteList](const EntityId index) { return &spriteList[index.ToUnderlying()]; }, kMaxEntities, false);
+            [&spriteList](const EntityId index) { return &spriteList[index.toUnderlying()]; }, kMaxEntities, false);
 
         return spriteList;
     }

@@ -108,7 +108,7 @@ ResultWithMessage TrackAddStationElement(CoordsXYZD loc, RideId rideIndex, Comma
         if (flags.has(CommandFlag::apply))
         {
             auto stationIndex = RideGetFirstEmptyStationStart(*ride);
-            assert(!stationIndex.IsNull());
+            assert(!stationIndex.isNull());
 
             auto& station = ride->getStation(stationIndex);
             station.start.x = loc.x;
@@ -196,7 +196,7 @@ ResultWithMessage TrackAddStationElement(CoordsXYZD loc, RideId rideIndex, Comma
                 if (stationFrontLoc == loc)
                 {
                     auto stationIndex = RideGetFirstEmptyStationStart(*ride);
-                    if (stationIndex.IsNull())
+                    if (stationIndex.isNull())
                     {
                         LOG_VERBOSE("No empty station starts, not updating metadata! This can happen with hacked rides.");
                     }
@@ -330,7 +330,7 @@ ResultWithMessage TrackRemoveStationElement(const CoordsXYZD& loc, RideId rideIn
                 if ((currentLoc == stationFrontLoc) || (currentLoc + CoordsDirectionDelta[currentLoc.direction] == removeLoc))
                 {
                     auto stationIndex = RideGetFirstEmptyStationStart(*ride);
-                    if (stationIndex.IsNull())
+                    if (stationIndex.isNull())
                     {
                         LOG_VERBOSE("No empty station starts, not updating metadata! This can happen with hacked rides.");
                     }

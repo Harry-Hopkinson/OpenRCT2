@@ -62,7 +62,7 @@ namespace OpenRCT2::Ui::Windows
             {
                 case WIDX_YES:
                 {
-                    auto staffFireAction = GameActions::StaffFireAction(EntityId::FromUnderlying(number));
+                    auto staffFireAction = GameActions::StaffFireAction(EntityId::fromUnderlying(number));
                     GameActions::Execute(&staffFireAction, getGameState());
                     break;
                 }
@@ -77,7 +77,7 @@ namespace OpenRCT2::Ui::Windows
         {
             drawWidgets(rt);
 
-            Peep* peep = getGameState().entities.getEntity<Staff>(EntityId::FromUnderlying(number));
+            Peep* peep = getGameState().entities.getEntity<Staff>(EntityId::fromUnderlying(number));
             // The staff member may have been fired in the meantime.
             if (peep == nullptr)
             {
@@ -97,7 +97,7 @@ namespace OpenRCT2::Ui::Windows
         auto* windowMgr = GetWindowManager();
         auto* window = windowMgr->FocusOrCreate<StaffFirePromptWindow>(
             WindowClass::firePrompt, kWindowSize, { WindowFlag::centreScreen, WindowFlag::transparent });
-        window->setWindowNumber(peep->id.ToUnderlying());
+        window->setWindowNumber(peep->id.toUnderlying());
         return window;
     }
 } // namespace OpenRCT2::Ui::Windows

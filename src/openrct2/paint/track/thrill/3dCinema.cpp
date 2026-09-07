@@ -28,7 +28,7 @@ static void Paint3dCinemaDome(
     if (rideEntry == nullptr)
         return;
 
-    if (ride.flags.has(RideFlag::onTrack) && !ride.vehicles[0].IsNull())
+    if (ride.flags.has(RideFlag::onTrack) && !ride.vehicles[0].isNull())
     {
         session.InteractionType = ViewportInteractionItem::entity;
         session.CurrentlyDrawnEntity = getGameState().entities.getEntity<Vehicle>(ride.vehicles[0]);

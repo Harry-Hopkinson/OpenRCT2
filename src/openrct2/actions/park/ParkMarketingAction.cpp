@@ -68,7 +68,7 @@ namespace OpenRCT2::GameActions
         campaign.flags = { MarketingCampaignFlag::firstWeek };
         if (campaign.type == ADVERTISING_CAMPAIGN_RIDE_FREE || campaign.type == ADVERTISING_CAMPAIGN_RIDE)
         {
-            campaign.rideId = RideId::FromUnderlying(_item);
+            campaign.rideId = RideId::fromUnderlying(_item);
         }
         else if (campaign.type == ADVERTISING_CAMPAIGN_FOOD_OR_DRINK_FREE)
         {

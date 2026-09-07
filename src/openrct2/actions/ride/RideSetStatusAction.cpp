@@ -58,7 +58,7 @@ namespace OpenRCT2::GameActions
         auto ride = GetRide(_rideIndex);
         if (ride == nullptr)
         {
-            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.toUnderlying());
             res.error = Status::invalidParameters;
             res.errorTitle = STR_RIDE_DESCRIPTION_UNKNOWN;
             res.errorMessage = STR_ERR_RIDE_NOT_FOUND;
@@ -67,7 +67,7 @@ namespace OpenRCT2::GameActions
 
         if (_status >= RideStatus::count)
         {
-            LOG_ERROR("Invalid ride status %u for ride %u", EnumValue(_status), _rideIndex.ToUnderlying());
+            LOG_ERROR("Invalid ride status %u for ride %u", EnumValue(_status), _rideIndex.toUnderlying());
             res.error = Status::invalidParameters;
             res.errorTitle = STR_RIDE_DESCRIPTION_UNKNOWN;
             res.errorMessage = kStringIdNone;
@@ -122,7 +122,7 @@ namespace OpenRCT2::GameActions
         auto ride = GetRide(_rideIndex);
         if (ride == nullptr)
         {
-            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.toUnderlying());
             res.error = Status::invalidParameters;
             res.errorTitle = STR_RIDE_DESCRIPTION_UNKNOWN;
             res.errorMessage = STR_ERR_RIDE_NOT_FOUND;
@@ -157,9 +157,9 @@ namespace OpenRCT2::GameActions
 
                 ride->status = RideStatus::closed;
                 ride->flags.unset(RideFlag::passStationNoStopping);
-                ride->raceWinner = EntityId::GetNull();
+                ride->raceWinner = EntityId::getNull();
                 ride->windowInvalidateFlags.set(RideInvalidateFlag::main, RideInvalidateFlag::list);
-                windowMgr->InvalidateByNumber(WindowClass::ride, _rideIndex.ToUnderlying());
+                windowMgr->InvalidateByNumber(WindowClass::ride, _rideIndex.toUnderlying());
                 break;
             case RideStatus::simulating:
             {
@@ -177,12 +177,12 @@ namespace OpenRCT2::GameActions
 
                 ride->status = _status;
                 ride->flags.unset(RideFlag::passStationNoStopping);
-                ride->raceWinner = EntityId::GetNull();
+                ride->raceWinner = EntityId::getNull();
                 ride->currentIssues = 0;
                 ride->lastIssueTime = 0;
                 ride->getMeasurement();
                 ride->windowInvalidateFlags.set(RideInvalidateFlag::main, RideInvalidateFlag::list);
-                windowMgr->InvalidateByNumber(WindowClass::ride, _rideIndex.ToUnderlying());
+                windowMgr->InvalidateByNumber(WindowClass::ride, _rideIndex.toUnderlying());
                 break;
             }
             case RideStatus::testing:
@@ -202,7 +202,7 @@ namespace OpenRCT2::GameActions
                 // Fix #3183: Make sure we close the construction window so the ride finishes any editing code before opening
                 //            otherwise vehicles get added to the ride incorrectly (such as to a ghost station)
                 WindowBase* constructionWindow = windowMgr->FindByNumber(
-                    WindowClass::rideConstruction, _rideIndex.ToUnderlying());
+                    WindowClass::rideConstruction, _rideIndex.toUnderlying());
                 if (constructionWindow != nullptr)
                 {
                     windowMgr->Close(*constructionWindow);
@@ -229,13 +229,13 @@ namespace OpenRCT2::GameActions
                     }
                 }
 
-                ride->raceWinner = EntityId::GetNull();
+                ride->raceWinner = EntityId::getNull();
                 ride->status = _status;
                 ride->currentIssues = 0;
                 ride->lastIssueTime = 0;
                 ride->getMeasurement();
                 ride->windowInvalidateFlags.set(RideInvalidateFlag::main, RideInvalidateFlag::list);
-                windowMgr->InvalidateByNumber(WindowClass::ride, _rideIndex.ToUnderlying());
+                windowMgr->InvalidateByNumber(WindowClass::ride, _rideIndex.toUnderlying());
                 break;
             }
             default:

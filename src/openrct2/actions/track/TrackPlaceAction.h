@@ -22,7 +22,7 @@ namespace OpenRCT2::GameActions
     class TrackPlaceAction final : public GameActionBase<GameCommand::placeTrack>
     {
     private:
-        RideId _rideIndex{ RideId::GetNull() };
+        RideId _rideIndex{ RideId::getNull() };
         TrackElemType _trackType{};
         ride_type_t _rideType{};
         CoordsXYZD _origin;

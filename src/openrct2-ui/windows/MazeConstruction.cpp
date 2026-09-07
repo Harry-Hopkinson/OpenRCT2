@@ -146,7 +146,7 @@ namespace OpenRCT2::Ui::Windows
                 else
                 {
                     auto intent = Intent(WindowClass::ride);
-                    intent.PutExtra(INTENT_EXTRA_RIDE_ID, currentRide->id.ToUnderlying());
+                    intent.PutExtra(INTENT_EXTRA_RIDE_ID, currentRide->id.toUnderlying());
                     ContextOpenIntent(&intent);
                 }
             }
@@ -318,7 +318,7 @@ namespace OpenRCT2::Ui::Windows
             gRideEntranceExitPlaceType = widgetIndex == WIDX_MAZE_ENTRANCE ? EntranceType::rideEntrance
                                                                            : EntranceType::rideExit;
             gRideEntranceExitPlaceRideIndex = rideId;
-            gRideEntranceExitPlaceStationIndex = StationIndex::FromUnderlying(0);
+            gRideEntranceExitPlaceStationIndex = StationIndex::fromUnderlying(0);
             gInputFlags.set(InputFlag::allowRightMouseRemoval);
 
             RideConstructionInvalidateCurrentTrack();

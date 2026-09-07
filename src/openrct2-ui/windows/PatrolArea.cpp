@@ -300,6 +300,6 @@ namespace OpenRCT2::Ui::Windows
     {
         auto* windowMgr = GetWindowManager();
         auto current = reinterpret_cast<PatrolAreaWindow*>(windowMgr->FindByClass(WindowClass::patrolArea));
-        return current != nullptr ? current->GetStaffId() : EntityId::GetNull();
+        return current != nullptr ? current->GetStaffId() : EntityId::getNull();
     }
 } // namespace OpenRCT2::Ui::Windows

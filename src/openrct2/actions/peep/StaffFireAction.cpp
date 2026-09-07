@@ -41,7 +41,7 @@ namespace OpenRCT2::GameActions
 
     Result StaffFireAction::Query(GameState_t& gameState, Park::ParkData& park) const
     {
-        if (_spriteId.ToUnderlying() >= kMaxEntities || _spriteId.IsNull())
+        if (_spriteId.toUnderlying() >= kMaxEntities || _spriteId.isNull())
         {
             LOG_ERROR("Invalid spriteId %u", _spriteId);
             return Result(Status::invalidParameters, STR_ERR_INVALID_PARAMETER, STR_ERR_VALUE_OUT_OF_RANGE);

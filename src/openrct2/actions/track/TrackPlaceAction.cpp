@@ -87,13 +87,13 @@ namespace OpenRCT2::GameActions
         auto ride = GetRide(_rideIndex);
         if (ride == nullptr)
         {
-            LOG_ERROR("Ride not found for rideIndex %d", _rideIndex.ToUnderlying());
+            LOG_ERROR("Ride not found for rideIndex %d", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, STR_RIDE_CONSTRUCTION_CANT_CONSTRUCT_THIS_HERE, STR_ERR_RIDE_NOT_FOUND);
         }
         const auto* rideEntry = GetRideEntryByIndex(ride->subtype);
         if (rideEntry == nullptr)
         {
-            LOG_ERROR("Invalid ride subtype for track placement, rideIndex = %d", _rideIndex.ToUnderlying());
+            LOG_ERROR("Invalid ride subtype for track placement, rideIndex = %d", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, STR_RIDE_CONSTRUCTION_CANT_CONSTRUCT_THIS_HERE, STR_UNKNOWN_OBJECT_TYPE);
         }
 
@@ -268,7 +268,7 @@ namespace OpenRCT2::GameActions
                 ? CreateCrossingMode::trackOverPath
                 : CreateCrossingMode::none;
             // When placing from a track design, ignore track elements from the same ride to allow it to intersect itself.
-            auto ignoreRideId = _fromTrackDesign ? _rideIndex : RideId::GetNull();
+            auto ignoreRideId = _fromTrackDesign ? _rideIndex : RideId::getNull();
             auto canBuild = MapCanConstructWithClearAt(
                 { mapLoc, baseZ, clearanceZ }, MapPlaceNonSceneryClearFunc, quarterTile, GetFlags(),
                 { .crossingMode = crossingMode, .ignoreRideId = ignoreRideId });
@@ -424,14 +424,14 @@ namespace OpenRCT2::GameActions
         auto ride = GetRide(_rideIndex);
         if (ride == nullptr)
         {
-            LOG_ERROR("Invalid ride for track placement, rideIndex = %d", _rideIndex.ToUnderlying());
+            LOG_ERROR("Invalid ride for track placement, rideIndex = %d", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, STR_RIDE_CONSTRUCTION_CANT_CONSTRUCT_THIS_HERE, STR_ERR_RIDE_NOT_FOUND);
         }
 
         const auto* rideEntry = GetRideEntryByIndex(ride->subtype);
         if (rideEntry == nullptr)
         {
-            LOG_ERROR("Invalid ride subtype for track placement, rideIndex = %d", _rideIndex.ToUnderlying());
+            LOG_ERROR("Invalid ride subtype for track placement, rideIndex = %d", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, STR_RIDE_CONSTRUCTION_CANT_CONSTRUCT_THIS_HERE, STR_UNKNOWN_OBJECT_TYPE);
         }
 
@@ -479,7 +479,7 @@ namespace OpenRCT2::GameActions
                 ? CreateCrossingMode::trackOverPath
                 : CreateCrossingMode::none;
             // When placing from a track design, ignore track elements from the same ride to allow it to intersect itself.
-            auto ignoreRideId = _fromTrackDesign ? _rideIndex : RideId::GetNull();
+            auto ignoreRideId = _fromTrackDesign ? _rideIndex : RideId::getNull();
             auto canBuild = MapCanConstructWithClearAt(
                 mapLocWithClearance, MapPlaceNonSceneryClearFunc, quarterTile, GetFlags().with(CommandFlag::apply),
                 { .crossingMode = crossingMode, .ignoreRideId = ignoreRideId });
@@ -570,7 +570,7 @@ namespace OpenRCT2::GameActions
             auto* trackElement = TileElementInsert<TrackElement>(mapLoc, quarterTile.GetBaseQuarterOccupied());
             if (trackElement == nullptr)
             {
-                LOG_ERROR("Cannot create track element for ride = %d", _rideIndex.ToUnderlying());
+                LOG_ERROR("Cannot create track element for ride = %d", _rideIndex.toUnderlying());
                 return Result(
                     Status::noFreeElements, STR_RIDE_CONSTRUCTION_CANT_CONSTRUCT_THIS_HERE, STR_TILE_ELEMENT_LIMIT_REACHED);
             }

@@ -31,7 +31,7 @@ namespace OpenRCT2::GameActions
     class RideSetSettingAction final : public GameActionBase<GameCommand::setRideSetting>
     {
     private:
-        RideId _rideIndex{ RideId::GetNull() };
+        RideId _rideIndex{ RideId::getNull() };
         RideSetSetting _setting{};
         uint8_t _value{};
 

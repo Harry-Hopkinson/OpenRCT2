@@ -46,7 +46,7 @@ namespace OpenRCT2::GameActions
 
     Result StaffSetNameAction::Query(GameState_t& gameState, Park::ParkData& park) const
     {
-        if (_spriteIndex.ToUnderlying() >= kMaxEntities || _spriteIndex.IsNull())
+        if (_spriteIndex.toUnderlying() >= kMaxEntities || _spriteIndex.isNull())
         {
             LOG_ERROR("Invalid sprite index %u", _spriteIndex);
             return Result(Status::invalidParameters, STR_STAFF_ERROR_CANT_NAME_STAFF_MEMBER, STR_ERR_VALUE_OUT_OF_RANGE);

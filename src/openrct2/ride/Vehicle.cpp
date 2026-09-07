@@ -449,18 +449,18 @@ namespace OpenRCT2
             flags.unset(VehicleFlag::testing);
 
             auto* windowMgr = Ui::GetWindowManager();
-            windowMgr->InvalidateByNumber(WindowClass::ride, ride.ToUnderlying());
+            windowMgr->InvalidateByNumber(WindowClass::ride, ride.toUnderlying());
             return;
         }
 
-        if (curRide->currentTestStation.IsNull())
+        if (curRide->currentTestStation.isNull())
             return;
 
         const auto& currentStation = curRide->getStation(curRide->currentTestStation);
         if (!currentStation.entrance.isNull())
         {
             uint8_t test_segment = curRide->currentTestSegment;
-            StationIndex stationIndex = StationIndex::FromUnderlying(test_segment);
+            StationIndex stationIndex = StationIndex::fromUnderlying(test_segment);
             auto& stationForTestSegment = curRide->getStation(stationIndex);
 
             curRide->averageSpeedTestTimeout++;
@@ -941,7 +941,7 @@ namespace OpenRCT2
         ride.averageSpeed = ride.averageSpeed / totalTime;
 
         auto* windowMgr = Ui::GetWindowManager();
-        windowMgr->InvalidateByNumber(WindowClass::ride, ride.id.ToUnderlying());
+        windowMgr->InvalidateByNumber(WindowClass::ride, ride.id.toUnderlying());
     }
 
     void Vehicle::UpdateTestFinish()
@@ -995,7 +995,7 @@ namespace OpenRCT2
         ride.currentTestStation = curStation;
 
         auto* windowMgr = Ui::GetWindowManager();
-        windowMgr->InvalidateByNumber(WindowClass::ride, ride.id.ToUnderlying());
+        windowMgr->InvalidateByNumber(WindowClass::ride, ride.id.toUnderlying());
     }
 
     void Vehicle::TestReset()
@@ -1220,7 +1220,7 @@ namespace OpenRCT2
             prevVehicle = getGameState().entities.getEntity<Vehicle>(vehicle->prev_vehicle_on_ride);
             if (prevVehicle == nullptr)
                 return nullptr;
-            if (prevVehicle->next_vehicle_on_train.IsNull())
+            if (prevVehicle->next_vehicle_on_train.isNull())
                 break;
 
             vehicle = prevVehicle;
@@ -1234,7 +1234,7 @@ namespace OpenRCT2
         const Vehicle* vehicle = this;
 
         EntityId spriteIndex = vehicle->next_vehicle_on_train;
-        while (!spriteIndex.IsNull())
+        while (!spriteIndex.isNull())
         {
             vehicle = getGameState().entities.getEntity<Vehicle>(spriteIndex);
             if (vehicle == nullptr)

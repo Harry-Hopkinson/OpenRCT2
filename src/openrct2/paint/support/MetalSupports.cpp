@@ -88,7 +88,7 @@ struct RepositionPair
 {
     MetalSupportPlace place = MetalSupportPlace::centre;
     uint8_t crossBeamIndex = 0xFF;
-    
+
     constexpr bool isNull() const
     {
         return crossBeamIndex == 0xFF;
@@ -97,17 +97,17 @@ struct RepositionPair
 struct RepositionRow
 {
     std::array<RepositionPair, kNumOrthogonalDirections> pairs;
-    
+
     constexpr RepositionRow(const RepositionPair pair)
     {
         pairs = { pair, pair, pair, pair };
     }
-    
+
     constexpr RepositionRow(const RepositionPair pair1, const RepositionPair pair2, const RepositionPair pair3, const RepositionPair pair4)
     {
         pairs = { pair1, pair2, pair3, pair4 };
     }
-    
+
     constexpr RepositionPair operator[](const Direction direction) const noexcept
     {
         return pairs[direction];
@@ -123,12 +123,12 @@ static constexpr RepositionAttempt kMetalSupportSegmentOffsets0 = {
          { { MetalSupportPlace::bottomLeftSide, 1 } },  /* leftCorner         */
          { { MetalSupportPlace::topRightSide, 3 } },    /* rightCorner        */
          { { MetalSupportPlace::bottomRightSide, 0 } }, /* bottomCorner       */
-         {                                               
+         {
              { MetalSupportPlace::topLeftSide, 3 },            /* centre, rotation 0 */
              { MetalSupportPlace::topRightSide, 0 },           /* centre, rotation 1 */
              { MetalSupportPlace::bottomRightSide, 1 },        /* centre, rotation 2 */
              { MetalSupportPlace::bottomLeftSide, 2 }          /* centre, rotation 3 */
-         },                                             
+         },
          { { MetalSupportPlace::leftCorner, 2 } },      /* topLeftSide        */
          { { MetalSupportPlace::topCorner, 3 } },       /* topRightSide       */
          { { MetalSupportPlace::bottomCorner, 1 } },    /* bottomLeftSide     */
@@ -142,7 +142,7 @@ static constexpr RepositionAttempt kMetalSupportSegmentOffsets1 = {
          { { MetalSupportPlace::topLeftSide, 0 } },     /* leftCorner         */
          { { MetalSupportPlace::bottomRightSide, 2 } }, /* rightCorner        */
          { { MetalSupportPlace::bottomLeftSide, 3 } },  /* bottomCorner       */
-         { 
+         {
              { MetalSupportPlace::topRightSide, 0 },           /* centre, rotation 0 */
              { MetalSupportPlace::bottomRightSide, 1},         /* centre, rotation 1 */
              { MetalSupportPlace::bottomLeftSide, 2},          /* centre, rotation 2 */
@@ -156,16 +156,16 @@ static constexpr RepositionAttempt kMetalSupportSegmentOffsets1 = {
 };
 static constexpr RepositionAttempt kMetalSupportSegmentOffsets2 = {
     {
-         { { MetalSupportPlace::leftCorner, 6 } },      /* topCorner          */ 
+         { { MetalSupportPlace::leftCorner, 6 } },      /* topCorner          */
          { { MetalSupportPlace::bottomCorner, 5 } },    /* leftCorner         */
          { { MetalSupportPlace::topCorner, 7 } },       /* rightCorner        */
          { { MetalSupportPlace::rightCorner, 4 } },     /* bottomCorner       */
-         {                                               
-             { MetalSupportPlace::bottomRightSide, 1 },        /* centre, rotation 0 */ 
+         {
+             { MetalSupportPlace::bottomRightSide, 1 },        /* centre, rotation 0 */
              { MetalSupportPlace::bottomLeftSide, 2 },         /* centre, rotation 1 */
              { MetalSupportPlace::topLeftSide, 3 },            /* centre, rotation 2 */
              { MetalSupportPlace::topRightSide, 0 }            /* centre, rotation 3 */
-         },                                             
+         },
          { { MetalSupportPlace::centre, 1 } },          /* topLeftSide        */
          { { MetalSupportPlace::centre, 2 } },          /* topRightSide       */
          { { MetalSupportPlace::centre, 0 } },          /* bottomLeftSide     */
@@ -178,12 +178,12 @@ static constexpr RepositionAttempt kMetalSupportSegmentOffsets3 = {
          { { MetalSupportPlace::topCorner, 4 } },       /* leftCorner         */
          { { MetalSupportPlace::bottomCorner, 6 } },    /* rightCorner        */
          { { MetalSupportPlace::leftCorner, 7 } },      /* bottomCorner       */
-         {                                               
+         {
              { MetalSupportPlace::bottomLeftSide, 2 },         /* centre, rotation 0 */
              { MetalSupportPlace::topLeftSide, 3 },            /* centre, rotation 1 */
              { MetalSupportPlace::topRightSide, 0 },           /* centre, rotation 2 */
              { MetalSupportPlace::bottomRightSide, 1 }         /* centre, rotation 3 */
-         },                                             
+         },
          { { MetalSupportPlace::bottomRightSide, 5 } }, /* topLeftSide        */
          { { MetalSupportPlace::bottomLeftSide, 6 } },  /* topRightSide       */
          { { MetalSupportPlace::topRightSide, 4 } },    /* bottomLeftSide     */

@@ -374,7 +374,7 @@ namespace OpenRCT2::Title
                 }
                 else if (String::iequals(token, "FOLLOW"))
                 {
-                    auto entityID = EntityId::FromUnderlying(atoi(parts[1].data()) & 0xFFFF);
+                    auto entityID = EntityId::fromUnderlying(atoi(parts[1].data()) & 0xFFFF);
                     auto followCommand = FollowEntityCommand{ entityID };
                     String::safeUtf8Copy(followCommand.Follow.SpriteName, parts[2].data(), kUserStringMaxLength);
                     command = followCommand;

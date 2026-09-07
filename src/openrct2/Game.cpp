@@ -221,11 +221,11 @@ static void FixPeepsWithInvalidRideReference()
     // Fix possibly invalid field values
     for (auto peep : EntityList<Guest>())
     {
-        if (peep->currentRideStation.ToUnderlying() >= Limits::kMaxStationsPerRide)
+        if (peep->currentRideStation.toUnderlying() >= Limits::kMaxStationsPerRide)
         {
             const auto srcStation = peep->currentRideStation;
             const auto rideIdx = peep->currentRide;
-            if (rideIdx.IsNull())
+            if (rideIdx.isNull())
             {
                 continue;
             }
@@ -233,15 +233,15 @@ static void FixPeepsWithInvalidRideReference()
             if (ride == nullptr)
             {
                 LOG_WARNING("Couldn't find ride %u, resetting ride on peep %u", rideIdx, peep->id);
-                peep->currentRide = RideId::GetNull();
+                peep->currentRide = RideId::getNull();
                 continue;
             }
             auto curName = peep->getName();
             LOG_WARNING(
-                "Peep %u (%s) has invalid ride station = %u for ride %u.", peep->id, curName.c_str(), srcStation.ToUnderlying(),
+                "Peep %u (%s) has invalid ride station = %u for ride %u.", peep->id, curName.c_str(), srcStation.toUnderlying(),
                 rideIdx);
             auto station = RideGetFirstValidStationExit(*ride);
-            if (station.IsNull())
+            if (station.isNull())
             {
                 LOG_WARNING("Couldn't find station, removing peep %u", peep->id);
                 peepsToRemove.push_back(peep);
@@ -437,7 +437,7 @@ void ResetAllSpriteQuadrantPlacements()
 {
     for (EntityId::UnderlyingType i = 0; i < kMaxEntities; i++)
     {
-        auto* spr = getGameState().entities.getEntity(EntityId::FromUnderlying(i));
+        auto* spr = getGameState().entities.getEntity(EntityId::fromUnderlying(i));
         if (spr != nullptr && spr->type != EntityType::null)
         {
             spr->moveTo(spr->getLocation());

@@ -23,7 +23,7 @@ namespace OpenRCT2::GameActions
     {
         uint8_t GroundFlags{ 0 };
         int32_t firstTileHeight{ 0 };
-        BannerIndex bannerId = BannerIndex::GetNull();
+        BannerIndex bannerId = BannerIndex::getNull();
     };
 
     class LargeSceneryPlaceAction final : public GameActionBase<GameCommand::placeLargeScenery>

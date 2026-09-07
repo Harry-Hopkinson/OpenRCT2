@@ -51,12 +51,12 @@ TEST_F(EntityImportTests, CreateEntityAtDuplicateIndexReturnsNull)
     gameState.entities.resetAllEntities();
 
     // Create an entity at index 100
-    auto* entity1 = gameState.entities.createEntityAt<Guest>(EntityId::FromUnderlying(100));
+    auto* entity1 = gameState.entities.createEntityAt<Guest>(EntityId::fromUnderlying(100));
     ASSERT_NE(entity1, nullptr);
-    EXPECT_EQ(entity1->id.ToUnderlying(), 100u);
+    EXPECT_EQ(entity1->id.toUnderlying(), 100u);
 
     // Try to create another entity at the same index, which should return nullptr
-    auto* entity2 = gameState.entities.createEntityAt<Guest>(EntityId::FromUnderlying(100));
+    auto* entity2 = gameState.entities.createEntityAt<Guest>(EntityId::fromUnderlying(100));
     EXPECT_EQ(entity2, nullptr);
 }
 

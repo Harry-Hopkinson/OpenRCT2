@@ -122,7 +122,7 @@ struct TrackDesignTrackElement
     OpenRCT2::TrackElemType type = OpenRCT2::TrackElemType::flat;
     TrackDesignTrackElementFlags flags = {};
     uint8_t colourScheme = 0;
-    ::StationIndex stationIndex = StationIndex::FromUnderlying(0);
+    ::StationIndex stationIndex = StationIndex::fromUnderlying(0);
     uint8_t brakeBoosterSpeed = 0;
     uint8_t seatRotation = 4;
 };

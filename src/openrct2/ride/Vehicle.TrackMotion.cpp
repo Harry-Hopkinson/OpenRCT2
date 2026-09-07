@@ -448,7 +448,7 @@ namespace OpenRCT2
             return;
         }
 
-        if (_vehicleStationIndex.IsNull())
+        if (_vehicleStationIndex.isNull())
         {
             _vehicleStationIndex = tileElement->asTrack()->getStationIndex();
         }
@@ -585,7 +585,7 @@ namespace OpenRCT2
 
         if (tileElement->asTrack()->isBlockStart())
         {
-            if (next_vehicle_on_train.IsNull())
+            if (next_vehicle_on_train.isNull())
             {
                 SetBrakeClosedMultiTile(*tileElement->asTrack(), TrackLocation, true);
                 if (trackTypeIsBlockBrakes(trackType) || trackType == TrackElemType::endStation)
@@ -767,7 +767,7 @@ namespace OpenRCT2
      */
     bool Vehicle::trackMotionForwards(const CarEntry* carEntry, const Ride& curRide, const RideObjectEntry& rideEntry)
     {
-        EntityId otherVehicleIndex = EntityId::GetNull();
+        EntityId otherVehicleIndex = EntityId::getNull();
         while (true)
         {
             auto trackType = GetTrackType();
@@ -1106,7 +1106,7 @@ namespace OpenRCT2
         {
             if (_vehicleVelocity < 0)
             {
-                if (next_vehicle_on_train.IsNull())
+                if (next_vehicle_on_train.isNull())
                 {
                     trackType = tileElement->asTrack()->getTrackType();
                     const auto& ted = GetTrackElementDescriptor(trackType);
@@ -1123,7 +1123,7 @@ namespace OpenRCT2
             if (flags.has(VehicleFlag::onLiftHill))
             {
                 flags.unset(VehicleFlag::onLiftHill);
-                if (next_vehicle_on_train.IsNull())
+                if (next_vehicle_on_train.isNull())
                 {
                     if (_vehicleVelocity < 0)
                     {
@@ -1158,7 +1158,7 @@ namespace OpenRCT2
      */
     bool Vehicle::trackMotionBackwards(const CarEntry* carEntry, const Ride& curRide, const RideObjectEntry& rideEntry)
     {
-        EntityId otherVehicleIndex = EntityId::GetNull();
+        EntityId otherVehicleIndex = EntityId::getNull();
 
         while (true)
         {
@@ -1476,7 +1476,7 @@ namespace OpenRCT2
         _vehicleBrakeSoundTimeout = 0;
         gCurrentVehicle = this;
         _vehicleMotionTrackFlags = 0;
-        _vehicleStationIndex = StationIndex::GetNull();
+        _vehicleStationIndex = StationIndex::getNull();
 
         upstopCheck();
         handleBlockBrake();
@@ -1492,7 +1492,7 @@ namespace OpenRCT2
         _vehicleFrontVehicle = vehicle;
 
         auto spriteId = vehicle->id;
-        while (!spriteId.IsNull())
+        while (!spriteId.isNull())
         {
             Vehicle* car = getGameState().entities.getEntity<Vehicle>(spriteId);
             if (car == nullptr)
@@ -1515,7 +1515,7 @@ namespace OpenRCT2
             if (car->flags.has(VehicleFlag::moveSingleCar))
             {
                 if (outStation != nullptr)
-                    *outStation = _vehicleStationIndex.ToUnderlying();
+                    *outStation = _vehicleStationIndex.toUnderlying();
                 return _vehicleMotionTrackFlags;
             }
             if (_vehicleVelocity >= 0)
@@ -1602,7 +1602,7 @@ namespace OpenRCT2
 
         // hook_setreturnregisters(&regs);
         if (outStation != nullptr)
-            *outStation = _vehicleStationIndex.ToUnderlying();
+            *outStation = _vehicleStationIndex.toUnderlying();
         return _vehicleMotionTrackFlags;
     }
 } // namespace OpenRCT2

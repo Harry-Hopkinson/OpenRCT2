@@ -514,7 +514,7 @@ namespace OpenRCT2
             }
             else
             {
-                FootpathNeighbourListPush(neighbourList, 2, direction, RideId::GetNull(), StationIndex::GetNull());
+                FootpathNeighbourListPush(neighbourList, 2, direction, RideId::getNull(), StationIndex::getNull());
             }
         }
         else
@@ -544,7 +544,7 @@ namespace OpenRCT2
         {
             if (query)
             {
-                FootpathNeighbourListPush(neighbourList, 7, direction, RideId::GetNull(), StationIndex::GetNull());
+                FootpathNeighbourListPush(neighbourList, 7, direction, RideId::getNull(), StationIndex::getNull());
             }
             Loc6A6FD2(initialTileElementPos, direction, initialTileElement, query);
         }
@@ -612,7 +612,7 @@ namespace OpenRCT2
                             {
                                 FootpathNeighbourListPush(
                                     neighbourList, 1, direction, tileElement->asTrack()->getRideIndex(),
-                                    StationIndex::GetNull());
+                                    StationIndex::getNull());
                             }
                             Loc6A6FD2(initialTileElementPos, direction, initialTileElement, query);
                             return;
@@ -740,13 +740,13 @@ namespace OpenRCT2
 
         if (tileElement->getType() == TileElementType::path && tileElement->asPath()->isQueue())
         {
-            RideId rideIndex = RideId::GetNull();
-            StationIndex entranceIndex = StationIndex::GetNull();
+            RideId rideIndex = RideId::getNull();
+            StationIndex entranceIndex = StationIndex::getNull();
             for (size_t i = 0; i < neighbourList.count; i++)
             {
-                if (!neighbourList.items[i].ride_index.IsNull())
+                if (!neighbourList.items[i].ride_index.isNull())
                 {
-                    if (rideIndex.IsNull())
+                    if (rideIndex.isNull())
                     {
                         rideIndex = neighbourList.items[i].ride_index;
                         entranceIndex = neighbourList.items[i].entrance_index;
@@ -757,7 +757,7 @@ namespace OpenRCT2
                     }
                     else if (
                         rideIndex == neighbourList.items[i].ride_index && entranceIndex != neighbourList.items[i].entrance_index
-                        && !neighbourList.items[i].entrance_index.IsNull())
+                        && !neighbourList.items[i].entrance_index.isNull())
                     {
                         FootpathNeighbourListRemove(&neighbourList, i);
                     }
@@ -899,7 +899,7 @@ namespace OpenRCT2
             break;
         }
 
-        if (!rideIndex.IsNull() && lastPathElement != nullptr)
+        if (!rideIndex.isNull() && lastPathElement != nullptr)
         {
             if (lastPathElement->asPath()->isQueue())
             {
@@ -922,7 +922,7 @@ namespace OpenRCT2
      */
     void FootpathQueueChainPush(RideId rideIndex)
     {
-        if (!rideIndex.IsNull())
+        if (!rideIndex.isNull())
         {
             auto* lastSlot = _footpathQueueChain + std::size(_footpathQueueChain) - 1;
             if (_footpathQueueChainNext <= lastSlot)
@@ -1557,10 +1557,10 @@ namespace OpenRCT2
                     if (tileElement->asPath()->getEdges() & (1 << direction))
                     {
                         FootpathChainRideQueue(
-                            RideId::GetNull(), StationIndex::FromUnderlying(0), footpathPos, tileElement, direction);
+                            RideId::getNull(), StationIndex::fromUnderlying(0), footpathPos, tileElement, direction);
                     }
                 }
-                tileElement->asPath()->setRideIndex(RideId::GetNull());
+                tileElement->asPath()->setRideIndex(RideId::getNull());
             }
         }
         else if (elementType == TileElementType::entrance)
@@ -1569,7 +1569,7 @@ namespace OpenRCT2
             {
                 FootpathQueueChainPush(tileElement->asEntrance()->getRideIndex());
                 FootpathChainRideQueue(
-                    RideId::GetNull(), StationIndex::FromUnderlying(0), footpathPos, tileElement,
+                    RideId::getNull(), StationIndex::fromUnderlying(0), footpathPos, tileElement,
                     DirectionReverse(tileElement->getDirection()));
             }
         }

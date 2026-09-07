@@ -477,7 +477,7 @@ namespace OpenRCT2::Ui::Windows
             else
             {
                 auto intent = Intent(WindowClass::ride);
-                intent.PutExtra(INTENT_EXTRA_RIDE_ID, selectedRideId.ToUnderlying());
+                intent.PutExtra(INTENT_EXTRA_RIDE_ID, selectedRideId.toUnderlying());
                 ContextOpenIntent(&intent);
             }
         }
@@ -996,7 +996,7 @@ namespace OpenRCT2::Ui::Windows
         {
             // Maintain stability by first sorting by ride id.
             SortListByPredicate([](const Ride& thisRide, const Ride& otherRide) -> bool {
-                return thisRide.id.ToUnderlying() < otherRide.id.ToUnderlying();
+                return thisRide.id.toUnderlying() < otherRide.id.toUnderlying();
             });
 
             switch (listInformationType)

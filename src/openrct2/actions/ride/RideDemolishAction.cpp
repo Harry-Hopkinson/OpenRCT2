@@ -60,7 +60,7 @@ namespace OpenRCT2::GameActions
         auto ride = GetRide(_rideIndex);
         if (ride == nullptr)
         {
-            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, STR_CANT_DEMOLISH_RIDE, STR_ERR_RIDE_NOT_FOUND);
         }
 
@@ -104,7 +104,7 @@ namespace OpenRCT2::GameActions
         auto ride = GetRide(_rideIndex);
         if (ride == nullptr)
         {
-            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.ToUnderlying());
+            LOG_ERROR("Ride not found for rideIndex %u", _rideIndex.toUnderlying());
             return Result(Status::invalidParameters, STR_CANT_DEMOLISH_RIDE, STR_ERR_RIDE_NOT_FOUND);
         }
 
@@ -132,7 +132,7 @@ namespace OpenRCT2::GameActions
         RideClearLeftoverEntrances(ride);
 
         const auto rideId = ride.id;
-        News::DisableNewsItems(News::ItemType::ride, rideId.ToUnderlying());
+        News::DisableNewsItems(News::ItemType::ride, rideId.toUnderlying());
 
         UnlinkAllBannersForRide(ride.id);
 
@@ -159,9 +159,9 @@ namespace OpenRCT2::GameActions
 
         // Close windows related to the demolished ride
         auto* windowMgr = Ui::GetWindowManager();
-        windowMgr->CloseByNumber(WindowClass::rideConstruction, rideId.ToUnderlying());
-        windowMgr->CloseByNumber(WindowClass::ride, rideId.ToUnderlying());
-        windowMgr->CloseByNumber(WindowClass::demolishRidePrompt, rideId.ToUnderlying());
+        windowMgr->CloseByNumber(WindowClass::rideConstruction, rideId.toUnderlying());
+        windowMgr->CloseByNumber(WindowClass::ride, rideId.toUnderlying());
+        windowMgr->CloseByNumber(WindowClass::demolishRidePrompt, rideId.toUnderlying());
         windowMgr->CloseByClass(WindowClass::newCampaign);
 
         // Refresh windows that display the ride name
@@ -286,7 +286,7 @@ namespace OpenRCT2::GameActions
         }
 
         auto* windowMgr = Ui::GetWindowManager();
-        windowMgr->CloseByNumber(WindowClass::demolishRidePrompt, _rideIndex.ToUnderlying());
+        windowMgr->CloseByNumber(WindowClass::demolishRidePrompt, _rideIndex.toUnderlying());
 
         return res;
     }

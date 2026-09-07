@@ -1259,7 +1259,7 @@ std::vector<RideId> RCT12GetRidesBeenOn(T* srcPeep)
     {
         if (srcPeep->RidesBeenOn[i / 8] & (1 << (i % 8)))
         {
-            ridesBeenOn.push_back(RideId::FromUnderlying(i));
+            ridesBeenOn.push_back(RideId::fromUnderlying(i));
         }
     }
     return ridesBeenOn;

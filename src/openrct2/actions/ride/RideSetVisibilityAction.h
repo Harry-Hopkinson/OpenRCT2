@@ -22,7 +22,7 @@ namespace OpenRCT2::GameActions
     class RideSetVisibilityAction final : public GameActionBase<GameCommand::setRideVisibility>
     {
     private:
-        RideId _rideIndex{ RideId::GetNull() };
+        RideId _rideIndex{ RideId::getNull() };
         RideSetVisibilityType _visibility{};
 
     public:

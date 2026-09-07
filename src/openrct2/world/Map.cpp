@@ -1024,7 +1024,7 @@ namespace OpenRCT2
                     if (it.element->asPath()->isQueue())
                     {
                         it.element->asPath()->setHasQueueBanner(false);
-                        it.element->asPath()->setRideIndex(RideId::GetNull());
+                        it.element->asPath()->setRideIndex(RideId::getNull());
                     }
                     break;
                 case TileElementType::entrance:
@@ -2298,7 +2298,7 @@ namespace OpenRCT2
 
         // Banners
         auto numBanners = GetNumBanners();
-        auto id = BannerIndex::FromUnderlying(0);
+        auto id = BannerIndex::fromUnderlying(0);
         size_t count = 0;
         while (count < numBanners)
         {
@@ -2308,7 +2308,7 @@ namespace OpenRCT2
                 shiftIfNotNull(banner->position, amount);
                 count++;
             }
-            id = BannerIndex::FromUnderlying(id.ToUnderlying() + 1);
+            id = BannerIndex::fromUnderlying(id.toUnderlying() + 1);
         }
 
         MapAnimations::ShiftAll(amount);

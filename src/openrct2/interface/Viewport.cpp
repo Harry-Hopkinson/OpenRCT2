@@ -184,7 +184,7 @@ namespace OpenRCT2
             [](auto&& arg) {
                 using T = std::decay_t<decltype(arg)>;
                 if constexpr (std::is_same_v<T, Focus::CoordinateFocus>)
-                    return EntityId::GetNull();
+                    return EntityId::getNull();
                 else if constexpr (std::is_same_v<T, Focus::EntityFocus>)
                     return arg;
             },
@@ -481,7 +481,7 @@ namespace OpenRCT2
     static void ViewportSetUndergroundFlag(int32_t underground, WindowBase* window, Viewport* viewport)
     {
         if ((window->classification != WindowClass::mainWindow && window->classification != WindowClass::viewport)
-            || (window->classification == WindowClass::mainWindow && !window->viewportSmartFollowSprite.IsNull()))
+            || (window->classification == WindowClass::mainWindow && !window->viewportSmartFollowSprite.isNull()))
         {
             if (!underground)
             {
@@ -515,12 +515,12 @@ namespace OpenRCT2
         if (viewport == nullptr)
             return;
 
-        if (!window->viewportSmartFollowSprite.IsNull())
+        if (!window->viewportSmartFollowSprite.isNull())
         {
             ViewportUpdateSmartFollowEntity(window);
         }
 
-        if (!window->viewportTargetSprite.IsNull())
+        if (!window->viewportTargetSprite.isNull())
         {
             ViewportUpdateFollowSprite(window);
             return;
@@ -610,7 +610,7 @@ namespace OpenRCT2
 
     void ViewportUpdateFollowSprite(WindowBase* window)
     {
-        if (!window->viewportTargetSprite.IsNull() && window->viewport != nullptr)
+        if (!window->viewportTargetSprite.isNull() && window->viewport != nullptr)
         {
             auto* sprite = getGameState().entities.getEntity(window->viewportTargetSprite);
             if (sprite == nullptr)
@@ -639,8 +639,8 @@ namespace OpenRCT2
         auto entity = getGameState().entities.tryGetEntity(window->viewportSmartFollowSprite);
         if (entity == nullptr || entity->type == EntityType::null)
         {
-            window->viewportSmartFollowSprite = EntityId::GetNull();
-            window->viewportTargetSprite = EntityId::GetNull();
+            window->viewportSmartFollowSprite = EntityId::getNull();
+            window->viewportTargetSprite = EntityId::getNull();
             return;
         }
 
@@ -684,8 +684,8 @@ namespace OpenRCT2
 
         if (peep.state == PeepState::picked)
         {
-            window->viewportSmartFollowSprite = EntityId::GetNull();
-            window->viewportTargetSprite = EntityId::GetNull();
+            window->viewportSmartFollowSprite = EntityId::getNull();
+            window->viewportTargetSprite = EntityId::getNull();
             window->focus = std::nullopt; // No focus
             return;
         }
@@ -722,7 +722,7 @@ namespace OpenRCT2
                 coordFocus.y = xy.y;
                 coordFocus.z = TileElementHeight(xy) + (4 * kCoordsZStep);
                 focus = Focus(coordFocus);
-                window->viewportTargetSprite = EntityId::GetNull();
+                window->viewportTargetSprite = EntityId::getNull();
             }
         }
 
@@ -733,8 +733,8 @@ namespace OpenRCT2
     {
         if (peep.state == PeepState::picked)
         {
-            window->viewportSmartFollowSprite = EntityId::GetNull();
-            window->viewportTargetSprite = EntityId::GetNull();
+            window->viewportSmartFollowSprite = EntityId::getNull();
+            window->viewportTargetSprite = EntityId::getNull();
             window->focus = std::nullopt;
             return;
         }

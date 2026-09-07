@@ -191,7 +191,7 @@ namespace OpenRCT2::Ui::Windows
             Campaign.no_weeks = 2;
 
             // Currently selected ride
-            Campaign.RideId = RideId::GetNull();
+            Campaign.RideId = RideId::getNull();
 
             refreshRides();
         }
@@ -266,7 +266,7 @@ namespace OpenRCT2::Ui::Windows
                 case WIDX_START_BUTTON:
                 {
                     auto gameAction = GameActions::ParkMarketingAction(
-                        Campaign.campaign_type, Campaign.RideId.ToUnderlying(), Campaign.no_weeks);
+                        Campaign.campaign_type, Campaign.RideId.toUnderlying(), Campaign.no_weeks);
                     gameAction.SetCallback([](const GameActions::GameAction* ga, const GameActions::Result* result) {
                         if (result->error == GameActions::Status::ok)
                         {
@@ -320,7 +320,7 @@ namespace OpenRCT2::Ui::Windows
                     widgets[WIDX_RIDE_DROPDOWN].setVisible();
                     widgets[WIDX_RIDE_DROPDOWN_BUTTON].setVisible();
                     widgets[WIDX_RIDE_LABEL].text = STR_MARKETING_RIDE;
-                    if (Campaign.RideId != RideId::GetNull())
+                    if (Campaign.RideId != RideId::getNull())
                     {
                         auto curRide = GetRide(Campaign.RideId);
                         if (curRide != nullptr)
@@ -346,7 +346,7 @@ namespace OpenRCT2::Ui::Windows
             widgets[WIDX_WEEKS_SPINNER].text = kStringIdNone;
 
             // Enable / disable start button based on ride dropdown
-            const bool pendingRideSelection = widgets[WIDX_RIDE_DROPDOWN].isVisible() && Campaign.RideId == RideId::GetNull();
+            const bool pendingRideSelection = widgets[WIDX_RIDE_DROPDOWN].isVisible() && Campaign.RideId == RideId::getNull();
             widgetSetDisabled(*this, WIDX_START_BUTTON, pendingRideSelection);
         }
 

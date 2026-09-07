@@ -32,7 +32,7 @@ namespace OpenRCT2
             {
                 auto* sceneryEntry = asLargeScenery()->getEntry();
                 if (sceneryEntry == nullptr || sceneryEntry->scrolling_mode == kScrollingModeNone)
-                    return BannerIndex::GetNull();
+                    return BannerIndex::getNull();
 
                 return asLargeScenery()->getBannerIndex();
             }
@@ -40,14 +40,14 @@ namespace OpenRCT2
             {
                 auto* wallEntry = asWall()->getEntry();
                 if (wallEntry == nullptr || wallEntry->scrolling_mode == kScrollingModeNone)
-                    return BannerIndex::GetNull();
+                    return BannerIndex::getNull();
 
                 return asWall()->getBannerIndex();
             }
             case TileElementType::banner:
                 return asBanner()->getIndex();
             default:
-                return BannerIndex::GetNull();
+                return BannerIndex::getNull();
         }
     }
 
@@ -77,7 +77,7 @@ namespace OpenRCT2
         if (banner != nullptr)
         {
             auto* windowMgr = Ui::GetWindowManager();
-            windowMgr->CloseByNumber(WindowClass::banner, bannerIndex.ToUnderlying());
+            windowMgr->CloseByNumber(WindowClass::banner, bannerIndex.toUnderlying());
             DeleteBanner(banner->id);
         }
     }
@@ -93,7 +93,7 @@ namespace OpenRCT2
             case TileElementType::path:
                 return asPath()->getRideIndex();
             default:
-                return RideId::GetNull();
+                return RideId::getNull();
         }
     }
 

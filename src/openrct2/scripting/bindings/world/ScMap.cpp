@@ -72,7 +72,7 @@ namespace OpenRCT2::Scripting
         JS_UNPACK_INT32(id, ctx, argv[0]);
         auto& gameState = getGameState();
         auto rideManager = RideManager(gameState);
-        auto ride = rideManager[RideId::FromUnderlying(id)];
+        auto ride = rideManager[RideId::fromUnderlying(id)];
         if (ride != nullptr)
         {
             return gScRide.New(ctx, ride->id);
@@ -94,7 +94,7 @@ namespace OpenRCT2::Scripting
 
         if (id >= 0 && id < kMaxEntities)
         {
-            auto spriteId = EntityId::FromUnderlying(id);
+            auto spriteId = EntityId::fromUnderlying(id);
             auto sprite = getGameState().entities.getEntity(spriteId);
             if (sprite != nullptr && sprite->type != EntityType::null)
             {
@@ -121,7 +121,7 @@ namespace OpenRCT2::Scripting
         {
             for (auto trainHead : TrainManager::View())
             {
-                for (auto carId = trainHead->id; !carId.IsNull();)
+                for (auto carId = trainHead->id; !carId.isNull();)
                 {
                     auto car = getGameState().entities.getEntity<Vehicle>(carId);
 
@@ -369,11 +369,11 @@ namespace OpenRCT2::Scripting
                 // Reset some important vehicle vars to their null values
                 entity->sound1_id = Audio::SoundId::null;
                 entity->sound2_id = Audio::SoundId::null;
-                entity->next_vehicle_on_train = EntityId::GetNull();
+                entity->next_vehicle_on_train = EntityId::getNull();
                 entity->scream_sound_id = Audio::SoundId::null;
                 for (size_t i = 0; i < std::size(entity->peep); i++)
                 {
-                    entity->peep[i] = EntityId::GetNull();
+                    entity->peep[i] = EntityId::getNull();
                 }
                 entity->BoatLocation.setNull();
 

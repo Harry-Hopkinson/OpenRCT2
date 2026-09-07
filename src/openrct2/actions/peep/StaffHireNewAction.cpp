@@ -104,7 +104,7 @@ namespace OpenRCT2::GameActions
             // In query we just want to see if we can obtain a sprite slot.
             gameState.entities.entityRemove(newPeep);
 
-            res.setData(StaffHireNewActionResult{ EntityId::GetNull() });
+            res.setData(StaffHireNewActionResult{ EntityId::getNull() });
         }
         else
         {
