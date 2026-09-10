@@ -23,9 +23,9 @@ namespace OpenRCT2::TrackMetadata
         .woodenSupports = { WoodenSupportSubType::corner3 },
         .metalSupports = { MetalSupportPlace::centre },
         .blockedSegments = { {
-            EnumsToFlags(PS::top, PS::centre, PS::topLeft, PS::topRight, PS::bottomLeft), // narrow
-            kSegmentsUnimplemented,                                                       // inverted
-            kSegmentsAll,                                                                 // wide
+            PaintSegments(PS::top, PS::centre, PS::topLeft, PS::topRight, PS::bottomLeft), // narrow
+            kSegmentsUnimplemented,                                                        // inverted
+            kSegmentsAll,                                                                  // wide
         } },
     };
 
@@ -44,9 +44,9 @@ namespace OpenRCT2::TrackMetadata
         .clearance = { -32, 0, 0, 4, { 0b0010, 0 }, {} },
         .allowedWallEdges = 0b0011,
         .blockedSegments = { {
-            EnumsToFlags(PS::left, PS::centre, PS::topLeft, PS::bottomLeft), // narrow
-            kSegmentsUnimplemented,                                          // inverted
-            EnumsToFlags(PS::left, PS::centre, PS::topLeft, PS::bottomLeft), // wide
+            PaintSegments(PS::left, PS::centre, PS::topLeft, PS::bottomLeft), // narrow
+            kSegmentsUnimplemented,                                           // inverted
+            PaintSegments(PS::left, PS::centre, PS::topLeft, PS::bottomLeft), // wide
         } },
     };
 
@@ -57,9 +57,9 @@ namespace OpenRCT2::TrackMetadata
         .metalSupports = { MetalSupportPlace::centre },
         .extraSupportRotation = -1,
         .blockedSegments = { {
-            EnumsToFlags(PS::bottom, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // narrow
-            kSegmentsUnimplemented,                                                             // inverted
-            kSegmentsAll,                                                                       // wide
+            PaintSegments(PS::bottom, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // narrow
+            kSegmentsUnimplemented,                                                              // inverted
+            kSegmentsAll,                                                                        // wide
         } },
     };
 
@@ -70,9 +70,9 @@ namespace OpenRCT2::TrackMetadata
         .metalSupports = { MetalSupportPlace::centre },
         .extraSupportRotation = -1,
         .blockedSegments = { {
-            EnumsToFlags(PS::left, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // narrow
-            kSegmentsUnimplemented,                                                           // inverted
-            kSegmentsAll,                                                                     // wide
+            PaintSegments(PS::left, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // narrow
+            kSegmentsUnimplemented,                                                            // inverted
+            kSegmentsAll,                                                                      // wide
         } },
     };
 
@@ -91,9 +91,9 @@ namespace OpenRCT2::TrackMetadata
         .clearance = { -32, -96, 8, 4, { 0b0001, 0 }, {} },
         .allowedWallEdges = 0b1001,
         .blockedSegments = { {
-            EnumsToFlags(PS::bottom, PS::centre, PS::bottomLeft, PS::bottomRight), // narrow
-            kSegmentsUnimplemented,                                                // inverted
-            EnumsToFlags(PS::bottom, PS::centre, PS::bottomLeft, PS::bottomRight), // wide
+            PaintSegments(PS::bottom, PS::centre, PS::bottomLeft, PS::bottomRight), // narrow
+            kSegmentsUnimplemented,                                                 // inverted
+            PaintSegments(PS::bottom, PS::centre, PS::bottomLeft, PS::bottomRight), // wide
         } },
     };
 
@@ -105,9 +105,9 @@ namespace OpenRCT2::TrackMetadata
         .metalSupports = { MetalSupportPlace::centre },
         .extraSupportRotation = -2,
         .blockedSegments = { {
-            EnumsToFlags(PS::right, PS::centre, PS::topRight, PS::bottomLeft, PS::bottomRight), // narrow
-            kSegmentsUnimplemented,                                                             // inverted
-            kSegmentsAll,                                                                       // wide
+            PaintSegments(PS::right, PS::centre, PS::topRight, PS::bottomLeft, PS::bottomRight), // narrow
+            kSegmentsUnimplemented,                                                              // inverted
+            kSegmentsAll,                                                                        // wide
         } },
     };
 
@@ -307,9 +307,9 @@ namespace OpenRCT2::TrackMetadata
         .woodenSupports = { WoodenSupportSubType::neSw },
         .metalSupports = { MetalSupportPlace::centre },
         .blockedSegments = { {
-            EnumsToFlags(PS::top, PS::centre, PS::topLeft, PS::topRight, PS::bottomLeft), // narrow
-            kSegmentsUnimplemented,                                                       // inverted
-            kSegmentsAll,                                                                 // wide
+            PaintSegments(PS::top, PS::centre, PS::topLeft, PS::topRight, PS::bottomLeft), // narrow
+            kSegmentsUnimplemented,                                                        // inverted
+            kSegmentsAll,                                                                  // wide
         } },
     };
 
@@ -317,9 +317,9 @@ namespace OpenRCT2::TrackMetadata
         .clearance = { 0, -32, 0, 0, { 0b1000, 0 }, { ClearanceFlag::flag0 } },
         .allowedWallEdges = 0b1100,
         .blockedSegments = { {
-            kSegmentsNone,                                          // narrow
-            kSegmentsUnimplemented,                                 // inverted
-            EnumsToFlags(PS::right, PS::topRight, PS::bottomRight), // wide
+            kSegmentsNone,                                           // narrow
+            kSegmentsUnimplemented,                                  // inverted
+            PaintSegments(PS::right, PS::topRight, PS::bottomRight), // wide
         } },
     };
 
@@ -328,9 +328,9 @@ namespace OpenRCT2::TrackMetadata
         .allowedWallEdges = 0b0011,
         .woodenSupports = { WoodenSupportSubType::corner3 },
         .blockedSegments = { {
-            EnumsToFlags(PS::top, PS::left, PS::centre, PS::topLeft, PS::topRight, PS::bottomLeft), // narrow
-            kSegmentsUnimplemented,                                                                 // inverted
-            EnumsToFlags(PS::top, PS::left, PS::centre, PS::topLeft, PS::topRight, PS::bottomLeft), // wide
+            PaintSegments(PS::top, PS::left, PS::centre, PS::topLeft, PS::topRight, PS::bottomLeft), // narrow
+            kSegmentsUnimplemented,                                                                  // inverted
+            PaintSegments(PS::top, PS::left, PS::centre, PS::topLeft, PS::topRight, PS::bottomLeft), // wide
         } },
     };
 
@@ -338,9 +338,9 @@ namespace OpenRCT2::TrackMetadata
         .clearance = { -32, -32, 0, 0, { 0b1101, 0 }, {} },
         .woodenSupports = { WoodenSupportSubType::corner1 },
         .blockedSegments = { {
-            EnumsToFlags(PS::right, PS::centre, PS::topRight, PS::bottomRight), // narrow
-            kSegmentsUnimplemented,                                             // inverted
-            EnumsToFlags(
+            PaintSegments(PS::right, PS::centre, PS::topRight, PS::bottomRight), // narrow
+            kSegmentsUnimplemented,                                              // inverted
+            PaintSegments(
                 PS::top, PS::right, PS::bottom, PS::centre, PS::topLeft, PS::topRight, PS::bottomLeft,
                 PS::bottomRight), // wide
         } },
@@ -350,9 +350,9 @@ namespace OpenRCT2::TrackMetadata
         .clearance = { -32, -64, 0, 4, { 0b1000, 0 }, { ClearanceFlag::flag0 } },
         .allowedWallEdges = 0b1100,
         .blockedSegments = { {
-            kSegmentsNone,                                          // narrow
-            kSegmentsUnimplemented,                                 // inverted
-            EnumsToFlags(PS::right, PS::topRight, PS::bottomRight), // wide
+            kSegmentsNone,                                           // narrow
+            kSegmentsUnimplemented,                                  // inverted
+            PaintSegments(PS::right, PS::topRight, PS::bottomRight), // wide
         } },
     };
 
@@ -361,9 +361,9 @@ namespace OpenRCT2::TrackMetadata
         .allowedWallEdges = 0b0011,
         .woodenSupports = { WoodenSupportSubType::corner3 },
         .blockedSegments = { {
-            EnumsToFlags(PS::left, PS::bottom, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // narrow
-            kSegmentsUnimplemented,                                                                       // inverted
-            EnumsToFlags(PS::left, PS::bottom, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // wide
+            PaintSegments(PS::left, PS::bottom, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // narrow
+            kSegmentsUnimplemented,                                                                        // inverted
+            PaintSegments(PS::left, PS::bottom, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // wide
         } },
     };
 
@@ -374,9 +374,9 @@ namespace OpenRCT2::TrackMetadata
         .metalSupports = { MetalSupportPlace::centre },
         .extraSupportRotation = -1,
         .blockedSegments = { {
-            EnumsToFlags(PS::bottom, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // narrow
-            kSegmentsUnimplemented,                                                             // inverted
-            kSegmentsAll,                                                                       // wide
+            PaintSegments(PS::bottom, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // narrow
+            kSegmentsUnimplemented,                                                              // inverted
+            kSegmentsAll,                                                                        // wide
         } },
     };
 
@@ -387,9 +387,9 @@ namespace OpenRCT2::TrackMetadata
         .metalSupports = { MetalSupportPlace::centre },
         .extraSupportRotation = -1,
         .blockedSegments = { {
-            EnumsToFlags(PS::left, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // narrow
-            kSegmentsUnimplemented,                                                           // inverted
-            kSegmentsAll,                                                                     // wide
+            PaintSegments(PS::left, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // narrow
+            kSegmentsUnimplemented,                                                            // inverted
+            kSegmentsAll,                                                                      // wide
         } },
     };
 
@@ -397,9 +397,9 @@ namespace OpenRCT2::TrackMetadata
         .clearance = { -32, -96, 8, 0, { 0b0100, 0 }, { ClearanceFlag::flag0 } },
         .allowedWallEdges = 0b0110,
         .blockedSegments = { {
-            kSegmentsNone,                                    // narrow
-            kSegmentsUnimplemented,                           // inverted
-            EnumsToFlags(PS::top, PS::topLeft, PS::topRight), // wide
+            kSegmentsNone,                                     // narrow
+            kSegmentsUnimplemented,                            // inverted
+            PaintSegments(PS::top, PS::topLeft, PS::topRight), // wide
         } },
     };
 
@@ -408,9 +408,9 @@ namespace OpenRCT2::TrackMetadata
         .allowedWallEdges = 0b1001,
         .woodenSupports = { WoodenSupportSubType::corner2 },
         .blockedSegments = { {
-            EnumsToFlags(PS::left, PS::bottom, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // narrow
-            kSegmentsUnimplemented,                                                                       // inverted
-            EnumsToFlags(PS::left, PS::bottom, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // wide
+            PaintSegments(PS::left, PS::bottom, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // narrow
+            kSegmentsUnimplemented,                                                                        // inverted
+            PaintSegments(PS::left, PS::bottom, PS::centre, PS::topLeft, PS::bottomLeft, PS::bottomRight), // wide
         } },
     };
 
@@ -418,9 +418,9 @@ namespace OpenRCT2::TrackMetadata
         .clearance = { -32, -128, 8, 0, { 0b1110, 0 }, {} },
         .woodenSupports = { WoodenSupportSubType::corner0 },
         .blockedSegments = { {
-            EnumsToFlags(PS::top, PS::centre, PS::topLeft, PS::topRight), // narrow
-            kSegmentsUnimplemented,                                       // inverted
-            EnumsToFlags(
+            PaintSegments(PS::top, PS::centre, PS::topLeft, PS::topRight), // narrow
+            kSegmentsUnimplemented,                                        // inverted
+            PaintSegments(
                 PS::top, PS::left, PS::right, PS::centre, PS::topLeft, PS::topRight, PS::bottomLeft,
                 PS::bottomRight), // wide
         } },
@@ -430,9 +430,9 @@ namespace OpenRCT2::TrackMetadata
         .clearance = { 0, -128, 8, 4, { 0b0100, 0 }, { ClearanceFlag::flag0 } },
         .allowedWallEdges = 0b0110,
         .blockedSegments = { {
-            kSegmentsNone,                                    // narrow
-            kSegmentsUnimplemented,                           // inverted
-            EnumsToFlags(PS::top, PS::topLeft, PS::topRight), // wide
+            kSegmentsNone,                                     // narrow
+            kSegmentsUnimplemented,                            // inverted
+            PaintSegments(PS::top, PS::topLeft, PS::topRight), // wide
         } },
     };
 
@@ -441,9 +441,9 @@ namespace OpenRCT2::TrackMetadata
         .allowedWallEdges = 0b1001,
         .woodenSupports = { WoodenSupportSubType::corner2 },
         .blockedSegments = { {
-            EnumsToFlags(PS::right, PS::bottom, PS::centre, PS::topRight, PS::bottomLeft, PS::bottomRight), // narrow
-            kSegmentsUnimplemented,                                                                         // inverted
-            EnumsToFlags(PS::right, PS::bottom, PS::centre, PS::topRight, PS::bottomLeft, PS::bottomRight), // wide
+            PaintSegments(PS::right, PS::bottom, PS::centre, PS::topRight, PS::bottomLeft, PS::bottomRight), // narrow
+            kSegmentsUnimplemented,                                                                          // inverted
+            PaintSegments(PS::right, PS::bottom, PS::centre, PS::topRight, PS::bottomLeft, PS::bottomRight), // wide
         } },
     };
 
@@ -455,9 +455,9 @@ namespace OpenRCT2::TrackMetadata
         .metalSupports = { MetalSupportPlace::centre },
         .extraSupportRotation = -2,
         .blockedSegments = { {
-            EnumsToFlags(PS::right, PS::centre, PS::topRight, PS::bottomLeft, PS::bottomRight), // narrow
-            kSegmentsUnimplemented,                                                             // inverted
-            kSegmentsAll,                                                                       // wide
+            PaintSegments(PS::right, PS::centre, PS::topRight, PS::bottomLeft, PS::bottomRight), // narrow
+            kSegmentsUnimplemented,                                                              // inverted
+            kSegmentsAll,                                                                        // wide
         } },
     };
 

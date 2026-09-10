@@ -355,17 +355,19 @@ void PaintUtilForceSetGeneralSupportHeight(PaintSession& session, int16_t height
 }
 
 const uint16_t kSegmentOffsets[9] = {
-    EnumToFlag(PaintSegment::top),      EnumToFlag(PaintSegment::left),       EnumToFlag(PaintSegment::right),
-    EnumToFlag(PaintSegment::bottom),   EnumToFlag(PaintSegment::centre),     EnumToFlag(PaintSegment::topLeft),
-    EnumToFlag(PaintSegment::topRight), EnumToFlag(PaintSegment::bottomLeft), EnumToFlag(PaintSegment::bottomRight),
+    PaintSegments(PaintSegment::top).holder,         PaintSegments(PaintSegment::left).holder,
+    PaintSegments(PaintSegment::right).holder,       PaintSegments(PaintSegment::bottom).holder,
+    PaintSegments(PaintSegment::centre).holder,      PaintSegments(PaintSegment::topLeft).holder,
+    PaintSegments(PaintSegment::topRight).holder,    PaintSegments(PaintSegment::bottomLeft).holder,
+    PaintSegments(PaintSegment::bottomRight).holder,
 };
 
-void PaintUtilSetSegmentSupportHeight(PaintSession& session, int32_t segments, uint16_t height, uint8_t slope)
+void PaintUtilSetSegmentSupportHeight(PaintSession& session, OpenRCT2::PaintSegments segments, uint16_t height, uint8_t slope)
 {
     SupportHeight* supportSegments = session.SupportSegments;
     for (std::size_t s = 0; s < std::size(kSegmentOffsets); s++)
     {
-        if (segments & kSegmentOffsets[s])
+        if (segments.holder & kSegmentOffsets[s])
         {
             supportSegments[s].height = height;
             if (height != 0xFFFF)
@@ -376,13 +378,13 @@ void PaintUtilSetSegmentSupportHeight(PaintSession& session, int32_t segments, u
     }
 }
 
-uint16_t PaintUtilRotateSegments(uint16_t segments, uint8_t rotation)
+OpenRCT2::PaintSegments PaintUtilRotateSegments(OpenRCT2::PaintSegments segments, uint8_t rotation)
 {
     // Only the value representing PaintSegment::centre falls beyond 0xFF, so this will be kept in place.
-    uint8_t temp = segments & 0xFF;
+    uint8_t temp = segments.holder & 0xFF;
     temp = Numerics::rol8(temp, rotation * 2);
 
-    return (segments & 0xFF00) | temp;
+    return OpenRCT2::PaintSegments(static_cast<uint16_t>((segments.holder & 0xFF00) | temp));
 }
 
 bool PaintShouldShowHeightMarkers(const PaintSession& session, const uint32_t viewportFlag)

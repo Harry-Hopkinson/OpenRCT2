@@ -34,9 +34,9 @@ namespace OpenRCT2::TrackMetadata
         .flags = { SequenceFlag::hasHeightMarker },
         .woodenSupports = { WoodenSupportSubType::neSw },
         .blockedSegments = { {
-            EnumsToFlags(PS::top, PS::centre, PS::topRight, PS::bottomLeft), // narrow
-            EnumsToFlags(PS::top, PS::centre, PS::topRight, PS::bottomLeft), // inverted
-            kSegmentsAll,                                                    // wide
+            PaintSegments(PS::top, PS::centre, PS::topRight, PS::bottomLeft), // narrow
+            PaintSegments(PS::top, PS::centre, PS::topRight, PS::bottomLeft), // inverted
+            kSegmentsAll,                                                     // wide
         } },
     };
 
@@ -45,7 +45,7 @@ namespace OpenRCT2::TrackMetadata
         .allowedWallEdges = 0b0011,
         .woodenSupports = { WoodenSupportSubType::corner3 },
         .blockedSegments = blockedSegmentsAllTypes(
-            EnumsToFlags(PS::top, PS::left, PS::centre, PS::topLeft, PS::topRight, PS::bottomLeft)),
+            PaintSegments(PS::top, PS::left, PS::centre, PS::topLeft, PS::topRight, PS::bottomLeft)),
     };
 
     static constexpr SequenceDescriptor kSBendLeftSeq2 = {
@@ -53,7 +53,7 @@ namespace OpenRCT2::TrackMetadata
         .allowedWallEdges = 0b1100,
         .woodenSupports = { WoodenSupportSubType::corner1 },
         .blockedSegments = blockedSegmentsAllTypes(
-            EnumsToFlags(PS::right, PS::bottom, PS::centre, PS::topRight, PS::bottomLeft, PS::bottomRight)),
+            PaintSegments(PS::right, PS::bottom, PS::centre, PS::topRight, PS::bottomLeft, PS::bottomRight)),
     };
 
     static constexpr SequenceDescriptor kSBendLeftSeq3 = {
@@ -62,9 +62,9 @@ namespace OpenRCT2::TrackMetadata
         .flags = { SequenceFlag::hasHeightMarker },
         .woodenSupports = { WoodenSupportSubType::neSw },
         .blockedSegments = { {
-            EnumsToFlags(PS::bottom, PS::centre, PS::topRight, PS::bottomLeft), // narrow
-            EnumsToFlags(PS::bottom, PS::centre, PS::topRight, PS::bottomLeft), // inverted
-            kSegmentsAll,                                                       // wide
+            PaintSegments(PS::bottom, PS::centre, PS::topRight, PS::bottomLeft), // narrow
+            PaintSegments(PS::bottom, PS::centre, PS::topRight, PS::bottomLeft), // inverted
+            kSegmentsAll,                                                        // wide
         } },
     };
 

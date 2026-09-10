@@ -18,7 +18,7 @@ struct FlagHolder
 
     FlagHolder() = default;
 
-    explicit FlagHolder(THolderType _holder)
+    constexpr explicit FlagHolder(THolderType _holder)
         : holder(_holder)
     {
     }
@@ -123,6 +123,16 @@ struct FlagHolder
     {
         holder |= other.holder;
         return *this;
+    }
+
+    constexpr FlagHolder operator&(const FlagHolder& other) const noexcept
+    {
+        return FlagHolder(static_cast<THolderType>(holder & other.holder));
+    }
+
+    constexpr FlagHolder operator~() const noexcept
+    {
+        return FlagHolder(static_cast<THolderType>(~holder));
     }
 
     constexpr bool operator==(const FlagHolder& other) const noexcept

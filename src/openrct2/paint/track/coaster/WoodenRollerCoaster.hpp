@@ -297,10 +297,10 @@ namespace OpenRCT2::WoodenRC
 
         TrackPaintUtilLeftQuarterTurn3TilesTunnel(session, kTunnelGroup, TunnelSubType::flat, height, direction, trackSequence);
 
-        static constexpr int blockedSegments[4] = {
+        static constexpr PaintSegments blockedSegments[4] = {
             kSegmentsAll,
             kSegmentsNone,
-            EnumsToFlags(PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft),
+            PaintSegments(PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft),
             kSegmentsAll,
         };
 
@@ -508,17 +508,17 @@ namespace OpenRCT2::WoodenRC
         TrackPaintUtilRightQuarterTurn5TilesTunnel(
             session, kTunnelGroup, TunnelSubType::flat, height, direction, trackSequence);
 
-        static constexpr int blockedSegments[7] = {
+        static constexpr PaintSegments blockedSegments[7] = {
             kSegmentsAll,
-            EnumsToFlags(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight),
-            EnumsToFlags(
+            PaintSegments(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight),
+            PaintSegments(
                 PaintSegment::right, PaintSegment::bottom, PaintSegment::centre, PaintSegment::topRight,
                 PaintSegment::bottomLeft, PaintSegment::bottomRight),
-            EnumsToFlags(
+            PaintSegments(
                 PaintSegment::top, PaintSegment::left, PaintSegment::right, PaintSegment::centre, PaintSegment::topLeft,
                 PaintSegment::topRight, PaintSegment::bottomLeft, PaintSegment::bottomRight),
-            EnumsToFlags(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight),
-            EnumsToFlags(
+            PaintSegments(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight),
+            PaintSegments(
                 PaintSegment::left, PaintSegment::bottom, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft,
                 PaintSegment::bottomRight),
             kSegmentsAll,
@@ -590,13 +590,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::left, PaintSegment::right, PaintSegment::bottom, PaintSegment::bottomRight),
+                        PaintSegments(PaintSegment::left, PaintSegment::right, PaintSegment::bottom, PaintSegment::bottomRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::top, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::topRight,
                             PaintSegment::bottomLeft),
                         direction),
@@ -664,7 +664,8 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft),
+                        PaintSegments(
+                            PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft),
                         direction),
                     0xFFFF, 0);
                 PaintUtilSetGeneralSupportHeight(session, height + kDefaultGeneralSupportHeight);
@@ -725,13 +726,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::left, PaintSegment::right, PaintSegment::topRight),
+                        PaintSegments(PaintSegment::top, PaintSegment::left, PaintSegment::right, PaintSegment::topRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::bottom, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft,
                             PaintSegment::bottomRight),
                         direction),
@@ -794,13 +795,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::right, PaintSegment::bottom, PaintSegment::topRight),
+                        PaintSegments(PaintSegment::top, PaintSegment::right, PaintSegment::bottom, PaintSegment::topRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft,
                             PaintSegment::bottomRight),
                         direction),
@@ -868,7 +869,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::bottom, PaintSegment::centre, PaintSegment::bottomLeft, PaintSegment::bottomRight),
                         direction),
                     0xFFFF, 0);
@@ -925,13 +926,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::left, PaintSegment::bottom, PaintSegment::topLeft),
+                        PaintSegments(PaintSegment::top, PaintSegment::left, PaintSegment::bottom, PaintSegment::topLeft),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::right, PaintSegment::centre, PaintSegment::topRight, PaintSegment::bottomLeft,
                             PaintSegment::bottomRight),
                         direction),
@@ -1000,13 +1001,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::left, PaintSegment::bottom, PaintSegment::topLeft),
+                        PaintSegments(PaintSegment::top, PaintSegment::left, PaintSegment::bottom, PaintSegment::topLeft),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::right, PaintSegment::centre, PaintSegment::topRight, PaintSegment::bottomLeft,
                             PaintSegment::bottomRight),
                         direction),
@@ -1074,7 +1075,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::bottom, PaintSegment::centre, PaintSegment::bottomLeft, PaintSegment::bottomRight),
                         direction),
                     0xFFFF, 0);
@@ -1136,13 +1137,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::right, PaintSegment::bottom, PaintSegment::topRight),
+                        PaintSegments(PaintSegment::top, PaintSegment::right, PaintSegment::bottom, PaintSegment::topRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft,
                             PaintSegment::bottomRight),
                         direction),
@@ -1205,13 +1206,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::left, PaintSegment::right, PaintSegment::topRight),
+                        PaintSegments(PaintSegment::top, PaintSegment::left, PaintSegment::right, PaintSegment::topRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::bottom, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft,
                             PaintSegment::bottomRight),
                         direction),
@@ -1279,7 +1280,8 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft),
+                        PaintSegments(
+                            PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft),
                         direction),
                     0xFFFF, 0);
                 PaintUtilSetGeneralSupportHeight(session, height + kDefaultGeneralSupportHeight);
@@ -1335,13 +1337,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::left, PaintSegment::right, PaintSegment::bottom, PaintSegment::bottomRight),
+                        PaintSegments(PaintSegment::left, PaintSegment::right, PaintSegment::bottom, PaintSegment::bottomRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::top, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::topRight,
                             PaintSegment::bottomLeft),
                         direction),
@@ -1410,13 +1412,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::left, PaintSegment::right, PaintSegment::bottom, PaintSegment::bottomRight),
+                        PaintSegments(PaintSegment::left, PaintSegment::right, PaintSegment::bottom, PaintSegment::bottomRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::top, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::topRight,
                             PaintSegment::bottomLeft),
                         direction),
@@ -1427,7 +1429,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::right, PaintSegment::topRight, PaintSegment::bottomRight), direction),
+                        PaintSegments(PaintSegment::right, PaintSegment::topRight, PaintSegment::bottomRight), direction),
                     48, 0x20);
                 PaintUtilSetGeneralSupportHeight(session, height + kDefaultGeneralSupportHeight);
                 break;
@@ -1478,7 +1480,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::top, PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft,
                             PaintSegment::topRight, PaintSegment::bottomLeft),
                         direction),
@@ -1532,13 +1534,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::bottom, PaintSegment::topLeft, PaintSegment::bottomLeft),
+                        PaintSegments(PaintSegment::top, PaintSegment::bottom, PaintSegment::topLeft, PaintSegment::bottomLeft),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::right, PaintSegment::centre, PaintSegment::topRight, PaintSegment::bottomRight),
                         direction),
                     0xFFFF, 0);
@@ -1548,7 +1550,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::right, PaintSegment::topRight, PaintSegment::bottomRight), direction),
+                        PaintSegments(PaintSegment::right, PaintSegment::topRight, PaintSegment::bottomRight), direction),
                     48, 0x20);
                 PaintUtilSetGeneralSupportHeight(session, height + kDefaultGeneralSupportHeight);
                 break;
@@ -1599,7 +1601,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::left, PaintSegment::bottom, PaintSegment::centre, PaintSegment::topLeft,
                             PaintSegment::bottomLeft, PaintSegment::bottomRight),
                         direction),
@@ -1662,13 +1664,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::left, PaintSegment::right, PaintSegment::topRight),
+                        PaintSegments(PaintSegment::top, PaintSegment::left, PaintSegment::right, PaintSegment::topRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::bottom, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft,
                             PaintSegment::bottomRight),
                         direction),
@@ -1731,13 +1733,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::right, PaintSegment::bottom, PaintSegment::topRight),
+                        PaintSegments(PaintSegment::top, PaintSegment::right, PaintSegment::bottom, PaintSegment::topRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft,
                             PaintSegment::bottomRight),
                         direction),
@@ -1748,7 +1750,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight), direction),
+                        PaintSegments(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight), direction),
                     48, 0x20);
                 PaintUtilSetGeneralSupportHeight(session, height + kDefaultGeneralSupportHeight);
                 break;
@@ -1799,7 +1801,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::left, PaintSegment::bottom, PaintSegment::centre, PaintSegment::topLeft,
                             PaintSegment::bottomLeft, PaintSegment::bottomRight),
                         direction),
@@ -1853,14 +1855,14 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::left, PaintSegment::right, PaintSegment::bottomLeft, PaintSegment::bottomRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::topRight),
+                        PaintSegments(PaintSegment::top, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::topRight),
                         direction),
                     0xFFFF, 0);
                 PaintUtilSetGeneralSupportHeight(session, height + kDefaultGeneralSupportHeight);
@@ -1869,7 +1871,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight), direction),
+                        PaintSegments(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight), direction),
                     48, 0x20);
                 PaintUtilSetGeneralSupportHeight(session, height + kDefaultGeneralSupportHeight);
                 break;
@@ -1920,7 +1922,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::right, PaintSegment::bottom, PaintSegment::centre, PaintSegment::topRight,
                             PaintSegment::bottomLeft, PaintSegment::bottomRight),
                         direction),
@@ -1978,13 +1980,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::left, PaintSegment::bottom, PaintSegment::topLeft),
+                        PaintSegments(PaintSegment::top, PaintSegment::left, PaintSegment::bottom, PaintSegment::topLeft),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::right, PaintSegment::centre, PaintSegment::topRight, PaintSegment::bottomLeft,
                             PaintSegment::bottomRight),
                         direction),
@@ -2053,13 +2055,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::left, PaintSegment::bottom, PaintSegment::topLeft),
+                        PaintSegments(PaintSegment::top, PaintSegment::left, PaintSegment::bottom, PaintSegment::topLeft),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::right, PaintSegment::centre, PaintSegment::topRight, PaintSegment::bottomLeft,
                             PaintSegment::bottomRight),
                         direction),
@@ -2070,7 +2072,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight), direction),
+                        PaintSegments(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight), direction),
                     48, 0x20);
                 PaintUtilSetGeneralSupportHeight(session, height + kDefaultGeneralSupportHeight);
                 break;
@@ -2121,7 +2123,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::right, PaintSegment::bottom, PaintSegment::centre, PaintSegment::topRight,
                             PaintSegment::bottomLeft, PaintSegment::bottomRight),
                         direction),
@@ -2175,14 +2177,14 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::left, PaintSegment::right, PaintSegment::bottomLeft, PaintSegment::bottomRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::topRight),
+                        PaintSegments(PaintSegment::top, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::topRight),
                         direction),
                     0xFFFF, 0);
                 PaintUtilSetGeneralSupportHeight(session, height + kDefaultGeneralSupportHeight);
@@ -2191,7 +2193,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight), direction),
+                        PaintSegments(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight), direction),
                     48, 0x20);
                 PaintUtilSetGeneralSupportHeight(session, height + kDefaultGeneralSupportHeight);
                 break;
@@ -2242,7 +2244,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::left, PaintSegment::bottom, PaintSegment::centre, PaintSegment::topLeft,
                             PaintSegment::bottomLeft, PaintSegment::bottomRight),
                         direction),
@@ -2305,13 +2307,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::right, PaintSegment::bottom, PaintSegment::topRight),
+                        PaintSegments(PaintSegment::top, PaintSegment::right, PaintSegment::bottom, PaintSegment::topRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft,
                             PaintSegment::bottomRight),
                         direction),
@@ -2374,13 +2376,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::left, PaintSegment::right, PaintSegment::topRight),
+                        PaintSegments(PaintSegment::top, PaintSegment::left, PaintSegment::right, PaintSegment::topRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::bottom, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft,
                             PaintSegment::bottomRight),
                         direction),
@@ -2391,7 +2393,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::right, PaintSegment::topRight, PaintSegment::bottomRight), direction),
+                        PaintSegments(PaintSegment::right, PaintSegment::topRight, PaintSegment::bottomRight), direction),
                     48, 0x20);
                 PaintUtilSetGeneralSupportHeight(session, height + kDefaultGeneralSupportHeight);
                 break;
@@ -2442,7 +2444,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::left, PaintSegment::bottom, PaintSegment::centre, PaintSegment::topLeft,
                             PaintSegment::bottomLeft, PaintSegment::bottomRight),
                         direction),
@@ -2496,13 +2498,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::top, PaintSegment::bottom, PaintSegment::topLeft, PaintSegment::bottomLeft),
+                        PaintSegments(PaintSegment::top, PaintSegment::bottom, PaintSegment::topLeft, PaintSegment::bottomLeft),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::right, PaintSegment::centre, PaintSegment::topRight, PaintSegment::bottomRight),
                         direction),
                     0xFFFF, 0);
@@ -2512,7 +2514,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::right, PaintSegment::topRight, PaintSegment::bottomRight), direction),
+                        PaintSegments(PaintSegment::right, PaintSegment::topRight, PaintSegment::bottomRight), direction),
                     48, 0x20);
                 PaintUtilSetGeneralSupportHeight(session, height + kDefaultGeneralSupportHeight);
                 break;
@@ -2563,7 +2565,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::top, PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft,
                             PaintSegment::topRight, PaintSegment::bottomLeft),
                         direction),
@@ -2621,13 +2623,13 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::left, PaintSegment::right, PaintSegment::bottom, PaintSegment::bottomRight),
+                        PaintSegments(PaintSegment::left, PaintSegment::right, PaintSegment::bottom, PaintSegment::bottomRight),
                         direction),
                     48, 0x20);
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::top, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::topRight,
                             PaintSegment::bottomLeft),
                         direction),
@@ -2703,7 +2705,8 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft),
+                        PaintSegments(
+                            PaintSegment::left, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft),
                         direction),
                     0xFFFF, 0);
                 PaintUtilSetGeneralSupportHeight(session, height + 48);
@@ -2839,7 +2842,7 @@ namespace OpenRCT2::WoodenRC
                 PaintUtilSetSegmentSupportHeight(
                     session,
                     PaintUtilRotateSegments(
-                        EnumsToFlags(
+                        PaintSegments(
                             PaintSegment::bottom, PaintSegment::centre, PaintSegment::bottomLeft, PaintSegment::bottomRight),
                         direction),
                     0xFFFF, 0);

@@ -895,17 +895,17 @@ static void ClassicWoodenRCTrackBankedRightQuarterTurn5(
         },
     };
 
-    static constexpr int blockedSegments[7] = {
+    static constexpr PaintSegments blockedSegments[7] = {
         kSegmentsAll,
-        EnumsToFlags(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight),
-        EnumsToFlags(
+        PaintSegments(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight),
+        PaintSegments(
             PaintSegment::right, PaintSegment::bottom, PaintSegment::centre, PaintSegment::topRight, PaintSegment::bottomLeft,
             PaintSegment::bottomRight),
-        EnumsToFlags(
+        PaintSegments(
             PaintSegment::top, PaintSegment::left, PaintSegment::right, PaintSegment::centre, PaintSegment::topLeft,
             PaintSegment::topRight, PaintSegment::bottomLeft, PaintSegment::bottomRight),
-        EnumsToFlags(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight),
-        EnumsToFlags(
+        PaintSegments(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight),
+        PaintSegments(
             PaintSegment::left, PaintSegment::bottom, PaintSegment::centre, PaintSegment::topLeft, PaintSegment::bottomLeft,
             PaintSegment::bottomRight),
         kSegmentsAll,
@@ -1063,10 +1063,10 @@ static void ClassicWoodenRCTrackRightQuarterTurn3Bank(
         },
     };
 
-    static constexpr int blockedSegments[4] = {
+    static constexpr PaintSegments blockedSegments[4] = {
         kSegmentsAll,
         kSegmentsNone,
-        EnumsToFlags(PaintSegment::bottom, PaintSegment::centre, PaintSegment::bottomLeft, PaintSegment::bottomRight),
+        PaintSegments(PaintSegment::bottom, PaintSegment::centre, PaintSegment::bottomLeft, PaintSegment::bottomRight),
         kSegmentsAll,
     };
 

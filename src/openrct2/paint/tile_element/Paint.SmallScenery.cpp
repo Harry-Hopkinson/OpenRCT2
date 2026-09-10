@@ -10,7 +10,6 @@
 #include "../Paint.h"
 
 #include "../../GameState.h"
-#include "../../core/EnumUtils.hpp"
 #include "../../interface/Viewport.h"
 #include "../../object/SmallSceneryEntry.h"
 #include "../../profiling/Profiling.h"
@@ -78,10 +77,10 @@ static void SetSupportHeights(
     {
         if (sceneryEntry.flags.has(SmallSceneryFlag::occupiesFullTile))
         {
-            PaintUtilSetSegmentSupportHeight(session, EnumToFlag(PaintSegment::centre), height, 0x20);
+            PaintUtilSetSegmentSupportHeight(session, PaintSegments(PaintSegment::centre), height, 0x20);
             if (sceneryEntry.flags.has(SmallSceneryFlag::vOffsetCentre))
             {
-                PaintUtilSetSegmentSupportHeight(session, kSegmentsAll & ~EnumToFlag(PaintSegment::centre), height, 0x20);
+                PaintUtilSetSegmentSupportHeight(session, kSegmentsAll & ~PaintSegments(PaintSegment::centre), height, 0x20);
             }
         }
         else if (sceneryEntry.flags.has(SmallSceneryFlag::vOffsetCentre))
@@ -90,16 +89,16 @@ static void SetSupportHeights(
             PaintUtilSetSegmentSupportHeight(
                 session,
                 PaintUtilRotateSegments(
-                    EnumsToFlags(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight), direction),
+                    PaintSegments(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight), direction),
                 height, 0x20);
         }
     }
     else if (sceneryEntry.flags.hasAny(SmallSceneryFlag::flag27, SmallSceneryFlag::occupiesFullTile))
     {
-        PaintUtilSetSegmentSupportHeight(session, EnumToFlag(PaintSegment::centre), 0xFFFF, 0);
+        PaintUtilSetSegmentSupportHeight(session, PaintSegments(PaintSegment::centre), 0xFFFF, 0);
         if (sceneryEntry.flags.has(SmallSceneryFlag::vOffsetCentre))
         {
-            PaintUtilSetSegmentSupportHeight(session, kSegmentsAll & ~EnumToFlag(PaintSegment::centre), 0xFFFF, 0);
+            PaintUtilSetSegmentSupportHeight(session, kSegmentsAll & ~PaintSegments(PaintSegment::centre), 0xFFFF, 0);
         }
     }
     else if (sceneryEntry.flags.has(SmallSceneryFlag::vOffsetCentre))
@@ -107,7 +106,7 @@ static void SetSupportHeights(
         auto direction = (sceneryElement.getSceneryQuadrant() + session.CurrentRotation) % 4;
         PaintUtilSetSegmentSupportHeight(
             session,
-            PaintUtilRotateSegments(EnumsToFlags(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight), direction),
+            PaintUtilRotateSegments(PaintSegments(PaintSegment::top, PaintSegment::topLeft, PaintSegment::topRight), direction),
             0xFFFF, 0);
     }
 }

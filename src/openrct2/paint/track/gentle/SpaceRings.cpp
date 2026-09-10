@@ -142,41 +142,41 @@ static void PaintSpaceRings(
             break;
     }
 
-    int32_t cornerSegments = 0;
+    PaintSegments cornerSegments{};
     switch (trackSequence)
     {
         case 0:
-            cornerSegments = 0;
+            cornerSegments = {};
             break;
         case 1:
-            cornerSegments = EnumsToFlags(
+            cornerSegments = PaintSegments(
                 PaintSegment::left, PaintSegment::topLeft, PaintSegment::top, PaintSegment::topRight, PaintSegment::right);
             break;
         case 2:
-            cornerSegments = EnumsToFlags(PaintSegment::top, PaintSegment::topRight, PaintSegment::right);
+            cornerSegments = PaintSegments(PaintSegment::top, PaintSegment::topRight, PaintSegment::right);
             break;
         case 3:
-            cornerSegments = EnumsToFlags(
+            cornerSegments = PaintSegments(
                 PaintSegment::top, PaintSegment::topRight, PaintSegment::right, PaintSegment::bottomRight,
                 PaintSegment::bottom);
             break;
         case 4:
-            cornerSegments = EnumsToFlags(PaintSegment::top, PaintSegment::topLeft, PaintSegment::left);
+            cornerSegments = PaintSegments(PaintSegment::top, PaintSegment::topLeft, PaintSegment::left);
             break;
         case 5:
-            cornerSegments = EnumsToFlags(PaintSegment::right, PaintSegment::bottomRight, PaintSegment::bottom);
+            cornerSegments = PaintSegments(PaintSegment::right, PaintSegment::bottomRight, PaintSegment::bottom);
             break;
         case 6:
-            cornerSegments = EnumsToFlags(
+            cornerSegments = PaintSegments(
                 PaintSegment::top, PaintSegment::topLeft, PaintSegment::left, PaintSegment::bottomLeft, PaintSegment::bottom);
             break;
         case 7:
-            cornerSegments = EnumsToFlags(
+            cornerSegments = PaintSegments(
                 PaintSegment::left, PaintSegment::bottomLeft, PaintSegment::bottom, PaintSegment::bottomRight,
                 PaintSegment::right);
             break;
         case 8:
-            cornerSegments = EnumsToFlags(PaintSegment::left, PaintSegment::bottomLeft, PaintSegment::bottom);
+            cornerSegments = PaintSegments(PaintSegment::left, PaintSegment::bottomLeft, PaintSegment::bottom);
             break;
     }
     PaintUtilSetSegmentSupportHeight(session, cornerSegments, height + 2, 0x20);
