@@ -9,6 +9,7 @@
 
 #pragma once
 
+#include "../core/FlagHolder.hpp"
 #include "../core/Money.hpp"
 #include "../localisation/StringIdType.h"
 #include "ObjectTypes.h"
@@ -25,18 +26,19 @@ namespace OpenRCT2
         jumpingFountain,
     };
 
-    enum
+    enum class PathAdditionFlag : uint8_t
     {
-        PATH_ADDITION_FLAG_IS_BIN = 1 << 0,
-        PATH_ADDITION_FLAG_IS_BENCH = 1 << 1,
-        PATH_ADDITION_FLAG_BREAKABLE = 1 << 2,
-        PATH_ADDITION_FLAG_LAMP = 1 << 3,
-        PATH_ADDITION_FLAG_JUMPING_FOUNTAIN_WATER = 1 << 4,
-        PATH_ADDITION_FLAG_JUMPING_FOUNTAIN_SNOW = 1 << 5,
-        PATH_ADDITION_FLAG_DONT_ALLOW_ON_QUEUE = 1 << 6,
-        PATH_ADDITION_FLAG_DONT_ALLOW_ON_SLOPE = 1 << 7,
-        PATH_ADDITION_FLAG_IS_QUEUE_SCREEN = 1 << 8
+        isBin,
+        isBench,
+        breakable,
+        lamp,
+        jumpingFountainWater,
+        jumpingFountainSnow,
+        dontAllowOnQueue,
+        dontAllowOnSlope,
+        isQueueScreen,
     };
+    using PathAdditionFlags = FlagHolder<uint16_t, PathAdditionFlag>;
 
     struct PathAdditionEntry
     {
@@ -44,7 +46,7 @@ namespace OpenRCT2
 
         StringId name;
         uint32_t image;
-        uint16_t flags;
+        PathAdditionFlags flags;
         PathAdditionDrawType draw_type;
         CursorID tool_id;
         money64 price;
