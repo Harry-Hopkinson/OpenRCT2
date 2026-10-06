@@ -80,6 +80,20 @@ static constexpr float kWindowScrollLocations[][2] = {
         return std::find_if(gWindowList.begin(), gWindowList.end(), [w](auto&& w2) { return w == w2.get(); });
     }
 
+    WindowBase* WindowGetNext(const WindowBase* w)
+    {
+        auto it = WindowGetIterator(w);
+        if (it == gWindowList.end())
+            return nullptr;
+
+        for (++it; it != gWindowList.end(); ++it)
+        {
+            if (!(*it)->flags.has(WindowFlag::dead))
+                return it->get();
+        }
+        return nullptr;
+    }
+
     void WindowVisitEach(std::function<void(WindowBase*)> func)
     {
         for (size_t i = 0; i < gWindowList.size(); i++)

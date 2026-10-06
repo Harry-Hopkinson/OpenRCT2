@@ -12,7 +12,6 @@
 #include "../Identifiers.h"
 
 #include <functional>
-#include <memory>
 
 struct CoordsXYZ;
 struct ZoomLevel;
@@ -48,7 +47,7 @@ namespace OpenRCT2
 
     extern uint32_t gWindowUpdateTicks;
 
-    std::vector<std::unique_ptr<WindowBase>>::iterator WindowGetIterator(const WindowBase* w);
+    WindowBase* WindowGetNext(const WindowBase* w);
     void WindowVisitEach(std::function<void(WindowBase*)> func);
 
     void WindowSetFlagForAllViewports(OpenRCT2::ViewportFlag viewportFlag, bool enabled);

@@ -20,7 +20,6 @@
 #include "Widget.h"
 #include "Window.h"
 
-#include <memory>
 #include <span>
 #include <variant>
 #include <vector>
@@ -246,6 +245,4 @@ namespace OpenRCT2
     #pragma GCC diagnostic pop
 #endif
 
-    // rct2: 0x01420078
-    extern std::vector<std::unique_ptr<WindowBase>> gWindowList;
 } // namespace OpenRCT2

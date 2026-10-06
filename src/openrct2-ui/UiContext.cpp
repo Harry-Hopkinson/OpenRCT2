@@ -323,10 +323,7 @@ public:
         int32_t top = rt.y;
         int32_t bottom = top + rt.height;
 
-        for (auto& w : gWindowList)
-        {
-            DrawWeatherWindow(rt, weatherDrawer, w.get(), left, right, top, bottom, drawFunc);
-        }
+        WindowVisitEach([&](WindowBase* w) { DrawWeatherWindow(rt, weatherDrawer, w, left, right, top, bottom, drawFunc); });
     }
 
     // Text input
@@ -964,36 +961,8 @@ private:
         int16_t bottom, DrawWeatherFunc drawFunc)
     {
         WindowBase* w{};
-        auto itStart = WindowGetIterator(original_w);
-        for (auto it = std::next(itStart);; it++)
+        for (w = WindowGetNext(original_w); w != nullptr; w = WindowGetNext(w))
         {
-            if (it == gWindowList.end())
-            {
-                // Loop ended, draw weather for original_w
-                auto vp = original_w->viewport;
-                if (vp != nullptr)
-                {
-                    left = std::max<int16_t>(left, vp->pos.x);
-                    right = std::min<int16_t>(right, vp->pos.x + vp->width);
-                    top = std::max<int16_t>(top, vp->pos.y);
-                    bottom = std::min<int16_t>(bottom, vp->pos.y + vp->height);
-                    if (left < right && top < bottom)
-                    {
-                        auto width = right - left;
-                        auto height = bottom - top;
-                        drawFunc(rt, weatherDrawer, left, top, width, height);
-                    }
-                }
-                return;
-            }
-
-            w = it->get();
-
-            if (w->flags.has(WindowFlag::dead))
-            {
-                continue;
-            }
-
             if (right <= w->windowPos.x || bottom <= w->windowPos.y)
             {
                 continue;
@@ -1013,6 +982,26 @@ private:
 
             left = w->windowPos.x;
             DrawWeatherWindow(rt, weatherDrawer, original_w, left, right, top, bottom, drawFunc);
+            return;
+        }
+
+        if (w == nullptr)
+        {
+            // Loop ended, draw weather for original_w
+            auto vp = original_w->viewport;
+            if (vp != nullptr)
+            {
+                left = std::max<int16_t>(left, vp->pos.x);
+                right = std::min<int16_t>(right, vp->pos.x + vp->width);
+                top = std::max<int16_t>(top, vp->pos.y);
+                bottom = std::min<int16_t>(bottom, vp->pos.y + vp->height);
+                if (left < right && top < bottom)
+                {
+                    auto width = right - left;
+                    auto height = bottom - top;
+                    drawFunc(rt, weatherDrawer, left, top, width, height);
+                }
+            }
             return;
         }
 

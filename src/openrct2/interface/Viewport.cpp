@@ -309,18 +309,7 @@ namespace OpenRCT2
                 || drawRect.getLeft() >= window->windowPos.x + window->width || drawRect.getBottom() <= window->windowPos.y
                 || drawRect.getTop() >= window->windowPos.y + window->height)
             {
-                auto itWindowPos = WindowGetIterator(window);
-                // Get next valid window after.
-                auto itNextWindow = [&]() {
-                    auto itNext = std::next(itWindowPos);
-                    while (itNext != gWindowList.end() && (itNext->get()->flags.has(WindowFlag::dead)))
-                    {
-                        ++itNext;
-                    }
-                    return itNext;
-                }();
-                ViewportRedrawAfterShift(
-                    rt, itNextWindow == gWindowList.end() ? nullptr : itNextWindow->get(), originalWindow, shift, drawRect);
+                ViewportRedrawAfterShift(rt, WindowGetNext(window), originalWindow, shift, drawRect);
                 return;
             }
 
@@ -411,10 +400,8 @@ namespace OpenRCT2
         RenderTarget& rt, WindowBase* window, const ScreenRect& drawRect, const ScreenCoordsXY& shift)
     {
         // This loop redraws all parts covered by transparent windows.
-        auto it = WindowGetIterator(window);
-        for (; it != gWindowList.end(); it++)
+        for (auto* w = window; w != nullptr; w = WindowGetNext(w))
         {
-            auto w = it->get();
             if (!w->flags.has(WindowFlag::transparent) || w->flags.has(WindowFlag::dead))
                 continue;
             if (w->viewport == window->viewport)
