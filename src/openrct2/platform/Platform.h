@@ -153,7 +153,7 @@ namespace OpenRCT2::Platform
     AssetFileOpenResult OpenAssetFile(u8string_view path);
     void CloseAssetFile(AssetHandle handle);
     uint64_t GetAssetPosition(AssetHandle handle);
-    void SeekAsset(AssetHandle handle, int64_t offset, int32_t origin);
+    void SeekAsset(AssetHandle handle, int64_t offset, StreamSeek origin);
     uint64_t ReadAsset(AssetHandle handle, void* buffer, uint64_t length);
     uint64_t TryReadAsset(AssetHandle handle, void* buffer, uint64_t length);
     u8string GetAssetPath();

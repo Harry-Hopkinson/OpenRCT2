@@ -110,18 +110,18 @@ namespace OpenRCT2
         _position = static_cast<size_t>(position);
     }
 
-    void MemoryStream::Seek(int64_t offset, int32_t origin)
+    void MemoryStream::Seek(int64_t offset, StreamSeek origin)
     {
         switch (origin)
         {
             default:
-            case STREAM_SEEK_BEGIN:
+            case StreamSeek::begin:
                 SetPosition(offset);
                 break;
-            case STREAM_SEEK_CURRENT:
+            case StreamSeek::current:
                 SetPosition(_position + offset);
                 break;
-            case STREAM_SEEK_END:
+            case StreamSeek::end:
                 SetPosition(_dataSize + offset);
                 break;
         }

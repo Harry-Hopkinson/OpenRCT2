@@ -377,7 +377,7 @@ namespace OpenRCT2::Platform
             case STREAM_SEEK_BEGIN:
                 whence = SEEK_SET;
                 break;
-            case STREAM_SEEK_CURRENT:
+            case StreamSeek::current:
                 whence = SEEK_CUR;
                 break;
             case STREAM_SEEK_END:
