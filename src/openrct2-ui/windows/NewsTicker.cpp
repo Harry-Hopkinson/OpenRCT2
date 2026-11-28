@@ -306,6 +306,12 @@ namespace OpenRCT2::Ui::Windows
     void newsTickerInvalidateNewsItem()
     {
         auto* windowMgr = GetWindowManager();
+        if (getGameState().park.newsItems.getActiveMessage() == nullptr)
+        {
+            windowMgr->CloseByClass(WindowClass::newsTicker);
+            return;
+        }
+
         auto* window = windowMgr->FindByClass(WindowClass::newsTicker);
         if (window != nullptr)
             window->invalidate();
