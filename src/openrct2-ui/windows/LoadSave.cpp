@@ -1083,7 +1083,7 @@ namespace OpenRCT2::Ui::Windows
 
                 StringId stringId = STR_BLACK_STRING;
 
-                // If hovering over item, change the color and fill the backdrop.
+                // If hovering over item, change the colour and fill the backdrop.
                 if (i == selectedListItem)
                 {
                     stringId = STR_WINDOW_COLOUR_2_STRINGID;

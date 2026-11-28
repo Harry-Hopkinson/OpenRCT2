@@ -560,7 +560,7 @@ namespace OpenRCT2::Ui::Windows
 
                 const auto screenRect = ScreenRect{ { 0, screenCoords.y },
                                                     { listWidth, screenCoords.y + kScrollableRowHeight - 1 } };
-                // If hovering over item, change the color and fill the backdrop.
+                // If hovering over item, change the colour and fill the backdrop.
                 if (i == selectedListItem)
                     Rectangle::fill(rt, screenRect, getColourMap(colours[1].colour).darker);
                 else if (i == _highlightedIndex)
